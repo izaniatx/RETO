@@ -7,6 +7,6 @@ import react from '@vitejs/plugin-react'
 }) */
 
 export default defineConfig({
-  base: '/RETO_GRUPO1/',
+  base: '/RETO_GRUPO1.github.io/',
   plugins: [react()],
 })
