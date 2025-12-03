@@ -1,11 +1,11 @@
 import logo from "../assets/logo.png";
 import CustomButton from "./CustomButton";
-import "./Header.css";
+import "./css/Header.css";
 import {Link} from 'react-router-dom';
 
 export default function Header() {
   return (
-    <nav className="custom-header navbar navbar-expand-lg shadow-sm p-3">
+    <nav id="header-container" className="custom-header navbar navbar-expand-lg shadow-sm p-3">
       <div className="container">
 
         {/* LOGO */}
@@ -38,7 +38,7 @@ export default function Header() {
               <Link className="nav-link" to="/inicio">Inicio</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/servicios">Servicios</Link>
+              <Link className="nav-link" to="/catalogo">Catalogo</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/vende-tu-coche">Vende Tu Coche</Link>
