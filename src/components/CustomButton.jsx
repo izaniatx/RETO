@@ -3,9 +3,7 @@ import React from "react";
 function CustomButton({
     children,
     onClick,
-    type = "button",
-    className = "",
-    disabled = false
+    ...props
 }) {
     return (
         /* <button
@@ -21,6 +19,7 @@ function CustomButton({
             id="btn-1" 
             onClick={onClick} 
             className="btn btn-primary btn-lg px-4 me-md-2"
+            {...props}
         >
             {children}
         </button>

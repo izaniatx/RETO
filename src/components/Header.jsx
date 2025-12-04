@@ -2,6 +2,7 @@ import logo from "../assets/logo.png";
 import CustomButton from "./CustomButton";
 import "./css/Header.css";
 import {Link} from 'react-router-dom';
+import LoginModal from "./LoginModal";
 
 export default function Header() {
   return (
@@ -53,9 +54,12 @@ export default function Header() {
 
           
         </div>
-        <CustomButton className="ms-3" onClick={() => alert("¡Log In!")}>
-          Log In
+        <CustomButton className="ms-3"
+          data-bs-toggle="modal" data-bs-target="#loginModal" 
+        >
+          Iniciar Sesion
         </CustomButton>
+        <LoginModal />
       </div>
     </nav>
   );
