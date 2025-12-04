@@ -8,3 +8,9 @@
     border-color: #c26f71 !important;
     color: #ffffff !important;
 }
+
+#email, #password {
+    border-radius: 0;
+    border-color: #b6b6b6;
+    border-radius: 10px;
+}

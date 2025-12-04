@@ -8,7 +8,7 @@ function Footer() {
   <div className="container">
     <div className="row">
       <div className="col-md-4 mb-3">
-        <h5>About Us</h5>
+        <h5></h5>
         <img id="footer-logo"
           src={logo}
           alt="Logo"
@@ -17,15 +17,15 @@ function Footer() {
         />
       </div>
       <div className="col-md-4 mb-3">
-        <h5 id="quick">Quick Links</h5>
+        <h5 id="quick">Enlaces Rapidos</h5>
         <ul className="list-unstyled">
-          <li><a id="links" href="#" className="text-decoration-none text-white">Home</a></li>
-          <li><a id="links" href="#" className="text-decoration-none text-white">Services</a></li>
-          <li><a id="links" href="#" className="text-decoration-none text-white">Contact</a></li>
+          <li><a id="links" href="#/inicio" className="text-decoration-none text-white">Inicio</a></li>
+          <li><a id="links" href="#" className="text-decoration-none text-white">Servicios</a></li>
+          <li><a id="links" href="#" className="text-decoration-none text-white">Contacto</a></li>
         </ul>
       </div>
       <div className="col-md-4 mb-3">
-        <h5>Follow Us</h5>
+        <h5>Síguenos</h5>
         <ul className="list-inline social-icons">
           <li className="list-inline-item"><a href="#" className="text-white"><i className="bi bi-facebook"></i></a></li>
           <li className="list-inline-item"><a href="#" className="text-white"><i className="bi bi-twitter"></i></a></li>

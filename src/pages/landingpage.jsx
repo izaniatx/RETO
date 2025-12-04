@@ -1,6 +1,6 @@
 import MainLayout from "../layouts/MainLayout";
 import Aro from "../assets/Aro.png";
-import "./landingpage.css";
+import "./css/landingpage.css";
 import LoginModal from "../components/LoginModal";
 
 function landingpage() {
@@ -17,7 +17,9 @@ function landingpage() {
                     data-bs-toggle="modal" data-bs-target="#loginModal"
                   >Iniciar sesión</button>
                   <LoginModal />
-                  <button type="button" id="btn-2" className="btn btn-outline-secondary btn-lg px-4">Más información</button>
+                  <button type="button" id="btn-2" className="btn btn-outline-secondary btn-lg px-4"
+                    onClick={() => window.location.href = '/#/inicio'}
+                  >Más información</button>
             </div>
             <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
               <div className="col-10 col-sm-6 col-lg-6">
