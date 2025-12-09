@@ -1,23 +1,14 @@
-#links{
-    color: #bd3a3f !important;
+#icon-twitter:hover {
+    color: #1DA1F2 !important;
+}
+#icon-facebook:hover {
+    color: #4267B2 !important;
+}
+#icon-social:hover {
+    color: #E1306C !important; 
 }
 
-#quick{
-    color: #000000 !important;
-}
 
-#footer-logo {
-    border-radius: 40%;
-    width: 75px;
-    height: 50px;      
-}
-
-footer {
-    background-color: #f8f9fa;
-    width: 100vw !important;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-    margin-bottom: 0;
-    padding-bottom: 0;
-    padding-top: 2rem;
-}
+#footer a:hover:not(#icon-twitter):not(#icon-facebook):not(#icon-social) {
+    color: black !important;
+} 
