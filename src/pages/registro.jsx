@@ -2,10 +2,10 @@ import './css/registro.css';
 
 function Registro() {
     return ( 
-        <div>
+        <div className="registro-bg">
             <button id="btn-atras" onClick={() => window.location.href = '/'} style={{ position: 'absolute', top: '10px', left: '10px' }}>&larr;</button>
             <div className="container mt-5">
-                <h2 className="mb-4">Registro</h2>
+                <h2 className="mb-4" style={{ color: 'white' }}>REGISTRO</h2>
                 <form>
 
                 <div className="row" id='cnt'>
@@ -55,10 +55,12 @@ function Registro() {
                             <input type="tel" className="form-control" id="telefono" placeholder="Introduce tu telefono" />
                         </div>
                     </div>
+                    <div className="d-grid gap-2 d-md-flex justify-content-md-center mb-4">
+                        {/* Botón de Enviar */}
+                        <button type="submit" id='btn-registro' className="btn btn-primary">Registrarse</button>
+                    </div>
                 </div>
 
-                {/* Botón de Enviar */}
-                <button type="submit" id='btn-registro' className="btn btn-primary">Registrarte</button>
                 </form>
             </div>
         </div>
