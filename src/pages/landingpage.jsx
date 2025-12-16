@@ -50,7 +50,7 @@ function landingpage() {
                 </p>  
               </div>
             </div>
-
+            
             <Marquee gradient={false} speed={100} pauseOnHover={true} style={{ marginTop: "100px", marginBottom: "50px", fontSize: "24px", fontWeight: "bold" }}>
               ¡Encuentra tu coche ideal con Aro Automoción! &nbsp; • &nbsp; Amplia selección de vehículos &nbsp; • &nbsp; Financiación a medida &nbsp; • &nbsp; Servicio postventa excepcional &nbsp; • &nbsp; ¡Visítanos hoy mismo! &nbsp; • &nbsp;
             </Marquee> 

@@ -58,3 +58,7 @@
 #header-container{
   width: 80vw;
 }
+
+.modal-backdrop.show {
+  opacity: 0 !important;
+}

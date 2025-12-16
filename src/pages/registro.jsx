@@ -1,12 +1,29 @@
 import './css/registro.css';
+import React from 'react';
+import formValidator from '../lib/formValidator';
 
 function Registro() {
+    const handleSubmit = (e) => {
+        
+        e.preventDefault();
+        
+        console.log('Enviar registro (preventDefault aplicado)');
+    };
+
     return ( 
-        <div className="registro-bg">
-            <button id="btn-atras" onClick={() => window.location.href = '/'} style={{ position: 'absolute', top: '10px', left: '10px' }}>&larr;</button>
-            <div className="container mt-5">
+        <div className="registro-bg" style={{ position: 'relative' }}>
+            <button
+                id="btn-atras"
+                onClick={() => window.location.href = '/'}
+                style={{ position: 'absolute', top: '10px', left: '10px', zIndex: 3 }}
+            >
+                &larr;
+            </button>
+
+            <div className="container mt-5" style={{ position: 'relative', zIndex: 2, pointerEvents: 'auto' }}>
                 <h2 className="mb-4" style={{ color: 'white' }}>REGISTRO</h2>
-                <form>
+
+                <form onSubmit={handleSubmit} style={{ pointerEvents: 'auto' }}>
 
                 <div className="row" id='cnt'>
 
@@ -23,12 +40,14 @@ function Registro() {
                         <div className="mb-3" id='txt-cnt'>
                             <label htmlFor="email" className="form-label">Correo Electrónico</label>
                             <input type="email" className="form-control" id="email" placeholder="Introduce tu correo" />
+                            <p id='errorEmail'></p>
                         </div>
                         
                         {/* Campo 3 */}
                         <div className="mb-3" id='txt-cnt'>
                             <label htmlFor="usuario" className="form-label">Usuario</label>
                             <input type="text" className="form-control" id="usuario" placeholder="Introduce tu usuario" />
+                            <p id='errorUsuario'></p>
                         </div>
                     </div>
 
@@ -57,16 +76,15 @@ function Registro() {
                     </div>
                     <div className="d-grid gap-2 d-md-flex justify-content-md-center mb-4">
                         {/* Botón de Enviar */}
-                        <button type="submit" id='btn-registro' className="btn btn-primary">Registrarse</button>
+                        <button type="submit" id='btn-registro' className="btn btn-primary" onClick={formValidator}>Registrarse</button>
                     </div>
                 </div>
-
                 </form>
             </div>
         </div>
-
         
     )
+
 
     
 }
