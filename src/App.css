@@ -1,3 +1,4 @@
+
 #root {
   width: 100vw;
   margin: 0 auto;
@@ -5,7 +6,7 @@
   text-align: center;
 
 }
-  
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -18,6 +19,92 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
+
+.lead{
+  text-align: justify !important;
+}
+
+
+.mt-auto{
+  background-color: white !important;
+}
+
+#logoFooter{
+  width: 10vw !important;
+  height: 10vh !important;
+}
+
+#footer a{
+  color: grey !important;
+}
+
+
+#footer{
+  max-width: 100vw !important;
+}
+
+
+
+#contenedorPrincipalLanding{
+  max-width: 100vw !important;
+  padding: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+#landingPage {
+  min-height: 100vh; /* altura mínima de la ventana */
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, rgba(26,26,26,0) 1%, rgba(31,31,31,0.78) 17%, rgba(51,51,51,1) 68%);
+}
+
+
+.marquee-container {
+   width: 100%;
+
+   padding: 15px 0;
+ }
+
+ .marquee-content {
+   display: flex;
+   animation: marquee 15s linear infinite;
+ }
+
+ .marquee-item {
+   flex: 0 0 auto;
+   padding: 0 20px;
+   font-size: 1.2rem;
+   color: #495057;
+ }
+
+
+ .cartasOfertas {
+  background-color: #292929ff;
+  color: white;
+  transition: background-color 0.3s ease; /* animación suave */
+}
+
+.cartasOfertas:hover {
+  background-color: rgb(236, 236, 236);
+  color: black;
+  cursor: pointer; /* opcional: cambia el cursor */
+}
+
+ @keyframes marquee {
+   0% {
+     transform: translateX(100%);
+   }
+
+   100% {
+     transform: translateX(-100%);
+   }
+ }
+
+ /* Optional: Pause animation on hover */
+ .marquee-container:hover .marquee-content {
+   animation-play-state: paused;
+ }
+
 
 @keyframes logo-spin {
   from {
@@ -42,23 +129,7 @@
   color: #888;
 }
 
-.mt-auto{
-  background-color: white !important;
-}
-
-#logoFooter{
-  width: 10vw !important;
-  height: 10vh !important;
-}
-
-#footer a{
-  color: grey !important;
-}
-
-#header-container{
-  width: 80vw;
-}
-
-.modal-backdrop.show {
-  opacity: 0 !important;
+.boton{
+  background-color: #bd3a3f !important;
+    border-color: #bd3a3f !important;
 }
