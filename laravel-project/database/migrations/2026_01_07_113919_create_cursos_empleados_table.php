@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('cursos_empleados', function (Blueprint $table) {
-            $table->id();
             $table->datetime('fecha_finalizacion');
 
             $table->foreignId('curso_id')

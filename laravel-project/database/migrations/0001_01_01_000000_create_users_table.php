@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('usuario')->unique();        // No se repiten usernames
-            $table->string('password', 255);           // Para hash largo
+            $table->string('usuario')->unique();        
+            $table->string('password', 255);           
             $table->string('nombre');
             $table->string('apellido');
-            $table->string('telefono', 15);           // Teléfono flexible con + y ceros iniciales
+            $table->string('telefono', 15);           
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->boolean('isDeleted')->default(false); // Mejor como boolean
+            $table->boolean('isDeleted')->default(false); 
             $table->rememberToken();
             $table->timestamps();
         });

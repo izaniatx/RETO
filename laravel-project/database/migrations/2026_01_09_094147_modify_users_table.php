@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('equipamientos_opcionales', function (Blueprint $table) {
-            $table->id();
-            $table->string('equipamiento');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreignId('rol_id')
+                ->constrained('roles')
+                ->onDelete('cascade');
         });
+
     }
 
     /**
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('equipamientosOpcionales');
+        //
     }
 };
