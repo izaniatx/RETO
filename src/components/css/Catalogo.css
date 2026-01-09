@@ -229,3 +229,9 @@
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 25px;
 }
+
+#ver-mas-boton:hover {
+    width: 110px !important;
+    height: 40px !important;
+    transition: all 3.7s !important;
+}
