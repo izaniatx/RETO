@@ -11,8 +11,13 @@ use Laravel\Fortify\Features;
 })->name('home');*/
 
 Route::get('/', function () {
-    return Inertia::render('inicio');
+    return Inertia::render('landingpage');
 });
+
+Route::get('/registro', function () {
+    return Inertia::render('registro');
+});
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {

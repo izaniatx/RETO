@@ -30,16 +30,17 @@ export default App
 
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { InertiaApp } from '@inertiajs/inertia-react';
+import { createInertiaApp } from '@inertiajs/inertia-react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-// Buscamos el elemento donde React montará la app
-const el = document.getElementById('app');
-
-createRoot(el).render(
-  <React.StrictMode>
-    <InertiaApp
-      initialPage={JSON.parse(el.dataset.page)} // La página que Laravel envía
-      resolveComponent={name => import(`./pages/${name}`).then(module => module.default)}
-    />
-  </React.StrictMode>
-);
+createInertiaApp({
+  resolve: name => import(`./pages/${name}`).then(module => module.default),
+  setup({ el, App, props }) {
+    createRoot(el).render(
+      <React.StrictMode>
+        <App {...props} />
+      </React.StrictMode>
+    );
+  },
+});

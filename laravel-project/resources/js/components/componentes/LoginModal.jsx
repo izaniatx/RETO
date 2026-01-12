@@ -1,40 +1,43 @@
 import React from "react";
 import "../../../css/LoginModal.css";
+import { Inertia } from '@inertiajs/inertia'; // ✅ así funciona
+
+
 
 const LoginModal = () => {
   const handleRegisterClick = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    // Intentar cerrar el modal de Bootstrap si existe la instancia
-    const modalEl = document.getElementById("loginModal");
-    if (modalEl) {
-      const bs = window.bootstrap;
-      const instance = bs?.Modal.getInstance(modalEl) || (bs?.Modal ? new bs.Modal(modalEl) : null);
-      if (instance && typeof instance.hide === "function") {
-        instance.hide();
-      }
+  // Cerrar modal de Bootstrap
+  const modalEl = document.getElementById("loginModal");
+  if (modalEl) {
+    const bs = window.bootstrap;
+    const instance = bs?.Modal.getInstance(modalEl) || (bs?.Modal ? new bs.Modal(modalEl) : null);
+    if (instance && typeof instance.hide === "function") {
+      instance.hide();
     }
+  }
 
-    // Cambiar la ruta hash sin enviar el formulario
-    window.location.hash = "#/registro";
-  };
+  // Redirigir usando Inertia
+ window.location.href = '/registro';
+};
+
 
   const handleRecoveryClick = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    // Intentar cerrar el modal de Bootstrap si existe la instancia
-    const modalEl = document.getElementById("loginModal");
-    if (modalEl) {
-      const bs = window.bootstrap;
-      const instance = bs?.Modal.getInstance(modalEl) || (bs?.Modal ? new bs.Modal(modalEl) : null);
-      if (instance && typeof instance.hide === "function") {
-        instance.hide();
-      }
+  const modalEl = document.getElementById("loginModal");
+  if (modalEl) {
+    const bs = window.bootstrap;
+    const instance = bs?.Modal.getInstance(modalEl) || (bs?.Modal ? new bs.Modal(modalEl) : null);
+    if (instance && typeof instance.hide === "function") {
+      instance.hide();
     }
+  }
+  window.location.href = '/recoveryPassword';
+  
+};
 
-    // Cambiar la ruta hash sin enviar el formulario
-    window.location.hash = "#/recoveryPassword";
-  };
 
   return (
     <div

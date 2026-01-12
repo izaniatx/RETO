@@ -1,8 +1,9 @@
-
 import CustomButton from "./CustomButton";
 import "../../../css/Header.css";
-import {Link} from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 import LoginModal from "./LoginModal";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 export default function Header() {
   return (
@@ -39,7 +40,7 @@ export default function Header() {
               <Link className="nav-link" to="/inicio">Inicio</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/catalogo">Catalogo</Link>
+              <Link className="nav-link" to="/catalogo">Catálogo</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/vende-tu-coche">Vende Tu Coche</Link>
@@ -48,17 +49,21 @@ export default function Header() {
               <Link className="nav-link" to="/contacto">Contacto</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/DondeEncontrarnos">Dónde Encontrarnos</Link>
+              <Link className="nav-link" to="/donde-encontrarnos">Dónde Encontrarnos</Link>
             </li>
           </ul>
-
-          
         </div>
-        <CustomButton className="ms-3 btn-login"
-          data-bs-toggle="modal" data-bs-target="#loginModal" 
+
+        {/* BOTÓN INICIAR SESIÓN */}
+        <CustomButton 
+          className="btn btn-primary ms-3 btn-login"
+          data-bs-toggle="modal" 
+          data-bs-target="#loginModal"
         >
           Iniciar Sesión
         </CustomButton>
+
+        {/* MODAL */}
         <LoginModal />
       </div>
     </nav>

@@ -1,0 +1,119 @@
+/* Fondo */
+.r-registro-bg {
+    background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)),
+        url('../../assets/conses.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    position: relative;
+}
+
+/* Botón atrás */
+.r-btn-atras {
+    position: absolute;
+    top: 20px;
+    left: 25px;
+    z-index: 3;
+
+    background-color: #bd3a3f;
+    color: white;
+
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: none;
+
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.r-btn-atras:hover {
+    background-color: #c26f71;
+    border-radius: 10px;
+}
+
+/* Contenedor formulario */
+.r-cnt {
+    background-color: white;
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+    padding: 30px;
+
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Inputs */
+.r-registro-inputs {
+    margin-top: 30px;
+}
+
+/* Label */
+.r-form-label {
+    font-weight: 600;
+    color: #bd3a3f;
+}
+
+/* Input */
+.r-form-control {
+    width: 80%;
+    margin: 5px auto 30px auto;
+    padding: 10px;
+
+    border-radius: 8px;
+    border: 1px solid #494848;
+
+    display: block;
+    box-sizing: border-box;
+    background-color: white;
+    color : black;
+}
+
+.r-form-control:focus {
+    border-color: #bd3a3f;
+    box-shadow: 0 0 5px rgba(189, 58, 63, 0.5);
+    outline: none;
+}
+
+/* Error */
+.r-error {
+    color: red;
+    font-size: 0.8rem;
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.r-input-error {
+    border: 2px solid red;
+}
+
+/* Botón principal */
+.r-btn-primary {
+    background-color: #bd3a3f;
+    color: white;
+
+    width: 300px;
+    padding: 10px;
+
+    border-radius: 10px;
+    border: none;
+
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.r-btn-primary:hover {
+    background-color: #c26f71;
+    width: 350px;
+}

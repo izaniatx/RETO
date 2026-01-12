@@ -3,7 +3,7 @@ import MainLayout from "../layouts/MainLayout";
 function inicio() { 
     return (
         <div>
-            <MainLayout > 
+            <MainLayout children={undefined} > 
             </MainLayout>
         </div>
     );

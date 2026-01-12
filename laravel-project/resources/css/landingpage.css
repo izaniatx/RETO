@@ -1,0 +1,30 @@
+#btn-1{
+    background-color: #bd3a3f !important;
+    border-color: #bd3a3f !important;
+}
+
+#btn-1:hover{
+    background-color: #c26f71 !important;
+    color: #ffffff !important;
+}
+
+#btn-2{
+    color: white !important;
+    border-color: #bd3a3f !important;
+}
+
+#btn-2:hover{
+    background-color: #c26f71 !important;
+    color: #ffffff !important;
+}
+
+.landing {
+  margin: 0; /* quitar márgenes por defecto */
+  min-height: 100vh; /* ocupa toda la altura de la ventana */
+  background: 
+    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), /* superposición oscura */
+    url("/images/conses.jpg") no-repeat center center !important; /* imagen centrada */
+  background-size: cover !important; /* cubre todo sin deformarse */
+  background-attachment: fixed !important; /* opcional: mantiene la imagen fija al hacer scroll */
+  color: white; /* contenido legible sobre fondo oscuro */
+}

@@ -1,12 +1,10 @@
 import MainLayout from "../layouts/MainLayout";
-import Aro from "../assets/Aro.png";
-import bmw from "../assets/logos/bmw.png";
-import mazda from "../assets/logos/mazda.png";
-import c1 from "../assets/coches/coche.png";
-import c2 from "../assets/coches/coche2.png";
-import c3 from "../assets/coches/coche3.png";
-import "./css/landingpage.css";
-import { href } from "react-router-dom";
+import "../../css/landingpage.css";
+import "../App.css";
+import {Link} from '@inertiajs/react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 
 function landingpage() {
   return (
@@ -50,7 +48,7 @@ function landingpage() {
               <div className="card shadow p-3 mb-4 rounded cartasOfertas"
                 style={{ width: "100%", maxWidth: "27rem", height: "22rem" }}>
                 <div className="card-body">
-                  <img src={c1} className="rounded w-100 mb-2" style={{ height: "60%", objectFit: "cover" }} />
+                  <img src="/images/coches/coche.png" className="rounded w-100 mb-2" style={{ height: "60%", objectFit: "cover" }} />
                   <h5 className="card-title">TITULO</h5>
                   <p className="card-text">Parrafo prueba</p>
                 </div>
@@ -59,7 +57,7 @@ function landingpage() {
               <div className="card shadow p-3 mb-4 rounded cartasOfertas"
                 style={{ width: "100%", maxWidth: "27rem", height: "22rem" }}>
                 <div className="card-body">
-                  <img src={c2} className="rounded w-100 mb-2" style={{ height: "60%", objectFit: "cover" }} />
+                  <img src="/images/coches/coche2.png" className="rounded w-100 mb-2" style={{ height: "60%", objectFit: "cover" }} />
                   <h5 className="card-title">TITULO</h5>
                   <p className="card-text">Parrafo prueba</p>
                 </div>
@@ -68,7 +66,7 @@ function landingpage() {
               <div className="card shadow p-3 mb-4 rounded cartasOfertas"
                 style={{ width: "100%", maxWidth: "27rem", height: "22rem" }}>
                 <div className="card-body">
-                  <img src={c3} className="rounded w-100 mb-2" style={{ height: "60%", objectFit: "cover" }} />
+                  <img src="/images/coches/coche3.png" className="rounded w-100 mb-2" style={{ height: "60%", objectFit: "cover" }} />
                   <h5 className="card-title">TITULO</h5>
                   <p className="card-text">Parrafo prueba</p>
                 </div>
@@ -100,7 +98,7 @@ function landingpage() {
 
                   <div className="mb-3">
                     <label className="form-label">Mensaje</label>
-                    <textarea className="form-control" rows="5"
+                    <textarea className="form-control" 
                       placeholder="Escribe tu mensaje aquí..." required />
                   </div>
 
@@ -110,7 +108,7 @@ function landingpage() {
 
               {/* Imagen */}
               <div className="d-flex justify-content-center align-items-center">
-                <img src={Aro}
+                <img src="/images/Aro.png"
                   alt="Aro"
                   className="rounded w-100"
                   style={{ maxWidth: "500px", height: "500px" }} />
