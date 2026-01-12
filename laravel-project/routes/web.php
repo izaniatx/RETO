@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
+use App\Http\Controllers\RegistroController;
 
 /*Route::get('/', function () {
     return Inertia::render('welcome', [
@@ -17,6 +18,10 @@ Route::get('/', function () {
 Route::get('/registro', function () {
     return Inertia::render('registro');
 });
+
+Route::post('/registro', [RegistroController::class, 'registrar']);
+Route::get('/inicio', [RegistroController::class, 'inicio'])->name('inicio');
+
 
 
 Route::middleware(['auth', 'verified'])->group(function () {

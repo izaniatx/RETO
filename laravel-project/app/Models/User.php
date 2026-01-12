@@ -25,6 +25,7 @@ class User extends Authenticatable
         'telefono',
         'email',
         'password',
+        'rol_id',
         'isDeleted'
     ];
 

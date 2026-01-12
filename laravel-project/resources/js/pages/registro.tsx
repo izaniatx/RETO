@@ -65,15 +65,18 @@ const Registro: React.FC = () => {
     setErrors(prev => ({ ...prev, [name]: '' }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
 
-    
+  Inertia.post('/registro', values as Record<string, any>, {
+  onSuccess: () => {},
+  onError: (errors) => {
+    console.log('Errores de validación:', errors);
+  }
 
-    
-    console.log('Formulario enviado:', values);
+});
 
-  };
+};
 
   return (
     <div className="r-registro-bg" style={{ position: 'relative' }}>
