@@ -1,9 +1,8 @@
-// resources/js/pages/Registro.tsx
 import '../../css/registro.css';
 import React, { useState } from 'react';
-import { Inertia } from '@inertiajs/inertia';
-// Si quieres, puedes implementar tus propias funciones de validación
-// import { validateField, validateForm } from '../lib/validators';
+import { router } from '@inertiajs/react';
+import { validateForm } from '../lib/validators';
+
 
 interface FormValues {
   firstName: string;
@@ -11,6 +10,7 @@ interface FormValues {
   email: string;
   usuario: string;
   contrasenya: string;
+  contrasenya2: string;
   telefono: string;
 }
 
@@ -20,6 +20,7 @@ interface FormErrors {
   email?: string;
   usuario?: string;
   contrasenya?: string;
+  contrasenya2?: string;
   telefono?: string;
 }
 
@@ -48,8 +49,10 @@ const Registro: React.FC = () => {
     email: '',
     usuario: '',
     contrasenya: '',
+    contrasenya2: '',
     telefono: '',
   });
+
 
   const [errors, setErrors] = useState<FormErrors>({});
 
@@ -60,23 +63,27 @@ const Registro: React.FC = () => {
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
-    
     setErrors(prev => ({ ...prev, [name]: '' }));
   };
 
- const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  Inertia.post('/registro', values as Record<string, any>, {
-  onSuccess: () => {},
-  onError: (errors) => {
-    console.log('Errores de validación:', errors);
-  }
+    const formErrors = validateForm(values);
 
-});
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return; 
+    }
 
-};
+    router.post('/registro', values as any, {
+      onSuccess: () => {},
+      onError: (errors) => {
+        setErrors(errors);
+      }
+    });
+  };
+
 
   return (
     <div className="r-registro-bg" style={{ position: 'relative' }}>
@@ -88,16 +95,16 @@ const Registro: React.FC = () => {
         ←
       </button>
       <div className="container">
-        <h2 className="mb-4 text-white">REGISTRO</h2>
+        <h2 className="mb-4 text-white text-center fw-bold">REGISTRO</h2>
 
         <form onSubmit={handleSubmit} className="r-cnt">
           <div className="row">
-            <div className="col-md-6 r-registro-inputs">
+            <div className="col-md-12 r-registro-inputs">
               <Input
-                label="Nombre"
-                name="firstName"
-                value={values.firstName}
-                error={errors.firstName}
+                label="Usuario"
+                name="usuario"
+                value={values.usuario}
+                error={errors.usuario}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -110,17 +117,15 @@ const Registro: React.FC = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              <Input
-                label="Usuario"
-                name="usuario"
-                value={values.usuario}
-                error={errors.usuario}
+              
+         <Input
+                label="Nombre"
+                name="firstName"
+                value={values.firstName}
+                error={errors.firstName}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-            </div>
-
-            <div className="col-md-6 r-registro-inputs">
               <Input
                 label="Apellido"
                 name="lastName"
@@ -135,6 +140,16 @@ const Registro: React.FC = () => {
                 type="password"
                 value={values.contrasenya}
                 error={errors.contrasenya}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+
+               <Input
+                label="Confirme la contraseña"
+                name="contrasenya2"
+                type="password"
+                value={values.contrasenya2}
+                error={errors.contrasenya2}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -159,6 +174,8 @@ const Registro: React.FC = () => {
       </div>
     </div>
   );
+
+  
 };
 
 export default Registro;

@@ -1,4 +1,6 @@
 import '../css/app.css';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Asegúrate de incluir bootstrap aquí si lo usas
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
@@ -10,16 +12,14 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),
-    resolve: (name) =>
-        resolvePageComponent([
-            `./pages/${name}.tsx`,
-            `./pages/${name}.jsx`,
-        ],
-            import.meta.glob('./pages/**/*.{tsx, jsx}'),
+    resolve: (name) => 
+        // Eliminado el espacio en el glob y simplificada la ruta
+        resolvePageComponent(
+            `./pages/${name}.tsx`, 
+            import.meta.glob('./pages/**/*.tsx')
         ),
     setup({ el, App, props }) {
         const root = createRoot(el);
-
         root.render(
             <StrictMode>
                 <App {...props} />
@@ -31,5 +31,4 @@ createInertiaApp({
     },
 });
 
-// This will set light / dark mode on load...
 initializeTheme();

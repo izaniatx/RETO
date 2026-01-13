@@ -11,6 +11,15 @@ class RegistroController extends Controller
     // Método que crea el usuario
     public function registrar(Request $request)
     {
+
+        $exists = User::where('usuario', $request->usuario)->exists();
+
+        if ($exists) {
+            return redirect()->back()->withErrors([
+                'usuario' => 'Este nombre de usuario ya existe',
+            ])->withInput();
+        }
+
         $user = User::create([
             'usuario' => $request->usuario,
             'nombre' => $request->firstName,

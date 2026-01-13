@@ -1,6 +1,6 @@
 import validarPassword from './passwordValidator';
 
-export function validateField(name, value) {
+export function validateField(name, value, values = {}) {
     switch (name) {
         case 'firstName':
             if (!value) return 'El nombre es obligatorio';
@@ -25,11 +25,19 @@ export function validateField(name, value) {
             break;
 
         case 'contrasenya':
+            if (!value) return 'La contraseña es obligatoria';
             if (!validarPassword(value))
                 return 'Mín. 8 caracteres, mayúscula, número y símbolo';
             break;
 
+        case 'contrasenya2':
+            if (!value) return 'Confirma la contraseña';
+            if (value !== values.contrasenya)
+                return 'Las contraseñas no coinciden';
+            break;
+
         case 'telefono':
+            if (!value) return 'El teléfono es obligatorio';
             if (value.length < 9)
                 return 'Debe tener al menos 9 dígitos';
             break;
@@ -41,11 +49,12 @@ export function validateField(name, value) {
     return '';
 }
 
-export function validateForm(values) {
+
+  export function validateForm(values) {
     const errors = {};
 
     Object.keys(values).forEach(field => {
-        const error = validateField(field, values[field]);
+        const error = validateField(field, values[field], values);
         if (error) errors[field] = error;
     });
 
