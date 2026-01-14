@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import MainLayout from "../../layouts/MainLayout"; 
 import { Link } from '@inertiajs/react';
+import '../../../css/dashboard.css';    
 
 const Dashboard = () => {
     const [cars, setCars] = useState([
-        { id: 1, marca: 'Audi', modelo: 'A4', stock: 5, precio: '35.000€' },
-        { id: 2, marca: 'BMW', modelo: 'Serie 3', stock: 2, precio: '42.000€' },
-        { id: 3, marca: 'Mercedes', modelo: 'Clase C', stock: 0, precio: '45.000€' },
-        { id: 4, marca: 'Volkswagen', modelo: 'Golf', stock: 8, precio: '28.000€' },
-        { id: 5, marca: 'Honda', modelo: 'Civic', stock: 1, precio: '30.000€' },
-
+        { id: 1, marca: 'Audi', modelo: 'A4', stock: "SI", precio: '35.000€' },
+        { id: 2, marca: 'BMW', modelo: 'Serie 3', stock: "SI", precio: '42.000€' },
+        { id: 3, marca: 'Mercedes', modelo: 'Clase C', stock: "NO", precio: '45.000€' },
+        { id: 4, marca: 'Volkswagen', modelo: 'Golf', stock: "SI", precio: '28.000€' },
+        { id: 5, marca: 'Honda', modelo: 'Civic', stock: "SI", precio: '30.000€' },
     ]);
 
     return (
@@ -20,13 +20,13 @@ const Dashboard = () => {
                 <aside className="bg-dark text-white p-4 shadow" style={{ width: "250px" }}>
                     <h4 className="fw-bold mb-4 text-center border-bottom pb-3">Panel Admin</h4>
                     <nav className="nav flex-column gap-2">
-                        <Link href="#" className="nav-link text-white bg-primary rounded px-3 py-2">
+                        <Link href="#" className="nav-link nav-inventario text-white bg-primary rounded px-3 py-2">
                             <i className="bi bi-speedometer2 me-2"></i> Inventario
                         </Link>
-                        <Link href="#" className="nav-link text-white-50 px-3 py-2">
+                        <Link href="/admin/usuarios" className="nav-link nav-usuarios text-white-50 px-3 py-2">
                             <i className="bi bi-people me-2"></i> Usuarios
                         </Link>
-                        <Link href="#" className="nav-link text-white-50 px-3 py-2">
+                        <Link href="/admin/mensajes" className="nav-link nav-mensajes text-white-50 px-3 py-2">
                             <i className="bi bi-chat-dots me-2"></i> Mensajes
                         </Link>
                     </nav>
@@ -85,9 +85,9 @@ const Dashboard = () => {
                                                 </td>
                                                 <td>{car.precio}</td>
                                                 <td>
-                                                    {car.stock > 0 ? (
+                                                    {car.stock === "SI" ? (
                                                         <span className="badge rounded-pill bg-success-subtle text-success">
-                                                            {car.stock} disp.
+                                                            Disponible
                                                         </span>
                                                     ) : (
                                                         <span className="badge rounded-pill bg-danger-subtle text-danger">

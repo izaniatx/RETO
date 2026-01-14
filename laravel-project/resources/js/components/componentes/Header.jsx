@@ -4,20 +4,21 @@ import "../../../css/Header.css";
 import LoginModal from "./LoginModal";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { use } from 'react';
 
 export default function Header() {
   
-  const { props } = usePage();
-  
+  const { props, url } = usePage();
+
  
   const auth = props.auth;
 
   return (
-    <nav id="header-container" className="custom-header navbar navbar-expand-lg shadow-sm p-3">
-      <div className="container">
+    <nav id="header-container" className="custom-header navbar navbar-expand-lg shadow-sm p-3" style={{ backgroundColor: url === "/admin/dashboard" ? "#212529" : "transparent" }} >
+      <div className="container" >
 
         {/* LOGO */}
-        <a className="navbar-brand d-flex align-items-center" href="#">
+        <a className="navbar-brand d-flex align-items-center" href="/">
           <img src="/images/logo.png" alt="Logo" style={{ height: "60px" }} className="me-3" />
         </a>
 
@@ -31,7 +32,7 @@ export default function Header() {
         <ul className="navbar-nav ms-auto">
             <li className="nav-item "><Link className="nav-link btn-pers" href="/inicio">Inicio</Link></li>
             <li className="nav-item "><Link className="nav-link btn-pers" href="/catalogo">Catálogo</Link></li>
-            <li className="nav-item "><Link className="nav-link btn-pers" href="/vende-tu-coche">Vende Tu Coche</Link></li>
+            <li className="nav-item "><Link className="nav-link btn-pers" href="/vendeTuCoche">Vende Tu Coche</Link></li>
             <li className="nav-item "><Link className="nav-link btn-pers" href="/contacto">Contacto</Link></li>
             <li className="nav-item "><Link className="nav-link btn-pers" href="/donde-encontrarnos">Dónde Encontrarnos</Link></li>
         </ul>

@@ -1,0 +1,23 @@
+
+.nav-inventario {
+    color: white !important;
+    background-color: #bd3a3f !important;
+    transition: background-color 0.3s ease;
+}
+
+.nav-inventario:hover {
+    background-color: rgb(212, 108, 108) !important;
+    border-color: #bd3a3f !important;
+}
+
+.nav-usuarios {
+    color: white !important;
+}
+
+.nav-mensajes {
+    color: white !important;
+}
+
+.body{
+    background-color: #212529 !important;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import MainLayout from "../../layouts/MainLayout"; 
 import { Link } from '@inertiajs/react';
+import '../../../css/usuarios.css';
 
 const Usuarios = () => {
     // Datos de prueba para la lista de usuarios/alumnos
@@ -18,14 +19,14 @@ const Usuarios = () => {
                 <aside className="bg-dark text-white p-4 shadow" style={{ width: "250px" }}>
                     <h4 className="fw-bold mb-4 text-center border-bottom pb-3">Panel Admin</h4>
                     <nav className="nav flex-column gap-2">
-                        <Link href="/admin/dashboard" className="nav-link text-white-50 px-3 py-2">
+                        <Link href="/admin/dashboard" className="nav-link nav-inventario-2 text-white-50 px-3 py-2">
                             <i className="bi bi-speedometer2 me-2"></i> Inventario
                         </Link>
                         {/* Enlace activo ahora es Usuarios */}
-                        <Link href="/admin/usuarios" className="nav-link text-white bg-primary rounded px-3 py-2">
+                        <Link href="/admin/usuarios" className="nav-link nav-usuarios-2 text-white bg-primary rounded px-3 py-2">
                             <i className="bi bi-people me-2"></i> Usuarios
                         </Link>
-                        <Link href="#" className="nav-link text-white-50 px-3 py-2">
+                        <Link href="/admin/mensajes" className="nav-link nav-mensajes-2 text-white-50 px-3 py-2">
                             <i className="bi bi-chat-dots me-2"></i> Mensajes
                         </Link>
                     </nav>

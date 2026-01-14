@@ -1,0 +1,17 @@
+.nav-usuarios-2 {
+    color: white !important;
+    background-color: #bd3a3f !important;
+}
+
+.nav-mensajes-2 {
+    color: white !important;
+}
+
+.nav-usuarios-2:hover {
+    background-color: rgb(212, 108, 108) !important;
+    border-color: #bd3a3f !important;
+}
+
+.nav-inventario-2 {
+    color: white !important;
+}

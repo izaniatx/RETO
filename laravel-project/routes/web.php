@@ -41,6 +41,10 @@ Route::get('/recoveryPassword', function () {
     return Inertia::render('recoveryPassword');
 });
 
+Route::get('/vendeTuCoche', function () {
+    return Inertia::render('vendeTuCoche');
+});
+
 Route::get('/email/verify', function () {
     return inertia('Auth/VerifyEmail'); 
 })->middleware('auth')->name('verification.notice');
