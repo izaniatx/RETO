@@ -25,6 +25,14 @@ Route::post('/registro', [RegistroController::class, 'registrar']);
 Route::get('/inicio', [RegistroController::class, 'inicio'])->name('inicio');
 
 
+Route::get('/admin/dashboard', function () {
+    return Inertia::render('admin/dashboard');
+});
+
+Route::get('/admin/usuarios', function () {
+    return Inertia::render('admin/usuarios');
+});
+
 Route::get('/email/verify', function () {
     return inertia('Auth/VerifyEmail'); 
 })->middleware('auth')->name('verification.notice');
