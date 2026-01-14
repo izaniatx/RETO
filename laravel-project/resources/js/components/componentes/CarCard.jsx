@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/Catalogo.css';
+import '../../../css/Catalogo.css';
 
 const CarCard = ({ coche }) => {
   return (

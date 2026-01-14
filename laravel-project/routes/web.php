@@ -21,6 +21,10 @@ Route::get('/registro', function () {
     return Inertia::render('registro');
 });
 
+Route::get('/catalogo', function () {
+    return Inertia::render('catalogo');
+});
+
 Route::post('/registro', [RegistroController::class, 'registrar']);
 Route::get('/inicio', [RegistroController::class, 'inicio'])->name('inicio');
 

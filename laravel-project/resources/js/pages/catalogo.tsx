@@ -1,5 +1,5 @@
 import MainLayout from "../layouts/MainLayout";
-import CatalogoPage from "../components/CatalogoPage.jsx";
+import CatalogoPage from "../components/componentes/CatalogoPage.jsx";
 
 function catalogo() { 
     return (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import CarCard from './CarCard';
-import './css/Catalogo.css'; // Asegúrate de que el nombre del archivo coincida
+import '../../../css/Catalogo.css'; // Asegúrate de que el nombre del archivo coincida
 
 // Datos de ejemplo para que veas contenido
 const COCHES_DATA = [

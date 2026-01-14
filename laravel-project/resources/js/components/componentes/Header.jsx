@@ -27,15 +27,15 @@ export default function Header() {
         </button>
 
         {/* NAV ENLACES */}
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
+
+        <ul className="navbar-nav ms-auto">
             <li className="nav-item"><Link className="nav-link" href="/inicio">Inicio</Link></li>
             <li className="nav-item"><Link className="nav-link" href="/catalogo">Catálogo</Link></li>
             <li className="nav-item"><Link className="nav-link" href="/vende-tu-coche">Vende Tu Coche</Link></li>
             <li className="nav-item"><Link className="nav-link" href="/contacto">Contacto</Link></li>
             <li className="nav-item"><Link className="nav-link" href="/donde-encontrarnos">Dónde Encontrarnos</Link></li>
-          </ul>
-        </div>
+        </ul>
+        
         
         {/* LÓGICA DE SESIÓN */}
         {auth && auth.user ? (
