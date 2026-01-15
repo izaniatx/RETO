@@ -32,6 +32,12 @@ export default function Header() {
         <ul className="navbar-nav ms-auto">
           <li className="nav-item"><Link className="nav-link btn-pers" href="/inicio">Inicio</Link></li>
           <li className="nav-item"><Link className="nav-link btn-pers" href="/catalogo">Catálogo</Link></li>
+          <li className="nav-item">
+              <Link className="nav-link btn-pers" href="/contacto">Contacto</Link>
+          </li>
+          <li className="nav-item">
+              <Link className="nav-link btn-pers" href="/donde-encontrarnos">Dónde Encontrarnos</Link>
+          </li>
           
           {/* OPCIONES PARA CLIENTE: Usamos un Fragment <></> para envolver los <li> */}
           {auth?.user?.is_client && (
@@ -39,12 +45,7 @@ export default function Header() {
                   <li className="nav-item">
                       <Link className="nav-link btn-pers" href="/vendeTuCoche">Vende Tu Coche</Link>
                   </li>
-                  <li className="nav-item">
-                      <Link className="nav-link btn-pers" href="/contacto">Contacto</Link>
-                  </li>
-                  <li className="nav-item">
-                      <Link className="nav-link btn-pers" href="/donde-encontrarnos">Dónde Encontrarnos</Link>
-                  </li>
+                 
               </>
           )}
 
