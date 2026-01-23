@@ -6,26 +6,25 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Inertia\Inertia;
 use Carbon\Carbon;
+use App\Models\Rol;
 
 
 class UsuariosController extends Controller
 {
-    public function getUsuarios(){
+    public function getUsuarios()
+    {
         $usuarios = User::with('rol')->get();
+        $roles = Rol::all(); // Traemos todos los roles
 
         $totalUsuarios = User::count();
-
-        $totalMes = User::whereYear('created_at', Carbon::now()->year)
-                    ->whereMonth('created_at', Carbon::now()->month)
-                    ->count();
+        $totalMes = User::whereMonth('created_at', now()->month)->count();
 
         return Inertia::render('admin/usuarios', [
             'users' => $usuarios,
             'total' => $totalUsuarios,
-            'totalMes' =>$totalMes,
+            'totalMes' => $totalMes,
+            'roles' => $roles, // <-- enviamos los roles
         ]);
-
-
     }
 
 
@@ -37,7 +36,7 @@ class UsuariosController extends Controller
             $usuario->save();
         }
 
-        
-
     }
+
+
 }
