@@ -15,7 +15,7 @@ const Usuarios = () => {
         id: number;
         usuario?: string;
         nombre?: string;
-        name?: string;
+        apellido?: string;
         email: string;
         telefono?: string;
         rol_id?: number;
@@ -32,6 +32,7 @@ const Usuarios = () => {
     }>().props;
 
     const [users, setUsers] = useState<User[]>(usersProps);
+    const [editingUser, setEditingUser] = useState<User | null>(null);
 
     const [showModal, setShowModal] = useState(false);  
     const [formValues, setFormValues] = useState({
@@ -66,26 +67,69 @@ const handleSuspender = (id: number) => {
         }
     );
 };
+
+const handleActivar = (id: number) => {
+    if (!confirm('¿Seguro que quieres activar este usuario?')) return;
+
+    router.post(
+        '/admin/usuarios/active', // tu ruta para activar
+        { id },
+        {
+            preserveScroll: true,
+            onSuccess: () => {
+                alert('Usuario activado correctamente');
+                setUsers(users.map(u => 
+                    u.id === id ? { ...u, isDeleted: false } : u
+                ));
+            },
+            onError: () => {
+                alert('Error al activar el usuario');
+            },
+        }
+    );
+};
+
 const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    router.post('/admin/usuarios', formValues, {
+   if (editingUser) {
+    // Actualización
+    router.put(`/admin/usuarios/${editingUser.id}`, formValues, {
         preserveScroll: true,
-        onError: (backendErrors) => {
-            setErrors(backendErrors as Record<string, string>);
-        },
         onSuccess: (page) => {
+            // page.props.updatedUser no existe porque devolvimos JSON
+            // Pero Inertia te da `page.props` o mejor usar response.data
+            const updatedUser = (page as any).props?.updatedUser || formValues;
+
+            // Asegurarse de que updatedUser está definido
+            if (updatedUser) {
+                setUsers(prev =>
+                    prev.map(u => u.id === editingUser.id ? updatedUser : u)
+                );
+            }
             setShowModal(false);
             setErrors({});
-
-            // Aquí tipamos newUser
-            const newUser = page.props.newUser as User;
-
-            // Actualizamos la tabla
-            setUsers(prev => [...prev, newUser]);
         },
+        onError: (backendErrors) => setErrors(backendErrors as Record<string,string>),
     });
+}
+
+ else {
+        // Creación
+        router.post('/admin/usuarios/create', formValues, {
+            preserveScroll: true,
+            onSuccess: (page) => {
+                setShowModal(false);
+                setErrors({});
+                const newUser = page.props.newUser as User;
+                setUsers(prev => [...prev, newUser]);
+            },
+            onError: (backendErrors) => setErrors(backendErrors as Record<string,string>),
+        });
+    }
 };
+
+
 
 
 
@@ -157,7 +201,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                                         {users.map((user) => (
                                             <tr key={user.id}>
                                                 <td>{user.usuario}</td>
-                                                <td className="ps-4 fw-bold">{user.nombre}</td>
+                                                <td className="ps-4 fw-bold">{user.nombre} {user.apellido}</td>
                                                 <td className="text-muted">{user.email}</td>
                                                 <td>{user.telefono}</td>
                                                 <td>
@@ -174,14 +218,41 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                                                     </span>
                                                     </td>
                                                 <td className="text-end pe-4">
-                                                    <button className="btn btn-sm btn-light border me-2">Editar</button>
                                                     <button
+                                                        className="btn btn-sm btn-light border me-2"
+                                                        onClick={() => {
+                                                            setEditingUser(user);
+                                                            setFormValues({
+                                                                usuario: user.usuario || '',
+                                                                nombre: user.nombre || '',
+                                                                apellido: user.apellido || '',
+                                                                email: user.email,
+                                                                telefono: user.telefono || '',
+                                                                rol_id: user.rol?.id?.toString() || '', // ✅ convertimos a string
+                                                                password: '', // vacío para no obligar a cambiar
+                                                            });
+                                                            setShowModal(true);
+                                                        }}
+                                                    >
+                                                        Editar
+                                                    </button>
+
+
+                                                    {!user.isDeleted ? (
+                                                        <button
                                                             className="btn btn-sm btn-outline-danger"
                                                             onClick={() => handleSuspender(user.id)}
                                                         >
                                                             Suspender
                                                         </button>
-
+                                                    ) : (
+                                                        <button
+                                                            className="btn btn-sm btn-outline-success"
+                                                            onClick={() => handleActivar(user.id)}
+                                                        >
+                                                            Activar
+                                                        </button>
+                                                    )}
                                                 </td>
                                             </tr>
                                         ))}

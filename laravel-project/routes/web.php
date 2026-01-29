@@ -38,6 +38,12 @@ Route::get('/admin/usuarios', [UsuariosController::class, 'getUsuarios']);
 
 Route::post('/admin/usuarios/delete', [UsuariosController::class, 'deleteUsuario']);
 
+Route::post('/admin/usuarios/active', [UsuariosController::class, 'activeUsuario']);
+
+Route::post('/admin/usuarios/create', [UsuariosController::class, 'createUsuario']);
+
+Route::put('/admin/usuarios/{id}', [UsuariosController::class, 'modifyUsuario']);
+
 Route::get('/admin/mensajes', function () {
     return Inertia::render('admin/mensajes');
 });

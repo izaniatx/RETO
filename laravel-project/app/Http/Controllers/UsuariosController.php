@@ -38,5 +38,102 @@ class UsuariosController extends Controller
 
     }
 
+    public function activeUsuario(Request $request){
+        $usuario = User::find($request->id);
+
+        if($usuario){
+            $usuario->isDeleted = false;
+            $usuario->save();
+        }
+
+    }
+
+    public function createUsuario(Request $request){
+
+        $exists = User::where('usuario', $request->usuario)->exists();
+
+        if($exists){
+            return back()->withError([
+                'usuario'=>'Este usuario ya existe'
+            ]);
+        }
+
+        $request->validate([
+            'usuario'=>'required',
+            'nombre'=>'required',
+            'apellido'=>'required',
+            'email' => 'required|email',
+            'password'  => ['required', 'min:8', 'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/'], 
+            'telefono'=>'required|regex: /[0-9]{9}/',
+            'rol_id'=>'required',
+        ],[
+            'usuario.required'=>'Campo  obligatorio',
+            'nombre.required'=>'Campo  obligatorio',
+            'apellido.required'=>'Campo  obligatorio',
+            'email.required'=>'Campo  obligatorio',
+            'email.regex'=>'Este campo debe de ser un correo',
+            'password.required'=>'Campo  obligatorio',
+            'password.regex'=>'Min. 8 carácteres',
+            'telefono.required'=>'Campo  obligatorio',
+            'telefono.regex'=>'Debe de contener 9 digitos',
+            'rol_id.required'=>'Campo  obligatorio', 
+
+        ]);
+
+        
+
+        $usuario=User::create([
+            'usuario'=>$request['usuario'],
+            'nombre'=>$request['nombre'],
+            'apellido'=>$request['apellido'],
+            'email'=>$request['email'],
+            'password'=>$request['password'],
+            'telefono'=>$request['telefono'],
+            'rol_id'=>$request['rol_id'],
+        ]);
+
+        $usuarios = User::with('rol')->get();
+        $roles = Rol::all();
+        $totalUsuarios = User::count();
+        $totalMes = User::whereMonth('created_at', now()->month)->count();
+
+            return Inertia::render('admin/usuarios', [
+                'users' => $usuarios,
+                'roles' => $roles,
+                'total' => $totalUsuarios,
+                'totalMes' => $totalMes,
+                'newUser' => $usuario->load('rol') // para usar en handleSubmit
+            ]);
+    }
+
+    public function modifyUsuario(Request $request, $id){
+        $usuario = User::findOrFail($id);
+        
+
+        $usuario->usuario= $request->usuario;
+        $usuario->nombre=$request->nombre;
+        $usuario->apellido=$request->apellido;
+        $usuario->email=$request->email;
+        $usuario->telefono=$request->telefono;
+        $usuario->rol_id=$request->rol_id;
+
+        $usuario->save();
+
+
+        $usuarios = User::with('rol')->get();
+        $roles = Rol::all();
+        $totalUsuarios = User::count();
+        $totalMes = User::whereMonth('created_at', now()->month)->count();
+
+            return Inertia::render('admin/usuarios', [
+                'users' => $usuarios,
+                'roles' => $roles,
+                'total' => $totalUsuarios,
+                'totalMes' => $totalMes,
+                'newUser' => $usuario->load('rol') // para usar en handleSubmit
+            ]);
+    
+    }
+
 
 }
