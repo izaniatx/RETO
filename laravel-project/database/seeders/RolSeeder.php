@@ -13,6 +13,9 @@ class RolSeeder extends Seeder
         
         Rol::create(['id'=>1,'rol' => 'Administrador']);
         Rol::create(['id'=>2,'rol' => 'Cliente']);
+        Rol::create(['id'=>3, 'rol' => 'GestorVentas']);
+        Rol::create(['id'=>4, 'rol' => 'GestorCompras']);
+
 
         
     }

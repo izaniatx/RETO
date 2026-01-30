@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('vehiculos', function (Blueprint $table) {
             $table->id();
-            $table->string('color');
-            $table->double('precio', 8, 2);
-            $table->datetime('fecha_alta');
-            $table->datetime('fecha_venta');
+            $table->string('color')->nullable();;
+            $table->double('precio', 8, 2)->nullable();;
+            $table->datetime('fecha_alta')->nullable();;
+            $table->datetime('fecha_venta')->nullable();;
             $table->string('imagen');
 
             $table->foreignId('marca_id')
