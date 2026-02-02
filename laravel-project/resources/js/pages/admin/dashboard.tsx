@@ -3,6 +3,7 @@ import MainLayout from "../../layouts/MainLayout";
 import { Link} from '@inertiajs/react';
 import '../../../css/dashboard.css';    
 import SalesChart from '@/components/componentes/SalesChart';
+import Graf from '@/components/componentes/graf';
 
 const Dashboard = () => {
     const [cars, setCars] = useState([
@@ -112,6 +113,10 @@ const Dashboard = () => {
 
                         <div className="max-w-3xl mx-auto mt-10">
                             <SalesChart />
+                        </div>
+
+                        <div className="max-w-3xl mx-auto mt-10">
+                            <Graf />
                         </div>
                     </div>
                 </main>
