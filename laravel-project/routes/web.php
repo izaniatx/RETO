@@ -23,6 +23,9 @@ Route::get('/contacto', fn () => Inertia::render('contacto'));
 Route::get('/dondeEncontrarnos', fn () => Inertia::render('dondeEncontrarnos'));
 Route::get('/vendeTuCoche', fn () => Inertia::render('vendeTuCoche'));
 
+
+Route::get('/UserProfile', fn () => Inertia::render('UserProfile'));
+
 /*
 |--------------------------------------------------------------------------
 | REGISTRO & LOGIN
@@ -114,3 +117,4 @@ Route::prefix('admin')->group(function () {
 */
 
 require __DIR__ . '/settings.php';
+

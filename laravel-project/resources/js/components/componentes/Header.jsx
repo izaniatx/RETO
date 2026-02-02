@@ -75,6 +75,14 @@ export default function Header() {
         
         {/* LÓGICA DE SESIÓN */}
         {auth && auth.user ? (
+          <div>
+            <Link 
+            href="/UserProfile" 
+            as="button" 
+            className="btn btn-outline-danger ms-3"
+          >
+            ({auth.user.usuario})
+          </Link>
           <Link 
             href="/logout" 
             method="post" 
@@ -83,6 +91,8 @@ export default function Header() {
           >
             Cerrar Sesión ({auth.user.usuario})
           </Link>
+          </div>
+          
         ) : (
           <>
             <CustomButton 
