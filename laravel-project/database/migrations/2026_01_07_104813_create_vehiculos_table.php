@@ -17,7 +17,7 @@ return new class extends Migration
             $table->double('precio', 8, 2)->nullable();;
             $table->datetime('fecha_alta')->nullable();;
             $table->datetime('fecha_venta')->nullable();;
-            $table->string('imagen');
+            $table->string('imagen')->nullable();
 
             $table->foreignId('marca_id')
                         ->constrained('marcas')

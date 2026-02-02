@@ -9,6 +9,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\VehiculosController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,24 +27,20 @@ Route::get('/dondeEncontrarnos', fn () => Inertia::render('dondeEncontrarnos'));
 Route::get('/vendeTuCoche', fn () => Inertia::render('vendeTuCoche'));
 
 
-//Route::get('/UserProfile', fn () => Inertia::render('UserProfile'));
-Route::get('/UserProfile', [UsuariosController::class, 'usuarioLogueado'])->name('user.profile');
-
-
-
-/*
-|--------------------------------------------------------------------------
-| REGISTRO & LOGIN
-|--------------------------------------------------------------------------
-*/
-
-Route::get('/registro', fn () => Inertia::render('registro'));
 Route::post('/registro', [RegistroController::class, 'registrar']);
+Route::get('/inicio', [RegistroController::class, 'inicio'])->name('inicio');
+
+Route::get('/catalogo', function () {
+    return Inertia::render('catalogo');
+});
+
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 Route::get('/recoveryPassword', fn () => Inertia::render('recoveryPassword'));
 
+Route::get('/UserProfile', [UsuariosController::class, 'usuarioLogueado'])->name('perfil');
+Route::put('/UserProfile/{id}', [UsuariosController::class, 'modificarPerfil']);
 /*
 |--------------------------------------------------------------------------
 | EMAIL VERIFICATION
@@ -80,7 +79,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::prefix('inventario')->group(function () {
-    Route::get('/coches', [VehiculosController::class, 'getVehiculos']);
+    Route::get('/coches', [VehiculosController::class, 'getVehiculos'])->name('inventario.index');
     Route::post('/coches/delete', [VehiculosController::class, 'deleteVehiculo']);
     Route::post('/coches/active', [VehiculosController::class, 'activeVehiculo']);
     Route::post('/coches/create', [VehiculosController::class, 'createVehiculo']);
@@ -105,13 +104,22 @@ Route::prefix('admin')->group(function () {
     |-----------------------
     */
 
-    Route::get('/usuarios', [UsuariosController::class, 'getUsuarios']);
+    Route::get('/usuarios', [UsuariosController::class, 'getUsuarios'])->name('usuarios.index');
     Route::post('/usuarios/create', [UsuariosController::class, 'createUsuario']);
     Route::post('/usuarios/delete', [UsuariosController::class, 'deleteUsuario']);
     Route::post('/usuarios/active', [UsuariosController::class, 'activeUsuario']);
     Route::put('/usuarios/{id}', [UsuariosController::class, 'modifyUsuario']);
 });
 
+
+Route::post('/logout', function (Request $request) {
+    Auth::logout();
+
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/');
+})->middleware('auth');
 
 /*
 |--------------------------------------------------------------------------

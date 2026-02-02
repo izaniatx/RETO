@@ -106,15 +106,7 @@ class VehiculosController extends Controller
         $modelos = Modelo::all();
         $carrocerias = Carroceria::all();
 
-        return Inertia::render('listadocoches', [
-            'vehiculos' => $vehiculos,
-            'totalVehiculos' => $totalVehiculos,
-            'ventasMes' => $ventasMes,
-            'cochesSinStock' => $cochesSinStock,
-            'marcas' => $marcas,
-            'modelos' => $modelos,
-            'carrocerias' => $carrocerias,
-        ]);
+        return Inertia::location(route('inventario.index'));
     }
 
 
@@ -137,13 +129,7 @@ class VehiculosController extends Controller
         $totalUsuarios = User::count();
         $totalMes = User::whereMonth('created_at', now()->month)->count();
 
-            return Inertia::render('admin/usuarios', [
-                'users' => $usuarios,
-                'roles' => $roles,
-                'total' => $totalUsuarios,
-                'totalMes' => $totalMes,
-                'newUser' => $usuario->load('rol') // para usar en handleSubmit
-            ]);
+        return Inertia::location(route('inventario.index'));
     
     }
 }

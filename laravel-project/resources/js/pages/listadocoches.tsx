@@ -193,12 +193,35 @@ const ListadoCoches = () => {
                                                     }
                                                 </td>
                                                 <td className="text-end pe-4">
+                                                    {/* Botón Editar */}
+                                                    <button
+                                                        className="btn btn-sm btn-light border me-2"
+                                                        onClick={() => {
+                                                            setCocheEditar(car); // ponemos el coche que vamos a editar
+                                                            setShowModal(true);   // abrimos el modal
+                                                        }}
+                                                    >
+                                                        Editar
+                                                    </button>
+
+                                                    {/* Botón Activar / Eliminar */}
                                                     {car.isDeleted ? (
-                                                        <button className="btn btn-sm btn-success" onClick={() => handleActivar(car.id)}>Activar</button>
+                                                        <button
+                                                            className="btn btn-sm btn-success"
+                                                            onClick={() => handleActivar(car.id)}
+                                                        >
+                                                            Activar
+                                                        </button>
                                                     ) : (
-                                                        <button className="btn btn-sm btn-outline-danger ant-sig-btn" onClick={() => handleEliminar(car.id)}>Eliminar</button>
+                                                        <button
+                                                            className="btn btn-sm btn-outline-danger ant-sig-btn"
+                                                            onClick={() => handleEliminar(car.id)}
+                                                        >
+                                                            Eliminar
+                                                        </button>
                                                     )}
                                                 </td>
+
                                             </tr>
                                         ))}
                                     </tbody>

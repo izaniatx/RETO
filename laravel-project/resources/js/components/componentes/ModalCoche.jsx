@@ -1,11 +1,11 @@
 import React from "react";
-import { useForm, router } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
 
 const ModalCoche = ({ showModal, setShowModal, marcas, modelos, carrocerias, cocheEditar }) => {
   const { data, setData, post, put, errors, processing } = useForm({
-    marca_id: cocheEditar?.marca_id || "",
-    modelo_id: cocheEditar?.modelo_id || "",
-    carroceria_id: cocheEditar?.carroceria_id || "",
+    marca: cocheEditar?.marca_id || "",
+    modelo: cocheEditar?.modelo_id || "",
+    carroceria: cocheEditar?.carroceria_id || "",
     color: cocheEditar?.color || "",
     precio: cocheEditar?.precio || 0,
   });
@@ -13,20 +13,23 @@ const ModalCoche = ({ showModal, setShowModal, marcas, modelos, carrocerias, coc
   const handleSubmit = (e) => {
     e.preventDefault();
 
-   const handleSubmit = (e) => {
-  e.preventDefault();
+    const payload = {
+      marca: data.marca,
+      modelo: data.modelo,
+      carroceria: data.carroceria,
+      color: data.color,
+      precio: data.precio,
+    };
 
-  if (cocheEditar) {
-      put(`/inventario/coches/${cocheEditar.id}`, data, {
+    if (cocheEditar) {
+      put(`/inventario/coches/${cocheEditar.id}`, payload, {
         onSuccess: () => setShowModal(false),
       });
     } else {
-      post("/inventario/coches/create", data, {
+      post("/inventario/coches/create", payload, {
         onSuccess: () => setShowModal(false),
       });
     }
-  };
-
   };
 
   if (!showModal) return null;
@@ -45,8 +48,8 @@ const ModalCoche = ({ showModal, setShowModal, marcas, modelos, carrocerias, coc
               <label className="form-label">Marca:</label>
               <select
                 className="form-select"
-                value={data.marca_id}
-                onChange={(e) => setData("marca_id", e.target.value)}
+                value={data.marca}
+                onChange={(e) => setData("marca", e.target.value)}
               >
                 <option value="">Seleccionar</option>
                 {marcas.map((m) => (
@@ -55,7 +58,7 @@ const ModalCoche = ({ showModal, setShowModal, marcas, modelos, carrocerias, coc
                   </option>
                 ))}
               </select>
-              {errors.marca_id && <p className="text-danger">{errors.marca_id}</p>}
+              {errors.marca && <p className="text-danger">{errors.marca}</p>}
             </div>
 
             {/* Modelo */}
@@ -63,8 +66,8 @@ const ModalCoche = ({ showModal, setShowModal, marcas, modelos, carrocerias, coc
               <label className="form-label">Modelo:</label>
               <select
                 className="form-select"
-                value={data.modelo_id}
-                onChange={(e) => setData("modelo_id", e.target.value)}
+                value={data.modelo}
+                onChange={(e) => setData("modelo", e.target.value)}
               >
                 <option value="">Seleccionar</option>
                 {modelos.map((m) => (
@@ -73,7 +76,7 @@ const ModalCoche = ({ showModal, setShowModal, marcas, modelos, carrocerias, coc
                   </option>
                 ))}
               </select>
-              {errors.modelo_id && <p className="text-danger">{errors.modelo_id}</p>}
+              {errors.modelo && <p className="text-danger">{errors.modelo}</p>}
             </div>
 
             {/* Carrocería */}
@@ -81,8 +84,8 @@ const ModalCoche = ({ showModal, setShowModal, marcas, modelos, carrocerias, coc
               <label className="form-label">Carrocería:</label>
               <select
                 className="form-select"
-                value={data.carroceria_id}
-                onChange={(e) => setData("carroceria_id", e.target.value)}
+                value={data.carroceria}
+                onChange={(e) => setData("carroceria", e.target.value)}
               >
                 <option value="">Seleccionar</option>
                 {carrocerias.map((c) => (
@@ -91,9 +94,7 @@ const ModalCoche = ({ showModal, setShowModal, marcas, modelos, carrocerias, coc
                   </option>
                 ))}
               </select>
-              {errors.carroceria_id && (
-                <p className="text-danger">{errors.carroceria_id}</p>
-              )}
+              {errors.carroceria && <p className="text-danger">{errors.carroceria}</p>}
             </div>
 
             {/* Color */}
