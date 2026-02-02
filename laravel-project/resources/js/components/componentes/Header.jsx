@@ -48,6 +48,19 @@ export default function Header() {
                  
               </>
           )}
+          {/*TRABAJADORES*/}
+
+           {(
+                auth?.user?.can_access_admin ||
+                auth?.user?.gestor_ventas ||
+                auth?.user?.gestor_compras
+            ) && (
+                <li className="nav-item">
+                    <Link className="nav-link btn-pers" href="/inventario/coches">
+                        Inventario de Coches
+                    </Link>
+                </li>
+            )}
 
           {/* OPCIÓN PARA ADMINISTRADOR */}
           {auth?.user?.can_access_admin && (

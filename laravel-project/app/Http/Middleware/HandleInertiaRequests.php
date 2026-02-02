@@ -45,6 +45,8 @@ class HandleInertiaRequests extends Middleware
                 // Usamos el Gate aquí
                 'can_access_admin' => Gate::allows('admin-access'), 
                 'is_client' => Gate::allows('client-access'),
+                'gestor_ventas' =>Gate::allows('gestor_ventas'),
+                'gestor_compras' =>Gate::allows('gestor_compras'),
                 ] : null,
         ],
     ]);
