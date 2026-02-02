@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('turnos', function (Blueprint $table) {
             $table->id();
             $table->string('horario');
+            $table->boolean('isDeleted')->default(false);
             $table->timestamps();
         });
     }

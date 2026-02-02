@@ -12,7 +12,7 @@ class Marca extends Model
         'marcas'
     ];
 
-    public function vehiculo()
+    public function vehiculos()
     {
         return $this->hasMany(Vehiculo::class);
     }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('pais_id')
                 ->constrained('paises')
                 ->onDelete('cascade');
+            $table->boolean('isDeleted')->default(false);
             $table->timestamps();
         });
     }

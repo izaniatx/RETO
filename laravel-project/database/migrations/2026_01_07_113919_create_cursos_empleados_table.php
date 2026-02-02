@@ -22,6 +22,8 @@ return new class extends Migration
                         ->constrained('empleados')
                         ->onDelete('cascade');
 
+            $table->boolean('isDeleted')->default(false);
+
             $table->timestamps();
         });
     }

@@ -21,6 +21,8 @@ return new class extends Migration
                         ->constrained('vehiculos')
                         ->onDelete('cascade');
 
+            $table->boolean('isDeleted')->default(false);
+            
             $table->timestamps();
         });
     }

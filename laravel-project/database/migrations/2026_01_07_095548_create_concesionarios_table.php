@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('ciudad_id')
                 ->constrained('ciudades')
                 ->onDelete('cascade');
+            $table->boolean('isDeleted')->default(false);
             $table->timestamps();
         });
     }

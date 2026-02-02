@@ -1,0 +1,251 @@
+/* Layout General */
+.profile-page {
+  background-color: #f3f4f6;
+  min-height: 100vh;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #1f2937;
+}
+
+/* Banner Superior Ancho Completo */
+.profile-banner-full {
+  height: 200px;
+  width: 100%;
+  box-shadow: inset 0 -10px 20px rgba(0,0,0,0.05);
+}
+
+/* Contenedor Principal */
+.profile-container {
+  max-width: 1200px; /* Ancho máximo estándar web */
+  margin: -60px auto 0; /* Margen negativo para subir sobre el banner */
+  padding: 0 20px 40px;
+  
+  display: grid;
+  grid-template-columns: 1fr; /* Por defecto (móvil) 1 columna */
+  gap: 20px;
+}
+
+/* Responsive: Escritorio (más de 768px) */
+@media (min-width: 768px) {
+  .profile-container {
+    grid-template-columns: 300px 1fr; /* Izquierda fija, Derecha flexible */
+    align-items: start;
+  }
+}
+
+/* Estilo común de las "Tarjetas" (Blanco y sombra) */
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* --- Sidebar (Izquierda) --- */
+.profile-sidebar {
+  padding: 0 0 20px;
+  text-align: center;
+}
+
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px; /* Subir foto para solapar banner */
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  background: white;
+  border-radius: 50%;
+  border: 4px solid white;
+  font-size: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.identity-text h2 {
+  margin: 15px 0 5px;
+  font-size: 1.4rem;
+}
+
+.identity-text .username {
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.sidebar-actions {
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* --- Contenido Principal (Derecha) --- */
+.profile-content {
+  padding: 30px;
+}
+
+.content-header {
+  border-bottom: 2px solid #f3f4f6;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+}
+
+.content-header h3 {
+  margin: 0;
+  color: #111827;
+}
+
+/* Grid de Información */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 600px) {
+  .info-grid {
+    grid-template-columns: 1fr 1fr; /* Dos columnas para los datos */
+  }
+}
+
+.info-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #9ca3af;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.info-group p {
+  font-size: 1.1rem;
+  color: #374151;
+  background: #f9fafb;
+  padding: 10px;
+  border-radius: 6px;
+  margin: 0;
+  border: 1px solid #e5e7eb;
+}
+
+.badge {
+  display: inline-block;
+  background: #e0e7ff;
+  color: #4338ca;
+  font-weight: bold;
+  font-size: 0.9rem !important;
+}
+
+/* --- Botones --- */
+.btnU {
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s;
+  width: 100%;
+}
+
+.btn-primaryU {
+  background-color: #3b82f6;
+  color: white;
+}
+.btn-primaryU:hover { background-color: #2563eb; }
+
+.btn-outlineU {
+  background-color: transparent;
+  border: 1px solid #d1d5db;
+  color: #374151;
+}
+.btn-outlineU:hover { background-color: #f3f4f6; }
+
+.btn-danger-link {
+  background: none;
+  color: #ef4444;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+.btn-danger-link:hover { text-decoration: underline; color: #dc2626; }
+
+.btn-edit {
+position: relative;
+  background-color: #bd3a3f;
+  border-color: #bd3a3f;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.4s ease-in-out;
+}
+
+.btn-edit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #a02a2f;
+  z-index: -1;
+  transform: scaleX(0); 
+  transform-origin: left;
+  transition: transform 0.4s ease-in-out;
+}
+
+.btn-edit:hover {
+  border-color: #a02a2f;
+  background-color: #bd3a3f;
+}
+
+.btn-edit:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-back {
+  position: absolute;
+  top: 20px; /* Justo debajo del banner */
+  left: 20px;
+  background: white;
+  border: none;
+  border-radius: 40%;
+  width: 66px;
+  height: 56px;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-back:hover {
+  background-color: #f3f4f6;
+  position: relative;
+  top: 18px;
+  border-color: #bd3a3f;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* UsuarioModal.css */
+.r-modal-backdrop {
+  position: fixed; /* 🔹 Fijo sobre toda la ventana */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5); /* fondo semitransparente */
+  display: flex; /* 🔹 Flex para centrar contenido */
+  justify-content: center; /* horizontal */
+  align-items: center; /* vertical */
+  z-index: 1050; /* encima de todo */
+}
+
+.r-modal {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 2.5rem;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  position: relative;
+}

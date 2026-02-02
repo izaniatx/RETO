@@ -70,9 +70,11 @@ class RegistroController extends Controller
         auth()->login($user);
 
        
-        return redirect()->route('verification.notice');
-    
-        return Inertia::location(route('inicio'));
+        //return redirect()->route('verification.notice');
+        
+        return Inertia::render('registro', [
+            'showVerifyModal' => true,
+        ]);
     }
 
     public function inicio()

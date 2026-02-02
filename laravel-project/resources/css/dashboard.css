@@ -1,8 +1,11 @@
 
 .nav-inventario {
     color: white !important;
-    background-color: #bd3a3f !important;
     transition: background-color 0.3s ease;
+}
+
+.inv{
+    background-color: #bd3a3f !important;
 }
 
 .nav-inventario:hover {
@@ -20,4 +23,19 @@
 
 .body{
     background-color: #212529 !important;
+}
+
+.ant-sig-btn {
+    color: #bd3a3f !important;
+    border-color: #bd3a3f !important;
+}
+
+.ant-sig-btn:hover {
+    background-color: #bd3a3f !important;
+    color: white !important;
+}  
+
+.ant-sig-btn:active {
+    transform: translateY(-3px);
+    filter: brightness(1.3);
 }

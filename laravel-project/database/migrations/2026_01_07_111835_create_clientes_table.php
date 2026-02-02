@@ -17,6 +17,9 @@ return new class extends Migration
               ->constrained('users')
               ->onDelete('cascade');
 
+            
+            $table->boolean('isDeleted')->default(false);
+
             $table->timestamps();
         });
     }

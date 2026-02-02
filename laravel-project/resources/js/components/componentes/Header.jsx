@@ -48,6 +48,19 @@ export default function Header() {
                  
               </>
           )}
+          {/*TRABAJADORES*/}
+
+           {(
+                auth?.user?.can_access_admin ||
+                auth?.user?.gestor_ventas ||
+                auth?.user?.gestor_compras
+            ) && (
+                <li className="nav-item">
+                    <Link className="nav-link btn-pers" href="/inventario/coches">
+                        Inventario de Coches
+                    </Link>
+                </li>
+            )}
 
           {/* OPCIÓN PARA ADMINISTRADOR */}
           {auth?.user?.can_access_admin && (
@@ -62,14 +75,25 @@ export default function Header() {
         
         {/* LÓGICA DE SESIÓN */}
         {auth && auth.user ? (
-          <Link 
-            href="/logout" 
-            method="post" 
-            as="button" 
-            className="btn btn-outline-danger ms-3"
-          >
-            Cerrar Sesión ({auth.user.usuario})
-          </Link>
+          <div>
+            <Link 
+              href="/UserProfile" 
+              as="button" 
+              className="btn btn-outline-danger ms-3"
+            >
+              ({auth.user.usuario})
+            </Link>
+
+            <Link 
+              href="/logout" 
+              method="post" 
+              as="button" 
+              className="btn btn-outline-danger ms-3"
+            >
+              Cerrar Sesión ({auth.user.usuario})
+            </Link>
+          </div>
+          
         ) : (
           <>
             <CustomButton 

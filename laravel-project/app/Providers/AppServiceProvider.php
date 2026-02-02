@@ -27,5 +27,12 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('client-access', function (User $user) {
             return $user->rol_id === 2;
         });
+
+        Gate::define('gestor_ventas', function (User $user) {
+            return $user->rol_id === 3;
+        });
+        Gate::define('gestor_compras', function (User $user) {
+            return $user->rol_id === 4;
+        });
     }
 }

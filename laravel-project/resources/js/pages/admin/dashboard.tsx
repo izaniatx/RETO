@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import MainLayout from "../../layouts/MainLayout"; 
-import { Link } from '@inertiajs/react';
+import { Link} from '@inertiajs/react';
 import '../../../css/dashboard.css';    
+import SalesChart from '@/components/componentes/SalesChart';
+import Graf from '@/components/componentes/graf';
 
 const Dashboard = () => {
     const [cars, setCars] = useState([
@@ -26,9 +28,9 @@ const Dashboard = () => {
                         <Link href="/admin/usuarios" className="nav-link nav-usuarios text-white-50 px-3 py-2">
                             <i className="bi bi-people me-2"></i> Usuarios
                         </Link>
-                        <Link href="/admin/mensajes" className="nav-link nav-mensajes text-white-50 px-3 py-2">
+                        {/*<Link href="/admin/mensajes" className="nav-link nav-mensajes text-white-50 px-3 py-2">
                             <i className="bi bi-chat-dots me-2"></i> Mensajes
-                        </Link>
+                        </Link>*/}
                     </nav>
                 </aside>
 
@@ -41,6 +43,8 @@ const Dashboard = () => {
                                 + Añadir Vehículo
                             </button>
                         </header>
+
+
 
                         {/* STATS QUICK VIEW */}
                         <div className="row g-3 mb-4">
@@ -105,6 +109,15 @@ const Dashboard = () => {
                                 </table>
                             </div>
                         </section>
+
+
+                        <div className="max-w-3xl mx-auto mt-10">
+                            <SalesChart />
+                        </div>
+
+                        <div className="max-w-3xl mx-auto mt-10">
+                            <Graf />
+                        </div>
                     </div>
                 </main>
             </div>

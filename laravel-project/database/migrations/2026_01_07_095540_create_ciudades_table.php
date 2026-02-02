@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('territorio_id')
                 ->constrained('territorios')
                 ->onDelete('cascade');
+            $table->boolean('isDeleted')->default(false);
             $table->timestamps();
         });
     }

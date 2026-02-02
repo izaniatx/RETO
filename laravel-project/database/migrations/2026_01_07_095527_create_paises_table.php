@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('paises', function (Blueprint $table) {
             $table->id();
             $table->string('pais');
+            $table->boolean('isDeleted')->default(false);
             $table->timestamps();
+             
         });
     }
 

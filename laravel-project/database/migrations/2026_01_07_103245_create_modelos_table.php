@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('modelos', function (Blueprint $table) {
             $table->id();
             $table->string('modelo');
+            $table->boolean('isDeleted')->default(false);
             $table->timestamps();
         });
     }

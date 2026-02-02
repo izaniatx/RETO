@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('carrocerias', function (Blueprint $table) {
             $table->id();
             $table->string('carroceria');
+            $table->boolean('isDeleted')->default(false);
             $table->timestamps();
         });
     }

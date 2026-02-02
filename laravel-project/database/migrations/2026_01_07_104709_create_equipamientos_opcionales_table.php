@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('equipamientos_opcionales', function (Blueprint $table) {
             $table->id();
             $table->string('equipamiento');
+            $table->boolean('isDeleted')->default(false);
             $table->timestamps();
         });
     }
