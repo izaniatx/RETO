@@ -135,5 +135,17 @@ class UsuariosController extends Controller
     
     }
 
+   public function usuarioLogueado()
+    {
+        $usuario = auth()->user(); // Usuario logueado
+        $rol = Rol::where('id', $usuario->rol_id)->first();
+
+
+        return Inertia::render('UserProfile', [
+            'usuario' => $usuario,
+            'rol' => $rol,
+        ]);
+    }
+
 
 }

@@ -1,36 +1,40 @@
 import React, { useMemo } from 'react';
 import '../../css/UserProfile.css';
+import { usePage } from '@inertiajs/react';
 
-interface UserProfileProps {
-  user?: {
-    name: string;
-    lastName: string;
-    username: string;
-    phone: string;
-    email: string;
-    role: string;
-  };
-  onEdit: () => void;
-  onLogout: () => void;
-  onDelete: () => void;
+interface Usuario {
+  id: number;
+  usuario:string,
+  nombre: string;
+  apellido: string;
+
+  telefono: string;
+  email: string;
+  role: string;
 }
 
-const UserProfile: React.FC<UserProfileProps> = ({ user, onEdit, onLogout, onDelete }) => {
-  
+interface Rol {
+  id: number;
+  rol: string;
+}
+
+
+
+interface UserProfileProps {
+  usuario: Usuario;
+  rol?: Rol; // agregamos opcional
+}
+
+
+const UserProfile: React.FC<UserProfileProps> = ({ usuario, rol }) => {
   // Color aleatorio para el banner grande
   const bannerColor = useMemo(() => {
-    const colors = ['#FFB7B2', '#FFDAC1', '#E2F0CB', '#B5EAD7', '#C7CEEA', '#F3D1F4', '#d28ae0ff', '#87ceebff', '#90ee90ff'];
+    const colors = [
+      '#FFB7B2', '#FFDAC1', '#E2F0CB', '#B5EAD7', 
+      '#C7CEEA', '#F3D1F4', '#d28ae0ff', '#87ceebff', '#90ee90ff'
+    ];
     return colors[Math.floor(Math.random() * colors.length)];
   }, []);
-
-  const userData = user || {
-    name: 'Juan',
-    lastName: 'Pérez',
-    username: 'juanperez92',
-    phone: '+34 600 000 000',
-    email: 'juan.perez@example.com',
-    role: 'Administrador' // Campo extra de ejemplo
-  };
 
   return (
     <div className="profile-page">
@@ -53,21 +57,23 @@ const UserProfile: React.FC<UserProfileProps> = ({ user, onEdit, onLogout, onDel
           </div>
           
           <div className="identity-text">
-            <h2>{userData.name} {userData.lastName}</h2>
-            <p className="username">@{userData.username}</p>
+            <h2>{usuario.nombre} {usuario.apellido}</h2>
+            <p className="username">@{usuario.usuario}</p>
           </div>
 
           <div className="sidebar-actions">
-            <button className="btn btn-primary btn-edit " onClick={onEdit}>
+            <button className="btn btn-primary btn-edit">
               Editar Datos
             </button>
-            <button className="btn btn-outline" onClick={onLogout}>
+            <button className="btn btn-outline">
               Cerrar Sesión
             </button>
             <button 
               className="btn btn-danger-link" 
               onClick={() => {
-                 if(confirm('¿Seguro que quieres borrar tu cuenta?')) onDelete();
+                 if(confirm('¿Seguro que quieres borrar tu cuenta?')) {
+                    console.log('Eliminar cuenta'); // aquí llamas a tu lógica
+                 }
               }}
             >
               Eliminar Cuenta
@@ -79,33 +85,32 @@ const UserProfile: React.FC<UserProfileProps> = ({ user, onEdit, onLogout, onDel
         <main className="profile-content card">
           <div className="content-header">
             <h3>Información Personal</h3>
-            {/* Aquí podrías poner pestañas si la app crece (ej: Historial, Configuración) */}
           </div>
 
           <div className="info-grid">
             <div className="info-group">
               <label>Nombre</label>
-              <p>{userData.name}</p>
+              <p>{usuario.nombre}</p>
             </div>
             
             <div className="info-group">
               <label>Apellido</label>
-              <p>{userData.lastName}</p>
+              <p>{usuario.apellido}</p>
             </div>
 
             <div className="info-group">
               <label>Correo Electrónico</label>
-              <p>{userData.email}</p>
+              <p>{usuario.email}</p>
             </div>
 
             <div className="info-group">
               <label>Teléfono</label>
-              <p>{userData.phone}</p>
+              <p>{usuario.telefono}</p>
             </div>
 
             <div className="info-group">
               <label>Rol de Usuario</label>
-              <p className="badge">{userData.role}</p>
+              <p className="badge">{rol?.rol || 'Sin rol'}</p>
             </div>
           </div>
         </main>

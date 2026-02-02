@@ -24,7 +24,10 @@ Route::get('/dondeEncontrarnos', fn () => Inertia::render('dondeEncontrarnos'));
 Route::get('/vendeTuCoche', fn () => Inertia::render('vendeTuCoche'));
 
 
-Route::get('/UserProfile', fn () => Inertia::render('UserProfile'));
+//Route::get('/UserProfile', fn () => Inertia::render('UserProfile'));
+Route::get('/UserProfile', [UsuariosController::class, 'usuarioLogueado'])->name('user.profile');
+
+
 
 /*
 |--------------------------------------------------------------------------

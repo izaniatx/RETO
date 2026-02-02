@@ -77,20 +77,21 @@ export default function Header() {
         {auth && auth.user ? (
           <div>
             <Link 
-            href="/UserProfile" 
-            as="button" 
-            className="btn btn-outline-danger ms-3"
-          >
-            ({auth.user.usuario})
-          </Link>
-          <Link 
-            href="/logout" 
-            method="post" 
-            as="button" 
-            className="btn btn-outline-danger ms-3"
-          >
-            Cerrar Sesión ({auth.user.usuario})
-          </Link>
+              href="/UserProfile" 
+              as="button" 
+              className="btn btn-outline-danger ms-3"
+            >
+              ({auth.user.usuario})
+            </Link>
+
+            <Link 
+              href="/logout" 
+              method="post" 
+              as="button" 
+              className="btn btn-outline-danger ms-3"
+            >
+              Cerrar Sesión ({auth.user.usuario})
+            </Link>
           </div>
           
         ) : (
