@@ -42,7 +42,7 @@ class HandleInertiaRequests extends Middleware
             'user' => $request->user() ? [
                 'id' => $request->user()->id,
                 'usuario' => $request->user()->usuario,
-                // Usamos el Gate aquí
+               
                 'can_access_admin' => Gate::allows('admin-access'), 
                 'is_client' => Gate::allows('client-access'),
                 ] : null,
