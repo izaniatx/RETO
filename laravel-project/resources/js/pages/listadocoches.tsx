@@ -113,13 +113,13 @@ const ListadoCoches = () => {
                 {/* SIDEBAR */}
                 <aside className="bg-dark text-white p-4 shadow" style={{ width: "250px" }}>
                     <nav className="nav flex-column gap-2">
-                        <Link href="#" className="nav-link nav-inventario text-white bg-primary rounded px-3 py-2">
-                            <i className="bi bi-speedometer2 me-2"></i> Inventario
+                        <Link href="#" className="nav-link inv nav-inventario text-white bg-primary rounded px-3 py-2">
+                            <i className="bi bi-speedometer2 me-2"></i>Inventario
                         </Link>
-                        <Link href="#" className="nav-link nav-inventario text-white bg-primary rounded px-3 py-2">
-                            <i className="bi bi-speedometer2 me-2"></i> Equipamiento opcional
+                        <Link href="#" className="nav-link nav-inventario text-white rounded px-3 py-2">
+                            <i className="bi bi-speedometer2 "></i>Equipamiento opcional
                         </Link>
-                    </nav>
+                    </nav>  
                 </aside>
 
                 {/* MAIN */}
@@ -196,7 +196,7 @@ const ListadoCoches = () => {
                                                     {car.isDeleted ? (
                                                         <button className="btn btn-sm btn-success" onClick={() => handleActivar(car.id)}>Activar</button>
                                                     ) : (
-                                                        <button className="btn btn-sm btn-outline-danger" onClick={() => handleEliminar(car.id)}>Eliminar</button>
+                                                        <button className="btn btn-sm btn-outline-danger ant-sig-btn" onClick={() => handleEliminar(car.id)}>Eliminar</button>
                                                     )}
                                                 </td>
                                             </tr>
@@ -209,7 +209,7 @@ const ListadoCoches = () => {
                         {/* PAGINACIÓN */}
                         <div className="d-flex justify-content-center mt-4 gap-2">
                             <button
-                                className="btn btn-sm btn-outline-primary"
+                                className="btn btn-sm btn-outline-primary ant-sig-btn"
                                 disabled={vehiculos.current_page === 1}
                                 onClick={() => goToPage(vehiculos.current_page - 1)}
                             >
@@ -219,7 +219,7 @@ const ListadoCoches = () => {
                                 Página {vehiculos.current_page} de {vehiculos.last_page}
                             </span>
                             <button
-                                className="btn btn-sm btn-outline-primary"
+                                className="btn btn-sm btn-outline-primary ant-sig-btn"
                                 disabled={vehiculos.current_page === vehiculos.last_page}
                                 onClick={() => goToPage(vehiculos.current_page + 1)}
                             >
