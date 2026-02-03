@@ -22,6 +22,8 @@ use Illuminate\Http\Request;
 
 Route::get('/', fn () => Inertia::render('landingpage'));
 
+
+Route::get('/inicio', fn () => Inertia::render('inicio'));
 Route::get('/catalogo',  [CatalogoController::class, 'getVehiculos']);
 Route::get('/contacto', fn () => Inertia::render('contacto'));
 Route::get('/dondeEncontrarnos', fn () => Inertia::render('dondeEncontrarnos'));
@@ -29,7 +31,6 @@ Route::get('/vendeTuCoche', fn () => Inertia::render('vendeTuCoche'));
 
 Route::Get('/registro', fn () => Inertia::render('registro'));
 Route::post('/registro', [RegistroController::class, 'registrar']);
-Route::get('/inicio', [RegistroController::class, 'inicio'])->name('inicio');
 
 
 
@@ -61,8 +62,6 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 */
 
 Route::middleware(['auth'])->group(function () {
-
-    Route::get('/inicio', [RegistroController::class, 'inicio'])->name('inicio');
 
     Route::get('/dashboard', fn () => Inertia::render('dashboard'))
         ->name('dashboard');
