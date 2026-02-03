@@ -1,36 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "@inertiajs/react";
 
-const ModalCoche = ({ showModal, setShowModal, marcas, modelos, carrocerias, cocheEditar }) => {
+const ModalCoche = ({
+  showModal,
+  setShowModal,
+  marcas,
+  modelos,
+  carrocerias,
+  cocheEditar,
+}) => {
   const { data, setData, post, put, errors, processing } = useForm({
-    marca: cocheEditar?.marca_id || "",
-    modelo: cocheEditar?.modelo_id || "",
-    carroceria: cocheEditar?.carroceria_id || "",
-    color: cocheEditar?.color || "",
-    precio: cocheEditar?.precio || 0,
+    marca: "",
+    modelo: "",
+    carroceria: "",
+    color: "",
+    precio: 0,
   });
+
+  useEffect(() => {
+    if (cocheEditar) {
+      setData({
+        marca: cocheEditar.marca_id ?? "",
+        modelo: cocheEditar.modelo_id ?? "",
+        carroceria: cocheEditar.carroceria_id ?? "",
+        color: cocheEditar.color ?? "",
+        precio: cocheEditar.precio ?? 0,
+      });
+    }
+  }, [cocheEditar]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const payload = {
-      marca: data.marca,
-      modelo: data.modelo,
-      carroceria: data.carroceria,
-      color: data.color,
-      precio: data.precio,
-    };
-
     if (cocheEditar) {
-      put(`/inventario/coches/${cocheEditar.id}`, payload, {
+      put(`/inventario/coches/${cocheEditar.id}`, data, {
         onSuccess: () => setShowModal(false),
       });
     } else {
-      post("/inventario/coches/create", payload, {
+      post("/inventario/coches/create", data, {
         onSuccess: () => setShowModal(false),
       });
     }
   };
+
 
   if (!showModal) return null;
 
@@ -40,7 +52,10 @@ const ModalCoche = ({ showModal, setShowModal, marcas, modelos, carrocerias, coc
         className="r-modal"
         style={{ maxWidth: "600px", width: "90%", padding: "2.5rem" }}
       >
-        <h3 className="mb-4">{cocheEditar ? "Editar Coche" : "Nuevo Coche"}</h3>
+        <h3 className="mb-4">
+          {cocheEditar ? "Editar Coche" : "Nuevo Coche"}
+        </h3>
+
         <form onSubmit={handleSubmit}>
           <div className="row g-3">
             {/* Marca */}
@@ -58,7 +73,9 @@ const ModalCoche = ({ showModal, setShowModal, marcas, modelos, carrocerias, coc
                   </option>
                 ))}
               </select>
-              {errors.marca && <p className="text-danger">{errors.marca}</p>}
+              {errors.marca && (
+                <p className="text-danger">{errors.marca}</p>
+              )}
             </div>
 
             {/* Modelo */}
@@ -76,7 +93,9 @@ const ModalCoche = ({ showModal, setShowModal, marcas, modelos, carrocerias, coc
                   </option>
                 ))}
               </select>
-              {errors.modelo && <p className="text-danger">{errors.modelo}</p>}
+              {errors.modelo && (
+                <p className="text-danger">{errors.modelo}</p>
+              )}
             </div>
 
             {/* Carrocería */}
@@ -94,7 +113,9 @@ const ModalCoche = ({ showModal, setShowModal, marcas, modelos, carrocerias, coc
                   </option>
                 ))}
               </select>
-              {errors.carroceria && <p className="text-danger">{errors.carroceria}</p>}
+              {errors.carroceria && (
+                <p className="text-danger">{errors.carroceria}</p>
+              )}
             </div>
 
             {/* Color */}
@@ -106,7 +127,9 @@ const ModalCoche = ({ showModal, setShowModal, marcas, modelos, carrocerias, coc
                 value={data.color}
                 onChange={(e) => setData("color", e.target.value)}
               />
-              {errors.color && <p className="text-danger">{errors.color}</p>}
+              {errors.color && (
+                <p className="text-danger">{errors.color}</p>
+              )}
             </div>
 
             {/* Precio */}
@@ -118,7 +141,9 @@ const ModalCoche = ({ showModal, setShowModal, marcas, modelos, carrocerias, coc
                 value={data.precio}
                 onChange={(e) => setData("precio", Number(e.target.value))}
               />
-              {errors.precio && <p className="text-danger">{errors.precio}</p>}
+              {errors.precio && (
+                <p className="text-danger">{errors.precio}</p>
+              )}
             </div>
           </div>
 
@@ -130,7 +155,11 @@ const ModalCoche = ({ showModal, setShowModal, marcas, modelos, carrocerias, coc
             >
               Cancelar
             </button>
-            <button type="submit" className="btn btn-primary" disabled={processing}>
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={processing}
+            >
               {cocheEditar ? "Actualizar" : "Guardar"}
             </button>
           </div>

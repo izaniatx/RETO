@@ -84,6 +84,7 @@ Route::prefix('inventario')->group(function () {
     Route::post('/coches/delete', [VehiculosController::class, 'deleteVehiculo']);
     Route::post('/coches/active', [VehiculosController::class, 'activeVehiculo']);
     Route::post('/coches/create', [VehiculosController::class, 'createVehiculo']);
+    Route::put('/coches/{id}', [VehiculosController::class, 'modifyVehiculo']);
 });
 
 

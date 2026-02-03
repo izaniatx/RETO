@@ -110,24 +110,20 @@ class VehiculosController extends Controller
     }
 
 
-    public function modifyUsuario(Request $request, $id){
-        $usuario = User::findOrFail($id);
+    public function modifyVehiculo(Request $request, $id){
+        $vehiculo = Vehiculo::findOrFail($id);
         
 
-        $usuario->usuario= $request->usuario;
-        $usuario->nombre=$request->nombre;
-        $usuario->apellido=$request->apellido;
-        $usuario->email=$request->email;
-        $usuario->telefono=$request->telefono;
-        $usuario->rol_id=$request->rol_id;
+        $vehiculo->marca_id= $request->marca;
+        $vehiculo->modelo_id=$request->modelo;
+        $vehiculo->carroceria_id=$request->carroceria;
+        $vehiculo->precio=$request->precio;
+        $vehiculo->color=$request->color;
+        
 
-        $usuario->save();
+        $vehiculo->save();
 
 
-        $usuarios = User::with('rol')->get();
-        $roles = Rol::all();
-        $totalUsuarios = User::count();
-        $totalMes = User::whereMonth('created_at', now()->month)->count();
 
         return Inertia::location(route('inventario.index'));
     
