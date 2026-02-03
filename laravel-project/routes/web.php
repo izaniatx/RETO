@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\VehiculosController;
+use App\Http\Controllers\CatalogoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,7 @@ use Illuminate\Http\Request;
 
 Route::get('/', fn () => Inertia::render('landingpage'));
 
-Route::get('/catalogo', fn () => Inertia::render('catalogo'));
+Route::get('/catalogo',  [CatalogoController::class, 'getVehiculos']);
 Route::get('/contacto', fn () => Inertia::render('contacto'));
 Route::get('/dondeEncontrarnos', fn () => Inertia::render('dondeEncontrarnos'));
 Route::get('/vendeTuCoche', fn () => Inertia::render('vendeTuCoche'));
@@ -30,10 +31,6 @@ Route::Get('/registro', fn () => Inertia::render('registro'));
 Route::post('/registro', [RegistroController::class, 'registrar']);
 Route::get('/inicio', [RegistroController::class, 'inicio'])->name('inicio');
 
-
-Route::get('/catalogo', function () {
-    return Inertia::render('catalogo');
-});
 
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');

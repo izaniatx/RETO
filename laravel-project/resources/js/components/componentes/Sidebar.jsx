@@ -1,28 +1,26 @@
 import React from 'react';
 import '../../../css/Catalogo.css';
 
-const Sidebar = ({ filters, setFilters, searchTerm, setSearchTerm }) => {
+const Sidebar = ({ filters, setFilters, searchTerm, setSearchTerm, marcasBackend, carroceriasBackend }) => {
   
-  // Función para resetear todos los filtros al estado inicial
   const resetFilters = () => {
     setSearchTerm("");
     setFilters({
       searchQuery: "",
-      marcas: [],
+      marcas: [], // Array de IDs
       precioMax: 100000,
       combustible: 'todos'
     });
   };
 
-  // Función para manejar el cambio en los checkboxes de marcas
-  const handleMarcaChange = (marca) => {
-    const nuevasMarcas = filters.marcas.includes(marca)
-      ? filters.marcas.filter(m => m !== marca)
-      : [...filters.marcas, marca];
+  const handleMarcaChange = (marcaId) => {
+    // IMPORTANTE: Ahora manejamos IDs, no nombres de texto
+    const nuevasMarcas = filters.marcas.includes(marcaId)
+      ? filters.marcas.filter(id => id !== marcaId)
+      : [...filters.marcas, marcaId];
     
     setFilters({ ...filters, marcas: nuevasMarcas });
   };
-
   return (
     <aside className="sidebar">
       {/* Cabecera con botón de limpiar */}
@@ -48,18 +46,21 @@ const Sidebar = ({ filters, setFilters, searchTerm, setSearchTerm }) => {
       </div>
 
       {/* Grupo 2: Selección de Marcas */}
-      <div className="filter-group">
+     <div className="filter-group">
         <label className="filter-label">Marcas</label>
-        {['Toyota', 'BMW', 'Audi', 'Tesla', 'Mercedes'].map(marca => (
-          <label key={marca} className="checkbox-item">
-            <input 
-              type="checkbox" 
-              checked={filters.marcas.includes(marca)}
-              onChange={() => handleMarcaChange(marca)}
-            />
-            <span>{marca}</span>
-          </label>
-        ))}
+        <div className="scrollable-marcas" style={{ maxHeight: '200px', overflowY: 'auto' }}>
+          {marcasBackend.map(marca => (
+            <label key={marca.id} className="checkbox-item">
+              <input 
+                type="checkbox" 
+                // Comparamos por ID
+                checked={filters.marcas.includes(marca.id)}
+                onChange={() => handleMarcaChange(marca.id)}
+              />
+              <span>{marca.marca}</span> 
+            </label>
+          ))}
+        </div>
       </div>
 
       {/* Grupo 3: Rango de Precio */}
@@ -79,22 +80,24 @@ const Sidebar = ({ filters, setFilters, searchTerm, setSearchTerm }) => {
         </span>
       </div>
 
-      {/* Grupo 4: Tipo de Combustible */}
-      <div className="filter-group">
-        <label className="filter-label">Combustible</label>
-        <select 
-          className="search-input" // Reutilizamos estilo de input para el select
-          value={filters.combustible}
-          onChange={(e) => setFilters({...filters, combustible: e.target.value})}
-          style={{ cursor: 'pointer' }}
-        >
-          <option value="todos">Todos</option>
-          <option value="hibrido">Híbrido</option>
-          <option value="electrico">Eléctrico</option>
-          <option value="gasolina">Gasolina</option>
-          <option value="diesel">Diésel</option>
-        </select>
-      </div>
+     
+      {/* Grupo 4: Tipo de Carrocería Dinámica */}
+        <div className="filter-group">
+          <label className="filter-label">Carrocería</label>
+          <select 
+            className="search-input" 
+            value={filters.carroceriaId || 'todos'} // Usamos el ID para el filtro
+            onChange={(e) => setFilters({...filters, carroceriaId: e.target.value})}
+            style={{ cursor: 'pointer' }}
+          >
+            <option value="todos">Todas las carrocerías</option>
+            {carroceriasBackend.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.carroceria}
+              </option>
+            ))}
+          </select>
+        </div>
     </aside>
   );
 };

@@ -1,29 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import CarCard from './CarCard';
-import '../../../css/Catalogo.css'; // Asegúrate de que el nombre del archivo coincida
-
-// Datos de ejemplo para que veas contenido
-const COCHES_DATA = [
-  { id: 1, marca: 'Toyota', modelo: 'Corolla', precio: 25000, combustible: 'hibrido', imagen: 'https://loremflickr.com/300/200/toyota' },
-  { id: 2, marca: 'BMW', modelo: 'Serie 3', precio: 45000, combustible: 'diesel', imagen: 'https://loremflickr.com/300/200/bmw' },
-  { id: 3, marca: 'Tesla', modelo: 'Model 3', precio: 50000, combustible: 'electrico', imagen: 'https://loremflickr.com/300/200/tesla' },
-  { id: 4, marca: 'Audi', modelo: 'A4', precio: 38000, combustible: 'gasolina', imagen: 'https://loremflickr.com/300/200/audi' },
-  { id: 5, marca: 'Toyota', modelo: 'Yaris', precio: 18000, combustible: 'hibrido', imagen: 'https://loremflickr.com/300/200/car' },
-];
+import '../../../css/Catalogo.css';
+import { usePage } from '@inertiajs/react';
 
 const CatalogoPage = () => {
-  const [cochesFiltrados, setCochesFiltrados] = useState(COCHES_DATA);
-  const [searchTerm, setSearchTerm] = useState("");
-  
+  // 1. Extraemos los datos de las props (corregido el error en carrocerias)
+  const { 
+    vehiculos = [], 
+    marcas = [], 
+    carrocerias = [] 
+  } = usePage().props;
+
+  // 2. Estados para que el Sidebar funcione (aunque no filtren en el cliente)
+  const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState({
-    searchQuery: "",
+    searchQuery: '',
     marcas: [],
     precioMax: 100000,
-    combustible: 'todos'
+    combustible: 'todos',
+    carrocerias: []
   });
 
-  // Debounce para el buscador
+  // Debounce para actualizar el estado de búsqueda
   useEffect(() => {
     const handler = setTimeout(() => {
       setFilters(prev => ({ ...prev, searchQuery: searchTerm }));
@@ -31,49 +30,48 @@ const CatalogoPage = () => {
     return () => clearTimeout(handler);
   }, [searchTerm]);
 
-  // Lógica de Filtrado
-  useEffect(() => {
-    const resultado = COCHES_DATA.filter(coche => {
-      const coincideBusqueda = 
-        coche.marca.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
-        coche.modelo.toLowerCase().includes(filters.searchQuery.toLowerCase());
-      
-      const porMarca = filters.marcas.length > 0 ? filters.marcas.includes(coche.marca) : true;
-      const porPrecio = coche.precio <= filters.precioMax;
-      const porCombustible = filters.combustible !== 'todos' ? coche.combustible === filters.combustible : true;
-
-      return coincideBusqueda && porMarca && porPrecio && porCombustible;
-    });
-    
-    setCochesFiltrados(resultado);
-  }, [filters]);
-
   return (
     <div className="catalogo-container">
-      {/* Columna Izquierda */}
-      <Sidebar 
-        filters={filters} 
-        setFilters={setFilters} 
+      {/* Sidebar con marcas y carrocerías dinámicas */}
+      <Sidebar
+        filters={filters}
+        setFilters={setFilters}
         searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm} 
+        setSearchTerm={setSearchTerm}
+        marcasBackend={marcas}
+        carroceriasBackend={carrocerias}
       />
 
-      {/* Columna Derecha */}
       <main style={{ flex: 1 }}>
         <header style={{ marginBottom: '20px' }}>
           <h1 style={{ fontSize: '2rem', marginBottom: '5px' }}>Catálogo de Vehículos</h1>
-          <p style={{ color: '#666' }}>Mostrando {cochesFiltrados.length} resultados</p>
+          <p style={{ color: '#666' }}>Mostrando {vehiculos.length} resultados totales</p>
         </header>
 
         <div className="car-grid">
-          {cochesFiltrados.length > 0 ? (
-            cochesFiltrados.map(coche => (
-              <CarCard key={coche.id} coche={coche} />
+          {vehiculos.length > 0 ? (
+            /* Renderizado directo de la prop vehiculos */
+            vehiculos.map(coche => (
+              <CarCard
+                key={coche.id}
+                coche={{
+                  ...coche,
+                  marcaNombre: coche.marca?.marca || 'Sin marca',
+                  modeloNombre: coche.modelo?.modelo || 'Sin modelo',
+                  carroceriaNombre: coche.carroceria?.carroceria || 'N/A',
+                }}
+              />
             ))
           ) : (
-            <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '50px', backgroundColor: 'white', borderRadius: '10px' }}>
-              <h3>No se encontraron vehículos</h3>
-              <p>Prueba a ajustar los filtros o limpiar la búsqueda.</p>
+            <div style={{
+                gridColumn: '1 / -1',
+                textAlign: 'center',
+                padding: '50px',
+                backgroundColor: 'white',
+                borderRadius: '10px',
+              }}>
+              <h3>No hay vehículos disponibles</h3>
+              <p>Verifica la conexión con la base de datos o el controlador.</p>
             </div>
           )}
         </div>
