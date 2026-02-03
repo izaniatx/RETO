@@ -82,7 +82,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ usuario, rol }) => {
   return (
     <div className="profile-page">
       {/* Banner */}
-      <div className="profile-banner-full" style={{ backgroundColor: bannerColor }}>
+      <div className="profile-banner-full" style={{ backgroundColor:  'rgb(33, 37, 41)' }}>
         <button className="btn-back" onClick={() => window.history.back()}>⬅</button>
       </div>
 

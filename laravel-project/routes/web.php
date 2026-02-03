@@ -12,6 +12,7 @@ use App\Http\Controllers\VehiculosController;
 use App\Http\Controllers\CatalogoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Controllers\EquipamientoController;
 
 
 /*
@@ -81,6 +82,13 @@ Route::prefix('inventario')->group(function () {
     Route::post('/coches/active', [VehiculosController::class, 'activeVehiculo']);
     Route::post('/coches/create', [VehiculosController::class, 'createVehiculo']);
     Route::put('/coches/{id}', [VehiculosController::class, 'modifyVehiculo']);
+    Route::get('/ventas', [VehiculosController::class, 'graficoVentas'])->name('ventas.grafico');
+   
+
+    Route::get('/equipamientos', [EquipamientoController::class, 'getEquipamientos']);
+
+   
+
 });
 
 

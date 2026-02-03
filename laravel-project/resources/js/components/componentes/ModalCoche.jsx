@@ -7,14 +7,16 @@ const ModalCoche = ({
   marcas,
   modelos,
   carrocerias,
+  todosEquipamientos,
   cocheEditar,
 }) => {
-  const { data, setData, post, put, errors, processing } = useForm({
+  const { data, setData, post, put, errors, processing, reset } = useForm({
     marca: "",
     modelo: "",
     carroceria: "",
     color: "",
     precio: 0,
+    equipamientos: [], 
   });
 
   useEffect(() => {
@@ -25,13 +27,15 @@ const ModalCoche = ({
         carroceria: cocheEditar.carroceria_id ?? "",
         color: cocheEditar.color ?? "",
         precio: cocheEditar.precio ?? 0,
+        equipamientos: cocheEditar.equipamientos ?? [],
       });
+    } else {
+      reset();
     }
-  }, [cocheEditar]);
+  }, [cocheEditar, showModal]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (cocheEditar) {
       put(`/inventario/coches/${cocheEditar.id}`, data, {
         onSuccess: () => setShowModal(false),
@@ -43,124 +47,102 @@ const ModalCoche = ({
     }
   };
 
+  const handleToggleEquipamiento = (id) => {
+    const actuales = [...data.equipamientos];
+    const index = actuales.indexOf(id);
+    if (index > -1) {
+      actuales.splice(index, 1);
+    } else {
+      actuales.push(id);
+    }
+    setData("equipamientos", actuales);
+  };
 
   if (!showModal) return null;
 
   return (
     <div className="r-modal-backdrop">
-      <div
-        className="r-modal"
-        style={{ maxWidth: "600px", width: "90%", padding: "2.5rem" }}
-      >
-        <h3 className="mb-4">
-          {cocheEditar ? "Editar Coche" : "Nuevo Coche"}
-        </h3>
+      <div className="r-modal" style={{ maxWidth: "700px", width: "95%", padding: "2.5rem" }}>
+        <h3 className="mb-4 text-dark">{cocheEditar ? "Editar Vehículo" : "Nuevo Vehículo"}</h3>
 
         <form onSubmit={handleSubmit}>
           <div className="row g-3">
-            {/* Marca */}
+            {/* MARCA */}
             <div className="col-md-6">
-              <label className="form-label">Marca:</label>
-              <select
-                className="form-select"
-                value={data.marca}
-                onChange={(e) => setData("marca", e.target.value)}
-              >
-                <option value="">Seleccionar</option>
-                {marcas.map((m) => (
-                  <option key={m.id} value={m.id}>
-                    {m.marca}
-                  </option>
-                ))}
+              <label className="form-label fw-bold text-dark">Marca:</label>
+              <select className="form-select" value={data.marca} onChange={(e) => setData("marca", e.target.value)}>
+                <option value="">Seleccionar Marca</option>
+                {marcas.map((m) => <option key={m.id} value={m.id}>{m.marca}</option>)}
               </select>
-              {errors.marca && (
-                <p className="text-danger">{errors.marca}</p>
-              )}
+              {errors.marca && <div className="text-danger small">{errors.marca}</div>}
             </div>
 
-            {/* Modelo */}
+            {/* MODELO */}
             <div className="col-md-6">
-              <label className="form-label">Modelo:</label>
-              <select
-                className="form-select"
-                value={data.modelo}
-                onChange={(e) => setData("modelo", e.target.value)}
-              >
-                <option value="">Seleccionar</option>
-                {modelos.map((m) => (
-                  <option key={m.id} value={m.id}>
-                    {m.modelo}
-                  </option>
-                ))}
+              <label className="form-label fw-bold text-dark">Modelo:</label>
+              <select className="form-select" value={data.modelo} onChange={(e) => setData("modelo", e.target.value)}>
+                <option value="">Seleccionar Modelo</option>
+                {modelos.map((m) => <option key={m.id} value={m.id}>{m.modelo}</option>)}
               </select>
-              {errors.modelo && (
-                <p className="text-danger">{errors.modelo}</p>
-              )}
+              {errors.modelo && <div className="text-danger small">{errors.modelo}</div>}
             </div>
 
-            {/* Carrocería */}
+            {/* CARROCERÍA */}
             <div className="col-md-6">
-              <label className="form-label">Carrocería:</label>
-              <select
-                className="form-select"
-                value={data.carroceria}
-                onChange={(e) => setData("carroceria", e.target.value)}
-              >
-                <option value="">Seleccionar</option>
-                {carrocerias.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.carroceria}
-                  </option>
-                ))}
+              <label className="form-label fw-bold text-dark">Carrocería:</label>
+              <select className="form-select" value={data.carroceria} onChange={(e) => setData("carroceria", e.target.value)}>
+                <option value="">Seleccionar Carrocería</option>
+                {carrocerias.map((c) => <option key={c.id} value={c.id}>{c.carroceria}</option>)}
               </select>
-              {errors.carroceria && (
-                <p className="text-danger">{errors.carroceria}</p>
-              )}
+              {errors.carroceria && <div className="text-danger small">{errors.carroceria}</div>}
             </div>
 
-            {/* Color */}
-            <div className="col-md-6">
-              <label className="form-label">Color:</label>
-              <input
-                type="text"
-                className="form-control"
-                value={data.color}
-                onChange={(e) => setData("color", e.target.value)}
-              />
-              {errors.color && (
-                <p className="text-danger">{errors.color}</p>
-              )}
+            {/* COLOR */}
+            <div className="col-md-3">
+              <label className="form-label fw-bold text-dark">Color:</label>
+              <input type="text" className="form-control" value={data.color} onChange={(e) => setData("color", e.target.value)} placeholder="Ej: Blanco" />
+              {errors.color && <div className="text-danger small">{errors.color}</div>}
             </div>
 
-            {/* Precio */}
-            <div className="col-md-6">
-              <label className="form-label">Precio:</label>
-              <input
-                type="number"
-                className="form-control"
-                value={data.precio}
-                onChange={(e) => setData("precio", Number(e.target.value))}
-              />
-              {errors.precio && (
-                <p className="text-danger">{errors.precio}</p>
-              )}
+            {/* PRECIO */}
+            <div className="col-md-3">
+              <label className="form-label fw-bold text-dark">Precio (€):</label>
+              <input type="number" className="form-control" value={data.precio} onChange={(e) => setData("precio", e.target.value)} />
+              {errors.precio && <div className="text-danger small">{errors.precio}</div>}
+            </div>
+
+            {/* SECCIÓN DE EQUIPAMIENTO */}
+            <div className="col-12 mt-4">
+              <label className="form-label fw-bold text-dark border-bottom w-100 pb-2">Equipamiento Opcional</label>
+              <div className="p-3 border rounded bg-light shadow-sm" style={{ maxHeight: '180px', overflowY: 'auto' }}>
+                <div className="row">
+                  {todosEquipamientos && todosEquipamientos.map((extra) => (
+                    <div key={extra.id} className="col-md-6 col-lg-4 mb-2">
+                      <div className="form-check">
+                        <input
+                          type="checkbox"
+                          className="form-check-input"
+                          id={`extra-${extra.id}`}
+                          checked={data.equipamientos.includes(extra.id)}
+                          onChange={() => handleToggleEquipamiento(extra.id)}
+                        />
+                        <label className="form-check-label small text-dark pointer" htmlFor={`extra-${extra.id}`}>
+                          {extra.equipamiento}
+                        </label>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="mt-4 d-flex justify-content-end gap-2">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={() => setShowModal(false)}
-            >
+          <div className="mt-5 d-flex justify-content-end gap-2 border-top pt-3">
+            <button type="button" className="btn btn-outline-secondary px-4" onClick={() => setShowModal(false)}>
               Cancelar
             </button>
-            <button
-              type="submit"
-              className="btn btn-primary"
-              disabled={processing}
-            >
-              {cocheEditar ? "Actualizar" : "Guardar"}
+            <button type="submit" className="btn btn-primary px-4 shadow-sm" disabled={processing}>
+              {cocheEditar ? "Guardar Cambios" : "Crear Vehículo"}
             </button>
           </div>
         </form>

@@ -8,38 +8,55 @@ use Inertia\Inertia;
 use App\Models\Marca;
 use App\Models\Modelo;
 use App\Models\Carroceria;
+use App\Models\EquipamientoOpcional;
+use Illuminate\Support\Facades\DB;
+
 class VehiculosController extends Controller
 {
     public function getVehiculos(){
-        
-        $vehiculos = Vehiculo::with(['marca', 'modelo', 'carroceria'])
+    
+        $vehiculos = Vehiculo::with(['marca', 'modelo', 'carroceria', 'equipamientos'])
                          ->orderBy('id', 'desc')
                          ->paginate(10); 
-
-        $totalVehiculos =Vehiculo::count();
-
+    
+        // --- ESTAS LÍNEAS FALTAN EN TU CÓDIGO (Líneas 12-16 aprox) ---
+        $totalVehiculos = Vehiculo::count();
         $ventasMes = Vehiculo::whereNotNull('fecha_venta')   
                     ->whereMonth('fecha_venta', now()->month)
                     ->whereYear('fecha_venta', now()->year)
                     ->count();
-
         $cochesSinStock = Vehiculo::where('isDeleted', true)->count();
+        // ----------------------------------------------------------
+    
         $marcas = Marca::all();
         $modelos = Modelo::all();
         $carrocerias = Carroceria::all();
-
+    
+        // NUEVO: Catálogo de extras
+        $todosEquipamientos = \App\Models\EquipamientoOpcional::all();
+    
         return Inertia::render('listadocoches', [
             'vehiculos' => $vehiculos,
-            'totalVehiculos' => $totalVehiculos,
+            'totalVehiculos' => $totalVehiculos, // Ahora ya existe
             'ventasMes' => $ventasMes,   
             'cochesSinStock' => $cochesSinStock,
             'marcas' => $marcas,
             'modelos' => $modelos,
             'carrocerias' => $carrocerias,
+            'todosEquipamientos' => $todosEquipamientos,
         ]);
-
     }
-
+    
+    public function syncEquipamiento(Request $request, $id) 
+    {
+        $vehiculo = Vehiculo::findOrFail($id);
+        
+        // 'equipamientos' debe ser un array de IDs, ej: [1, 4, 7]
+        // El método sync() es mágico: borra los que ya no están y añade los nuevos.
+        $vehiculo->equipamientos()->sync($request->equipamientos);
+    
+        return back(); 
+    }
 
 
     public function deleteVehiculo(Request $request){
@@ -113,19 +130,53 @@ class VehiculosController extends Controller
     public function modifyVehiculo(Request $request, $id){
         $vehiculo = Vehiculo::findOrFail($id);
         
-
-        $vehiculo->marca_id= $request->marca;
-        $vehiculo->modelo_id=$request->modelo;
-        $vehiculo->carroceria_id=$request->carroceria;
-        $vehiculo->precio=$request->precio;
-        $vehiculo->color=$request->color;
-        
-
-        $vehiculo->save();
-
-
-
-        return Inertia::location(route('inventario.index'));
+        $vehiculo->update([
+            'marca_id' => $request->marca,
+            'modelo_id' => $request->modelo,
+            'carroceria_id' => $request->carroceria,
+            'precio' => $request->precio,
+            'color' => $request->color,
+        ]);
     
+        // Si el request trae un array de equipamientos, los sincronizamos
+        if ($request->has('equipamientos')) {
+            $vehiculo->equipamientos()->sync($request->equipamientos);
+        }
+    
+        return Inertia::location(route('inventario.index'));
     }
+
+
+    public function graficoVentas() {
+        $ventasPorMes = Vehiculo::whereNotNull('fecha_venta')
+            ->select(
+                DB::raw("count(*) as uv"),
+                DB::raw("MONTH(fecha_venta) as mes_num"),
+                DB::raw("CASE 
+                    WHEN MONTH(fecha_venta) = 1 THEN 'Ene'
+                    WHEN MONTH(fecha_venta) = 2 THEN 'Feb'
+                    WHEN MONTH(fecha_venta) = 3 THEN 'Mar'
+                    WHEN MONTH(fecha_venta) = 4 THEN 'Abr'
+                    WHEN MONTH(fecha_venta) = 5 THEN 'May'
+                    WHEN MONTH(fecha_venta) = 6 THEN 'Jun'
+                    WHEN MONTH(fecha_venta) = 7 THEN 'Jul'
+                    WHEN MONTH(fecha_venta) = 8 THEN 'Ago'
+                    WHEN MONTH(fecha_venta) = 9 THEN 'Sep'
+                    WHEN MONTH(fecha_venta) = 10 THEN 'Oct'
+                    WHEN MONTH(fecha_venta) = 11 THEN 'Nov'
+                    WHEN MONTH(fecha_venta) = 12 THEN 'Dic'
+                END as name")
+            )
+            ->groupBy('mes_num', 'name')
+            ->orderBy('mes_num')
+            ->get();
+
+          
+    
+        return Inertia::render('ventas', [
+            'datosVentas' => $ventasPorMes,
+            // ... el resto de tus variables (totalVehiculos, etc.)
+        ]);
+    }
+
 }

@@ -17,7 +17,7 @@ function MainLayout({ children }: MainLayoutProps) {
 
     var aux = "";
 
-    if (url === "/admin/dashboard" || url === "/admin/usuarios" || url === "/inventario/coches") {
+    if (url === "/admin/dashboard" || url === "/admin/usuarios" || url === "/inventario/coches" || url === "/inventario/equipamientos" || url ==="/inventario/ventas"  ) {
         aux = "#212529";
     } else  if (url === "/catalogo") {
         aux = "#f8f9fa";

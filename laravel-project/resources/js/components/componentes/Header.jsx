@@ -65,7 +65,7 @@ export default function Header() {
           {/* OPCIÓN PARA ADMINISTRADOR */}
           {auth?.user?.can_access_admin && (
               <li className="nav-item">
-                  <Link className="nav-link btn-pers" href="/admin/dashboard">
+                  <Link className="nav-link btn-pers" href="/admin/usuarios">
                       Panel Admin
                   </Link>
               </li>

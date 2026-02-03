@@ -5,34 +5,72 @@ import '../../../css/Catalogo.css';
 import { usePage } from '@inertiajs/react';
 
 const CatalogoPage = () => {
-  // 1. Extraemos los datos de las props (corregido el error en carrocerias)
-  const { 
-    vehiculos = [], 
-    marcas = [], 
-    carrocerias = [] 
-  } = usePage().props;
+  const { vehiculos = [], marcas = [], carrocerias = [] } = usePage().props;
 
-  // 2. Estados para que el Sidebar funcione (aunque no filtren en el cliente)
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState({
     searchQuery: '',
     marcas: [],
     precioMax: 100000,
-    combustible: 'todos',
-    carrocerias: []
+    carroceriaId: 'todos',
   });
 
-  // Debounce para actualizar el estado de búsqueda
+  // 🔹 Debounce del buscador
   useEffect(() => {
     const handler = setTimeout(() => {
       setFilters(prev => ({ ...prev, searchQuery: searchTerm }));
     }, 300);
+
     return () => clearTimeout(handler);
   }, [searchTerm]);
 
+  // 🔥 FILTRADO REAL
+  const filteredVehiculos = vehiculos.filter((coche) => {
+    console.log('------------------------');
+    console.log('ID:', coche.id);
+    console.log('MODELO:', coche.modelo?.modelo);
+    console.log('MARCA_ID:', coche.marca_id);
+    console.log('CARROCERIA_ID:', coche.carroceria_id);
+    console.log('PRECIO:', coche.precio);
+    console.log('FILTROS:', filters);
+  
+    const modelo = coche.modelo?.modelo?.toLowerCase() || '';
+    const search = filters.searchQuery.toLowerCase();
+  
+    if (search && !modelo.includes(search)) {
+      console.log('❌ DESCARTADO por búsqueda');
+      return false;
+    }
+  
+    if (
+      filters.marcas.length > 0 &&
+      !filters.marcas.includes(coche.marca_id)
+    ) {
+      console.log('❌ DESCARTADO por marca');
+      return false;
+    }
+  
+    if (Number(coche.precio) > filters.precioMax) {
+      console.log('❌ DESCARTADO por precio');
+      return false;
+    }
+  
+    if (
+      filters.carroceriaId !== 'todos' &&
+      Number(filters.carroceriaId) !== coche.carroceria_id
+    ) {
+      console.log('❌ DESCARTADO por carrocería');
+      return false;
+    }
+  
+    console.log('✅ PASA EL FILTRO');
+    return true;
+  });
+  
+  
+
   return (
     <div className="catalogo-container">
-      {/* Sidebar con marcas y carrocerías dinámicas */}
       <Sidebar
         filters={filters}
         setFilters={setFilters}
@@ -44,14 +82,15 @@ const CatalogoPage = () => {
 
       <main style={{ flex: 1 }}>
         <header style={{ marginBottom: '20px' }}>
-          <h1 style={{ fontSize: '2rem', marginBottom: '5px' }}>Catálogo de Vehículos</h1>
-          <p style={{ color: '#666' }}>Mostrando {vehiculos.length} resultados totales</p>
+          <h1 style={{ fontSize: '2rem' }}>Catálogo de Vehículos</h1>
+          <p style={{ color: '#666' }}>
+            Mostrando {filteredVehiculos.length} resultados
+          </p>
         </header>
 
         <div className="car-grid">
-          {vehiculos.length > 0 ? (
-            /* Renderizado directo de la prop vehiculos */
-            vehiculos.map(coche => (
+          {filteredVehiculos.length > 0 ? (
+            filteredVehiculos.map(coche => (
               <CarCard
                 key={coche.id}
                 coche={{
@@ -63,15 +102,9 @@ const CatalogoPage = () => {
               />
             ))
           ) : (
-            <div style={{
-                gridColumn: '1 / -1',
-                textAlign: 'center',
-                padding: '50px',
-                backgroundColor: 'white',
-                borderRadius: '10px',
-              }}>
-              <h3>No hay vehículos disponibles</h3>
-              <p>Verifica la conexión con la base de datos o el controlador.</p>
+            <div className="no-results">
+              <h3>No hay resultados</h3>
+              <p>Prueba a cambiar los filtros</p>
             </div>
           )}
         </div>

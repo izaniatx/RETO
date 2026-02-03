@@ -16,7 +16,8 @@ class VehiculoFactory extends Factory
             'color' => $this->faker->randomElement([
                 'Rojo', 'Blanco', 'Negro', 'Gris', 'Azul'
             ]),
-            'precio' => $this->faker->numberBetween(800000, 5000000),
+            'precio' => $this->faker->numberBetween(8000, 60000),
+
             'fecha_alta' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'fecha_venta' => $this->faker->optional(0.4)->dateTimeBetween('now', '+3 months'),
             'imagen' => 'vehiculos/default.jpg',

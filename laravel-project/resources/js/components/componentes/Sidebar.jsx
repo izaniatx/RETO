@@ -7,9 +7,9 @@ const Sidebar = ({ filters, setFilters, searchTerm, setSearchTerm, marcasBackend
     setSearchTerm("");
     setFilters({
       searchQuery: "",
-      marcas: [], // Array de IDs
+      marcas: [],
       precioMax: 100000,
-      combustible: 'todos'
+      carroceriaId: 'todos' // <--- Añade esto
     });
   };
 
@@ -26,11 +26,11 @@ const Sidebar = ({ filters, setFilters, searchTerm, setSearchTerm, marcasBackend
       {/* Cabecera con botón de limpiar */}
       <div className="sidebar-header">
         <h2>Filtros</h2>
-        {(searchTerm !== "" || filters.marcas.length > 0 || filters.precioMax < 100000) && (
-          <button className="btn-reset" onClick={resetFilters}>
-            Limpiar
-          </button>
-        )}
+        {(searchTerm !== "" || filters.marcas.length > 0 || filters.precioMax < 100000 || filters.carroceriaId !== 'todos') && (
+        <button className="btn-reset" onClick={resetFilters}>
+          Limpiar
+        </button>
+      )}
       </div>
 
       {/* Grupo 1: Buscador de texto */}
@@ -66,15 +66,17 @@ const Sidebar = ({ filters, setFilters, searchTerm, setSearchTerm, marcasBackend
       {/* Grupo 3: Rango de Precio */}
       <div className="filter-group">
         <label className="filter-label">Precio Máximo</label>
-        <input 
-          type="range" 
-          className="range-slider"
-          min="10000" 
-          max="100000" 
+        <input
+          type="range"
+          min="5000"
+          max="120000"
           step="1000"
           value={filters.precioMax}
-          onChange={(e) => setFilters({...filters, precioMax: parseInt(e.target.value)})}
+          onChange={(e) =>
+            setFilters({ ...filters, precioMax: Number(e.target.value) })
+          }
         />
+
         <span className="price-display">
           {filters.precioMax.toLocaleString('es-ES')}€
         </span>

@@ -142,10 +142,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                 {/* BARRA LATERAL (SIDEBAR) - Mantenemos la misma que en Dashboard */}
                 <aside className="bg-dark text-white p-4 shadow" style={{ width: "250px" }}>
                     <h4 className="fw-bold mb-4 text-center border-bottom pb-3">Panel Admin</h4>
-                    <nav className="nav flex-column gap-2">
-                        <Link href="/admin/dashboard" className="nav-link nav-inventario-2 text-white-50 px-3 py-2">
-                            <i className="bi bi-speedometer2 me-2"></i> Inventario
-                        </Link>
+                    <nav className="nav flex-column gap-2">                 
                         {/* Enlace activo ahora es Usuarios */}
                         <Link href="/admin/usuarios" className="nav-link nav-usuarios-2 text-white bg-primary rounded px-3 py-2">
                             <i className="bi bi-people me-2"></i> Usuarios

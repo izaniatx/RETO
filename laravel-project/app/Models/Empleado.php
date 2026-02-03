@@ -33,10 +33,7 @@ class Empleado extends Model
         return $this->belongsToMany(Turno::class);
     }
 
-    public function equipamientos()
-    {
-        return $this->belongsToMany(EquipamientoOpcional::class);
-    }
+    
     
 }
 

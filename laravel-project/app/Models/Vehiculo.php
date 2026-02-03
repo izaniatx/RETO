@@ -42,4 +42,10 @@ class Vehiculo extends Model
     {
         return $this->hasOne(VentaVehiculo::class);
     }
+
+    public function equipamientos()
+    {
+        
+        return $this->belongsToMany(EquipamientoOpcional::class, 'equipamientos_vehiculos', 'vehiculo_id', 'equipamiento_id');
+    }
 }

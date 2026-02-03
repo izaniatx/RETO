@@ -12,8 +12,8 @@ class EquipamientoOpcional extends Model
         'equipamiento'
     ];
 
-    public function empleados()
+    public function vehiculos()
     {
-        return $this->belongsToMany(Empleado::class);
+        return $this->belongsToMany(Vehiculo::class, 'equipamientos_vehiculos', 'equipamiento_id', 'vehiculo_id');
     }
 }
