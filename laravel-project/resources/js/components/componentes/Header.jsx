@@ -30,14 +30,23 @@ export default function Header() {
         {/* NAV ENLACES */}
 
         <ul className="navbar-nav ms-auto">
-          <li className="nav-item"><Link className="nav-link btn-pers" href="/inicio">Inicio</Link></li>
-          <li className="nav-item"><Link className="nav-link btn-pers" href="/catalogo">Catálogo</Link></li>
-          <li className="nav-item">
-              <Link className="nav-link btn-pers" href="/contacto">Contacto</Link>
-          </li>
-          <li className="nav-item">
-              <Link className="nav-link btn-pers" href="/dondeEncontrarnos">Dónde Encontrarnos</Link>
-          </li>
+          {/* SOLO para usuarios NO logueados */}
+          {(!auth?.user || auth?.user?.is_client) && (
+              <>
+                  <li className="nav-item">
+                      <Link className="nav-link btn-pers" href="/inicio">Inicio</Link>
+                  </li>
+                  <li className="nav-item">
+                      <Link className="nav-link btn-pers" href="/catalogo">Catálogo</Link>
+                  </li>
+                  <li className="nav-item">
+                      <Link className="nav-link btn-pers" href="/contacto">Contacto</Link>
+                  </li>
+                  <li className="nav-item">
+                      <Link className="nav-link btn-pers" href="/dondeEncontrarnos">Dónde Encontrarnos</Link>
+                  </li>
+              </>
+          )}
           
           {/* OPCIONES PARA CLIENTE: Usamos un Fragment <></> para envolver los <li> */}
           {auth?.user?.is_client && (
@@ -58,6 +67,24 @@ export default function Header() {
                 <li className="nav-item">
                     <Link className="nav-link btn-pers" href="/inventario/coches">
                         Inventario de Coches
+                    </Link>
+                </li>
+            )}
+
+          {/*GESTOR VENTAS */}
+            {auth?.user?.gestor_ventas && (
+                <li className="nav-item">
+                    <Link className="nav-link btn-pers" href="/gestion/ventas">
+                        Gestor de ventas
+                    </Link>
+                </li>
+            )}
+
+          {/*GESTOR COMPRAS */}
+          {auth?.user?.gestor_compras && (
+                <li className="nav-item">
+                    <Link className="nav-link btn-pers" href="/gestion/compras">
+                        Gestor de ventas
                     </Link>
                 </li>
             )}
@@ -103,6 +130,12 @@ export default function Header() {
             >
               Iniciar Sesión
             </CustomButton>
+            <Link 
+                href="/registro" 
+                className="btn btn-primary btn-pers ms-3 btn-login d-inline-flex align-items-center justify-content-center"
+              >
+                Registrarse
+              </Link>
             <LoginModal />
           </>
         )}

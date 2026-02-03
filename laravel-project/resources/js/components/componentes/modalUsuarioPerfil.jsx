@@ -6,7 +6,7 @@ const UsuarioModal = ({ show, onClose, formValues, setFormValues, errors, roles,
   return (
     <div className="r-modal-backdrop">
       <div className="r-modal" style={{ maxWidth: '600px', width: '90%', padding: '2.5rem' }}>
-        <h3 className="mb-4">Nuevo Usuario</h3>
+        <h3 className="mb-4">Modificación</h3>
         <form onSubmit={handleSubmit}>
           <div className="row g-3">
             {/* Usuario */}

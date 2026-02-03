@@ -31,7 +31,7 @@ Route::get('/dondeEncontrarnos', fn () => Inertia::render('dondeEncontrarnos'));
 Route::get('/vendeTuCoche', fn () => Inertia::render('vendeTuCoche'));
 
 Route::Get('/registro', fn () => Inertia::render('registro'));
-Route::post('/registro', [RegistroController::class, 'registrar']);
+Route::post('/registro/registrase', [RegistroController::class, 'registrar']);
 
 
 
@@ -85,12 +85,20 @@ Route::prefix('inventario')->group(function () {
     Route::get('/ventas', [VehiculosController::class, 'graficoVentas'])->name('ventas.grafico');
    
 
-    Route::get('/equipamientos', [EquipamientoController::class, 'getEquipamientos']);
+    Route::get('/equipamientos', [EquipamientoController::class, 'getEquipamientos'])->name('inventario.equipamientos');
+    Route::post('/equipamientos/create', [EquipamientoController::class, 'storeEquipamiento']);
+    Route::post('/equipamientos/delete', [EquipamientoController::class, 'deleteEquipamiento']);
+    Route::put('/equipamientos/{id}', [EquipamientoController::class, 'modifyEquipamiento']);
+    Route::post('/equipamiento/active', [EquipamientoController::class, 'activeEquipamiento']);
 
    
 
 });
 
+
+Route::get('/gestion/ventas', fn () => Inertia::render('gestorVentas'));
+
+Route::get('/gestion/compras', fn () => Inertia::render('gestorCompras'));
 
 /*
 |--------------------------------------------------------------------------

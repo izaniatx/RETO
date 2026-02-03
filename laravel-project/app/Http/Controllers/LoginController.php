@@ -49,7 +49,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             if ($user->rol_id == 1) {
-               return redirect()->intended('/admin/dashboard');
+               return redirect()->intended('/admin/usuarios');
             } else {
                 return redirect()->intended('/inicio');
             }
