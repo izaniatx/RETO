@@ -103,7 +103,7 @@ const [showVerifyModal, setShowVerifyModal] = useState(props.showVerifyModal ?? 
       return;
     }
 
-    router.post('/registro', values as any, {
+    router.post('/registro/create', values as any, {
     preserveScroll: true,
     onError: (backendErrors) => {
       setErrors(backendErrors as FormErrors);
@@ -210,15 +210,8 @@ const [showVerifyModal, setShowVerifyModal] = useState(props.showVerifyModal ?? 
               Registrarse
             </button>
 
-            {/* ✅ Nuevo botón para abrir modal de verificación */}
-            <button
-              type="button"
-              className="r-btn-primary"
-              style={{ marginLeft: '10px' }}
-              onClick={() => setShowVerifyModalManual(true)}
-            >
-              Abrir Modal de Verificación
-            </button>
+           
+            
           </div>
         </form>
       </div>

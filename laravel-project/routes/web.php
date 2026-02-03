@@ -26,8 +26,8 @@ Route::get('/contacto', fn () => Inertia::render('contacto'));
 Route::get('/dondeEncontrarnos', fn () => Inertia::render('dondeEncontrarnos'));
 Route::get('/vendeTuCoche', fn () => Inertia::render('vendeTuCoche'));
 
-
-Route::post('/registro', [RegistroController::class, 'registrar']);
+Route::get('/registro', fn () => Inertia::render('registro'));
+Route::post('/registro/create', [RegistroController::class, 'registrar']);
 Route::get('/inicio', [RegistroController::class, 'inicio'])->name('inicio');
 
 

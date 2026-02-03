@@ -24,6 +24,13 @@ class LoginController extends Controller
             'password.required' => 'La contraseña es obligatoria.',
         ]);
 
+        $usuario = User::where('usuario', $credentials['usuario'])->get();
+
+        if($usuario->isDeleted == true){
+            return back()->withErrors([
+                'usuario' => 'No existe este usuario',
+            ]);
+        }
         if (Auth::attempt(['usuario' => $credentials['usuario'], 'password' => $credentials['password']])) {
           
             $user = Auth::user();

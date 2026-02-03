@@ -125,8 +125,6 @@ class UsuariosController extends Controller
         $usuario->save();
 
 
-        
-
         return Inertia::location(route('usuarios.index'));
 
     
