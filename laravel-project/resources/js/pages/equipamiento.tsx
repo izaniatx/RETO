@@ -67,8 +67,8 @@ const Equipamientos = () => {
                         <Link href="/inventario/coches" className="nav-link nav-inventario text-white rounded px-3 py-2">
                             <i className="bi bi-car-front me-2"></i>Inventario
                         </Link>
-                        <Link href="/inventario/equipamientos" className="nav-link nav-inventario text-white bg-primary rounded px-3 py-2">
-                            <i className="bi bi-tools me-2"></i>Equipamiento opcional
+                        <Link href="/inventario/equipamientos" className="nav-link inv nav-inventario text-white bg-primary rounded px-3 py-2">
+                            <i className="bi inv bi-tools me-2"></i>Equipamiento opcional
                         </Link>
                         <Link href="/inventario/ventas" className="nav-link nav-inventario text-white rounded px-3 py-2">
                             <i className="bi bi-graph-up-arrow me-2"></i>Ventas

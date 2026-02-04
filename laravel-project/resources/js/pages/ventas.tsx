@@ -15,13 +15,13 @@ const Ventas = () => {
                 {/* SIDEBAR */}
                 <aside className="bg-dark text-white p-4 shadow" style={{ width: "250px" }}>
                     <nav className="nav flex-column gap-2">
-                        <Link href="/inventario/coches" className="nav-link inv nav-inventario text-white bg-primary rounded px-3 py-2">
+                        <Link href="/inventario/coches" className="nav-link nav-inventario text-white  rounded px-3 py-2">
                             <i className="bi bi-speedometer2 me-2"></i>Inventario
                         </Link>
                         <Link href="/inventario/equipamientos" className="nav-link nav-inventario text-white rounded px-3 py-2">
                             <i className="bi bi-speedometer2 "></i>Equipamiento opcional
                         </Link>
-                        <Link href="/inventario/ventas" className="nav-link nav-inventario text-white rounded px-3 py-2">
+                        <Link href="/inventario/ventas" className="nav-link inv nav-inventario text-white rounded px-3 py-2">
                             <i className="bi bi-speedometer2 "></i>Ventas
                         </Link>
                     </nav>  

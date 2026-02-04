@@ -55,6 +55,7 @@
         "globals": "^15.14.0",
         "input-otp": "^1.4.2",
         "lucide-react": "^0.475.0",
+        "node": "^25.5.0",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",
         "recharts": "^3.7.0",
