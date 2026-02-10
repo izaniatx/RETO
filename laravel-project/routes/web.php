@@ -141,5 +141,11 @@ Route::post('/logout', function (Request $request) {
 |--------------------------------------------------------------------------
 */
 
+
+
+Route::get('/catalogo/{id}', [VehiculosController::class, 'getVehiculo']);
+
+
+
 require __DIR__ . '/settings.php';
 

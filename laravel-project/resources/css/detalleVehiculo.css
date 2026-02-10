@@ -1,0 +1,113 @@
+.detalle-container {
+  background-color: #f0f0f0; /* Fondo gris claro de la página */
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.detalle-card-wrapper {
+  max-width: 1100px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Tarjetas con estilo Canva */
+.image-card, .booking-card {
+  background: white;
+  border-radius: 25px; /* Bordes muy redondeados */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Sombra suave */
+  padding: 20px;
+}
+
+.image-card img {
+  width: 100%;
+  border-radius: 15px;
+  display: block;
+}
+
+/* Sección de Características (Marca, Modelo...) */
+.features-section, .extra-section {
+  margin-top: 30px;
+  padding-left: 10px;
+}
+
+.features-section h3, .extra-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.chips-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.chip-label {
+  color: #d9534f; /* Color rojizo de la imagen de referencia */
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.chip-label strong {
+  color: #333;
+  margin-left: 5px;
+}
+
+/* Equipamiento Opcional */
+.extra-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.extra-item {
+  background: #fff;
+  padding: 10px 15px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.dot { color: #d9534f; margin-right: 5px; }
+
+/* Tarjeta de Reserva */
+.booking-card {
+  padding: 35px;
+  text-align: left;
+}
+
+.title-display { font-size: 1.8rem; margin-bottom: 5px; }
+.location-text { color: #666; margin-bottom: 15px; }
+.price-display { font-size: 1.4rem; font-weight: bold; margin-bottom: 25px; }
+
+.info-box-light {
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  margin-bottom: 25px;
+  border-left: 4px solid #ddd;
+}
+
+.btn-action {
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 15px;
+  border-radius: 50px; /* Botón tipo cápsula */
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.btn-action:hover {
+  transform: scale(1.02);
+}

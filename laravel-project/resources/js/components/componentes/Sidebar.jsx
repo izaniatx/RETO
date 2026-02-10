@@ -8,7 +8,7 @@ const Sidebar = ({ filters, setFilters, searchTerm, setSearchTerm, marcasBackend
     setFilters({
       searchQuery: "",
       marcas: [],
-      precioMax: 100000,
+      precioMax: 120000,
       carroceriaId: 'todos' // <--- Añade esto
     });
   };
@@ -26,7 +26,7 @@ const Sidebar = ({ filters, setFilters, searchTerm, setSearchTerm, marcasBackend
       {/* Cabecera con botón de limpiar */}
       <div className="sidebar-header">
         <h2>Filtros</h2>
-        {(searchTerm !== "" || filters.marcas.length > 0 || filters.precioMax < 100000 || filters.carroceriaId !== 'todos') && (
+        {(searchTerm !== "" || filters.marcas.length > 0 || filters.precioMax < 120000 || filters.carroceriaId !== 'todos') && (
         <button className="btn-reset" onClick={resetFilters}>
           Limpiar
         </button>

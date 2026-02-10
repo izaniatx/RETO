@@ -1,8 +1,12 @@
 import React from 'react';
 import '../../../css/Catalogo.css';
+import { Link, usePage } from '@inertiajs/react'; 
+
+
 
 const CarCard = ({ coche }) => {
   // Nombres seguros con fallback
+  const cocheId = coche.cocheId;
   const marcaNombre = coche.marcaNombre || (coche.marca ? coche.marca.marca : 'Desconocida');
   const modeloNombre = coche.modeloNombre || (coche.modelo ? coche.modelo.modelo : 'Desconocido');
   const carroceriaNombre = coche.carroceriaNombre || (coche.carroceria ? coche.carroceria.carroceria : 'Desconocida');
@@ -39,17 +43,27 @@ const CarCard = ({ coche }) => {
           <span className="car-price">
             {coche.precio ? coche.precio.toLocaleString('es-ES') + '€' : 'Precio no disponible'}
           </span>
-          <button style={{ 
-            backgroundColor: '#bd3a3f', 
-            color: 'white', 
-            border: 'none', 
-            padding: '8px 12px', 
-            borderRadius: '6px', 
-            cursor: 'pointer',
-            fontWeight: 'bold'
-          }}>
-            Ver más
-          </button>
+          <Link
+            href={`/catalogo/${cocheId}`}
+            className="inline-block"
+          >
+            <button
+              style={{ 
+                backgroundColor: '#bd3a3f', 
+                color: 'white', 
+                border: 'none', 
+                padding: '8px 12px', 
+                borderRadius: '6px', 
+                cursor: 'pointer',
+                fontWeight: 'bold'
+              }}
+            >
+              Ver más
+            </button>
+          </Link>
+
+
+
         </div>
       </div>
     </div>

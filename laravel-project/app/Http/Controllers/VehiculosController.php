@@ -175,7 +175,18 @@ class VehiculosController extends Controller
     
         return Inertia::render('ventas', [
             'datosVentas' => $ventasPorMes,
-            // ... el resto de tus variables (totalVehiculos, etc.)
+            
+        ]);
+    }
+
+    public function getVehiculo($id)
+    {
+        
+        $vehiculo = Vehiculo::with(['marca', 'modelo', 'carroceria', 'equipamientos'])
+            ->findOrFail($id); 
+    
+        return Inertia::render('detalleVehiculo', [
+            'vehiculo' => $vehiculo,
         ]);
     }
 
