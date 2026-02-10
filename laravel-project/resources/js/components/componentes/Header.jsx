@@ -102,25 +102,30 @@ export default function Header() {
         
         {/* LÓGICA DE SESIÓN */}
         {auth && auth.user ? (
-          <div>
+          <div className="d-flex align-items-center gap-2">
+            {/* ICONO DE PERFIL CON COLOR PERSONALIZADO */}
             <Link 
               href="/UserProfile" 
-              as="button" 
-              className="btn btn-outline-danger ms-3"
+              className="profile-link-custom"
+              title="Mi Perfil"
             >
-              ({auth.user.usuario})
+              <div className="profile-circle-red">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" className="bi bi-person-fill" viewBox="0 0 16 16">
+                  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                </svg>
+              </div>
+              <span className="user-name-text d-none d-md-inline">{auth.user.usuario}</span>
             </Link>
 
-            <Link 
+           {/* <Link 
               href="/logout" 
               method="post" 
               as="button" 
-              className="btn btn-outline-danger ms-3"
+              className="btn btn-sm btn-outline-secondary"
             >
-              Cerrar Sesión ({auth.user.usuario})
-            </Link>
+              Salir
+            </Link>*/}
           </div>
-          
         ) : (
           <>
             <CustomButton 
