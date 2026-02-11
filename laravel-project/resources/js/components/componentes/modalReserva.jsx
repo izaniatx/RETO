@@ -34,11 +34,16 @@ const ModalReserva = ({ isOpen, onClose, vehiculo }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
         post('/reservar', {
             onSuccess: () => {
                 reset();
                 onClose();
+                alert('¡Reserva creada con éxito!');
             },
+            onError: (errors) => {
+                console.log("Errores de validación:", errors);
+            }
         });
     };
 
@@ -48,6 +53,8 @@ const ModalReserva = ({ isOpen, onClose, vehiculo }) => {
             currency: 'EUR' 
         }).format(precio || 0);
     };
+
+   
 
     return (
         <div className="modal-overlay" onClick={onClose}>

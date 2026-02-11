@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RolSeeder::class,
             TablaUsuariosSeeder::class,
+            EstadosSeeder::class,
         ]);
 
         // 2. Semillas de Datos Maestros (Marcas, Modelos, etc.)
