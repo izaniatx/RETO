@@ -19,25 +19,25 @@ class VehiculosController extends Controller
                          ->orderBy('id', 'desc')
                          ->paginate(10); 
     
-        // --- ESTAS LÍNEAS FALTAN EN TU CÓDIGO (Líneas 12-16 aprox) ---
+       
         $totalVehiculos = Vehiculo::count();
         $ventasMes = Vehiculo::whereNotNull('fecha_venta')   
                     ->whereMonth('fecha_venta', now()->month)
                     ->whereYear('fecha_venta', now()->year)
                     ->count();
         $cochesSinStock = Vehiculo::where('isDeleted', true)->count();
-        // ----------------------------------------------------------
+        
     
         $marcas = Marca::all();
         $modelos = Modelo::all();
         $carrocerias = Carroceria::all();
     
-        // NUEVO: Catálogo de extras
+        
         $todosEquipamientos = \App\Models\EquipamientoOpcional::all();
     
         return Inertia::render('listadocoches', [
             'vehiculos' => $vehiculos,
-            'totalVehiculos' => $totalVehiculos, // Ahora ya existe
+            'totalVehiculos' => $totalVehiculos, 
             'ventasMes' => $ventasMes,   
             'cochesSinStock' => $cochesSinStock,
             'marcas' => $marcas,
@@ -51,8 +51,7 @@ class VehiculosController extends Controller
     {
         $vehiculo = Vehiculo::findOrFail($id);
         
-        // 'equipamientos' debe ser un array de IDs, ej: [1, 4, 7]
-        // El método sync() es mágico: borra los que ya no están y añade los nuevos.
+        
         $vehiculo->equipamientos()->sync($request->equipamientos);
     
         return back(); 
@@ -95,7 +94,7 @@ class VehiculosController extends Controller
             'precio.numeric' => 'Debe ser un número',
         ]);
 
-        // Crear vehículo
+        
         Vehiculo::create([
             'color' => $request['color'],
             'marca_id' => $request['marca'],
@@ -105,7 +104,7 @@ class VehiculosController extends Controller
             'fecha_alta' => now(),
         ]);
 
-        // Obtener datos para la vista
+  
         $vehiculos = Vehiculo::with(['marca', 'modelo', 'carroceria'])
             ->orderBy('id', 'desc')
             ->paginate(10);
@@ -138,7 +137,7 @@ class VehiculosController extends Controller
             'color' => $request->color,
         ]);
     
-        // Si el request trae un array de equipamientos, los sincronizamos
+        
         if ($request->has('equipamientos')) {
             $vehiculo->equipamientos()->sync($request->equipamientos);
         }

@@ -112,11 +112,6 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/mensajes', fn () => Inertia::render('admin/mensajes'));
 
-    /*
-    |-----------------------
-    | Usuarios
-    |-----------------------
-    */
 
     Route::get('/usuarios', [UsuariosController::class, 'getUsuarios'])->name('usuarios.index');
     Route::post('/usuarios/create', [UsuariosController::class, 'createUsuario']);

@@ -18,14 +18,14 @@ class EquipamientoController extends Controller
         ]);
     }
 
-    // Método para CREAR (Añádelo a tus rutas como /equipamientos/create)
+    
     public function storeEquipamiento(Request $request) 
     {
         $request->validate([
-            // 'unique:tabla,columna'
+          
             'nombre' => 'required|string|max:255|unique:equipamientos_opcionales,equipamiento',
         ], [
-            // Opcional: Personalizar el mensaje de error
+            
             'nombre.unique' => 'Este equipamiento ya existe en la base de datos.',
         ]);
 
@@ -34,11 +34,11 @@ class EquipamientoController extends Controller
             'isDeleted' => false
         ]);
 
-        // Usar redirect()->back() es más eficiente en Inertia para recargar datos
+       
         return Inertia::location(route('inventario.equipamientos'));
     }
 
-    // Coincide con tu ruta: Route::put('/equipamientos/{id}', ...)
+    
     public function modifyEquipamiento(Request $request, $id) 
     {
         $request->validate([
@@ -53,7 +53,7 @@ class EquipamientoController extends Controller
         return Inertia::location(route('inventario.equipamientos'));
     }
 
-    // Coincide con tu ruta: Route::post('/equipamientos/delete', ...)
+   
     public function deleteEquipamiento(Request $request) {
         $equipamiento = EquipamientoOpcional::find($request->id);
 
@@ -64,7 +64,7 @@ class EquipamientoController extends Controller
         return redirect()->back();
     }
 
-    // Coincide con tu ruta: Route::post('/equipamiento/active', ...)
+   
     public function activeEquipamiento(Request $request) {
         $equipamiento = EquipamientoOpcional::find($request->id);
 

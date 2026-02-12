@@ -50,8 +50,12 @@ class LoginController extends Controller
 
             if ($user->rol_id == 1) {
                return redirect()->intended('/admin/usuarios');
-            } else {
+            } else if($user->rol_id == 2){
                 return redirect()->intended('/inicio');
+            }else if($user->rol_id == 3){
+                return redirect()->intended('/gestion/ventas');
+            }else{
+                return redirect()->intended('/gestion/compras');
             }
         
             return redirect()->intended('/inicio');

@@ -32,8 +32,6 @@ class UsuariosController extends Controller
     public function deleteUsuario(Request $request){
         $usuario = User::find($request->id);
 
-    
-
         if($usuario){
             $usuario->isDeleted = true;
             $usuario->save();
@@ -132,7 +130,7 @@ class UsuariosController extends Controller
 
    public function usuarioLogueado()
     {
-        $usuario = auth()->user(); // Usuario logueado
+        $usuario = auth()->user(); 
 
         if (!$usuario) {
             return redirect('/');
@@ -160,10 +158,7 @@ class UsuariosController extends Controller
         $usuario->rol_id=$request->rol_id;
 
         $usuario->save();
-
-
         
-
         return Inertia::location(route('perfil'));
     }
 
