@@ -36,19 +36,24 @@ class HandleInertiaRequests extends Middleware
      * @return array<string, mixed>
      */
     public function share(Request $request): array
-{
-    return array_merge(parent::share($request), [
-        'auth' => [
-            'user' => $request->user() ? [
-                'id' => $request->user()->id,
-                'usuario' => $request->user()->usuario,
-               
-                'can_access_admin' => Gate::allows('admin-access'), 
-                'is_client' => Gate::allows('client-access'),
-                'gestor_ventas' =>Gate::allows('gestor_ventas'),
-                'gestor_compras' =>Gate::allows('gestor_compras'),
+    {
+        return array_merge(parent::share($request), [
+            'auth' => [
+                'user' => $request->user() ? [
+                    'id' => $request->user()->id,
+                    'usuario' => $request->user()->usuario,
+                    // AÑADE ESTOS CAMPOS:
+                    'nombre' => $request->user()->nombre,
+                    'apellido' => $request->user()->apellido,
+                    'email' => $request->user()->email,
+                    'telefono' => $request->user()->telefono,
+                    
+                    'can_access_admin' => Gate::allows('admin-access'), 
+                    'is_client' => Gate::allows('client-access'),
+                    'gestor_ventas' => Gate::allows('gestor_ventas'),
+                    'gestor_compras' => Gate::allows('gestor_compras'),
                 ] : null,
-        ],
-    ]);
-}
+            ],
+        ]);
+    }
 }

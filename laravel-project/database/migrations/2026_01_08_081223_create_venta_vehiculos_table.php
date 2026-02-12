@@ -29,7 +29,7 @@ return new class extends Migration
                         ->constrained('estados')
                         ->onDelete('cascade');
 
-
+            $table->string('tipo');
             $table->boolean('isDeleted')->default(false);
             
             $table->timestamps();

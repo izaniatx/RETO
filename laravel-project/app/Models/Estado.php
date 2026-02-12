@@ -12,8 +12,9 @@ class Estado extends Model
         'estado'
     ];
 
-    public function ventaVehiculo()
+    public function ventas()
     {
-        return $this->belongsTo(VentaVehiculo::class);
+        
+        return $this->hasMany(VentaVehiculo::class, 'estado_id');
     }
 }

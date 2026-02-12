@@ -13,6 +13,7 @@ use App\Http\Controllers\CatalogoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\EquipamientoController;
+use App\Http\Controllers\VentasController;
 
 
 /*
@@ -96,7 +97,9 @@ Route::prefix('inventario')->group(function () {
 });
 
 
-Route::get('/gestion/ventas', fn () => Inertia::render('gestorVentas'));
+Route::get('/gestion/ventas', [VentasController::class, 'indexGestorVentas']);
+Route::get('/gestion/ventas/{id}', [VentasController::class, 'showDetalleVenta'])
+    ->name('ventas.detalle');
 
 Route::get('/gestion/compras', fn () => Inertia::render('gestorCompras'));
 
@@ -135,6 +138,13 @@ Route::post('/logout', function (Request $request) {
 | OTROS
 |--------------------------------------------------------------------------
 */
+
+
+
+Route::get('/catalogo/{id}', [VehiculosController::class, 'getVehiculo']);
+
+Route::post('/reservar', [VentasController::class, 'createReserva']);
+
 
 require __DIR__ . '/settings.php';
 

@@ -95,6 +95,7 @@ const CatalogoPage = () => {
                 key={coche.id}
                 coche={{
                   ...coche,
+                  cocheId: coche.id,
                   marcaNombre: coche.marca?.marca || 'Sin marca',
                   modeloNombre: coche.modelo?.modelo || 'Sin modelo',
                   carroceriaNombre: coche.carroceria?.carroceria || 'N/A',
