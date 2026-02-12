@@ -1,0 +1,85 @@
+.vende-page-wrapper {
+    background-color: #f0f2f5;
+    padding: 100px 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hacemos que el contenedor de la modal no sea relativo a la pantalla sino estático */
+.vende-static-container {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+.btn-vende-rojo {
+    background-color: #b91c1c !important; /* Rojo intenso */
+    transition: transform 0.2s;
+}
+
+.btn-vende-rojo:hover {
+    transform: scale(1.03);
+    background-color: #991b1b !important;
+}
+
+.vende-info-text {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+
+
+/* Ajuste para que el título se vea como el badge de la otra imagen */
+.vende-header-container {
+    background: #b91c1c;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.vende-header-container h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: white !important;
+}
+
+.form-select-vende {
+    background-color: #f1f3f5;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 15px;
+    font-size: 1rem;
+    width: 100%;
+    color: #495057;
+    cursor: pointer;
+}
+
+.form-select-vende:focus {
+    outline: 2px solid #b91c1c;
+    background-color: #fff;
+}
+
+.row-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px; /* Espacio entre los dos inputs de la misma fila */
+    margin-bottom: 5px;
+}
+
+.input-group input[type="tel"],
+.input-group input[type="text"] {
+    background-color: #f1f3f5;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 15px;
+    font-size: 1rem;
+    width: 100%;
+}

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\EquipamientoController;
 use App\Http\Controllers\VentasController;
+use App\Http\Controllers\ComprasController;
 
 
 /*
@@ -25,11 +26,14 @@ use App\Http\Controllers\VentasController;
 Route::get('/', fn () => Inertia::render('landingpage'));
 
 
-Route::get('/inicio', fn () => Inertia::render('inicio'));
+Route::get('/inicio', fn () => Inertia::render('inicio'))->name('inicio');
 Route::get('/catalogo',  [CatalogoController::class, 'getVehiculos']);
 Route::get('/contacto', fn () => Inertia::render('contacto'));
 Route::get('/dondeEncontrarnos', fn () => Inertia::render('dondeEncontrarnos'));
-Route::get('/vendeTuCoche', fn () => Inertia::render('vendeTuCoche'));
+
+
+Route::get('/vendeTuCoche', [ComprasController::class, 'vendeTuCoche']);
+Route::post('/vendeTuCoche/crear', [ComprasController::class, 'venta']);
 
 Route::Get('/registro', fn () => Inertia::render('registro'));
 Route::post('/registro/registrase', [RegistroController::class, 'registrar']);
