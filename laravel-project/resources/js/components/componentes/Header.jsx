@@ -84,7 +84,7 @@ export default function Header() {
           {auth?.user?.gestor_compras && (
                 <li className="nav-item">
                     <Link className="nav-link btn-pers" href="/gestion/compras">
-                        Gestor de ventas
+                        Gestor de compras
                     </Link>
                 </li>
             )}

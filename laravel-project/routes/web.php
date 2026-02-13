@@ -36,7 +36,7 @@ Route::get('/vendeTuCoche', [ComprasController::class, 'vendeTuCoche']);
 Route::post('/vendeTuCoche/crear', [ComprasController::class, 'venta']);
 
 Route::Get('/registro', fn () => Inertia::render('registro'));
-Route::post('/registro/registrase', [RegistroController::class, 'registrar']);
+Route::post('/registro/registrarse', [RegistroController::class, 'registrar']);
 
 
 
@@ -105,7 +105,14 @@ Route::get('/gestion/ventas', [VentasController::class, 'indexGestorVentas']);
 Route::get('/gestion/ventas/{id}', [VentasController::class, 'showDetalleVenta'])
     ->name('ventas.detalle');
 
-Route::get('/gestion/compras', fn () => Inertia::render('gestorCompras'));
+Route::patch('/gestion/ventas/{id}/estado', [VentasController::class, 'actualizarEstado'])->name('ventas.updateEstado');
+    
+Route::get('/gestion/compras', [ComprasController::class, 'indexGestorCompras']);
+Route::get('/gestion/compras/{id}', [ComprasController::class, 'showDetalleCompra'])
+    ->name('compras.detalle');
+
+Route::patch('/gestion/compras/{id}/estado', [ComprasController::class, 'actualizarEstado'])->name('compras.updateEstado');
+
 
 /*
 |--------------------------------------------------------------------------

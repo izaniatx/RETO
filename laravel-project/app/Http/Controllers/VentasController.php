@@ -7,6 +7,7 @@ use App\Models\VentaVehiculo;
 use App\Models\Mensaje;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use App\Models\Estado;
 
 class VentasController extends Controller
 {
@@ -54,18 +55,30 @@ class VentasController extends Controller
     }
 
     
-    public function showDetalleVenta($id)
+   public function showDetalleVenta($id)
     {
-        $venta = VentaVehiculo::with([
-            'vehiculo.marca', 
-            'vehiculo.modelo', 
-            'estado', 
-            'mensaje', 
-            'user' 
-        ])->findOrFail($id);
-    
+        $venta = VentaVehiculo::with(['vehiculo.marca', 'vehiculo.modelo', 'estado', 'mensaje', 'user'])->findOrFail($id);
+        $estados = Estado::all();
+
         return Inertia::render('detalleVenta', [
-            'venta' => $venta
+            'venta' => $venta,
+            'estados' => $estados, // <-- Asegúrate de que termine en 's'
         ]);
+    }
+
+    // ComprasController.php
+
+    public function actualizarEstado(Request $request, $id)
+    {
+        $request->validate([
+            'estado_id' => 'required|exists:estados,id',
+        ]);
+
+        $venta = VentaVehiculo::findOrFail($id);
+        $venta->estado_id = $request->estado_id;
+        $venta->save();
+
+        // Redirigir de vuelta con un mensaje de éxito
+        return redirect()->back();
     }
 }

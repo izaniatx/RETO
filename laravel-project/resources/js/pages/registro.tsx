@@ -103,7 +103,7 @@ const [showVerifyModal, setShowVerifyModal] = useState(props.showVerifyModal ?? 
       return;
     }
 
-    router.post('/registro/registrase', values as any, {
+    router.post('/registro/registrarse', values as any, {
     preserveScroll: true,
     onError: (backendErrors) => {
       setErrors(backendErrors as FormErrors);

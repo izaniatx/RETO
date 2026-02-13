@@ -17,8 +17,7 @@ class EstadosSeeder extends Seeder
         Estado::Create(['id'=>2,'estado'=> 'Denegado']);
         Estado::Create(['id'=>3,'estado'=> 'En venta']);
         Estado::Create(['id'=>4,'estado'=> 'Nuevo']);
-      
-
+        Estado::Create(['id'=>5, 'estado'=>'Vendido']);
         
     
     }

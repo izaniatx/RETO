@@ -16,12 +16,12 @@ const CarCard = ({ coche }) => {
     <div className="car-card">
       {/* Contenedor de la imagen */}
       <div className="car-image">
-         {/*<img 
+         {<img 
           src={imagenUrl} 
           alt={`${marcaNombre} ${modeloNombre}`} 
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           onError={(e) => { e.target.src = 'https://via.placeholder.com/300x200?text=Coche'; }}
-        />*/}
+        />}
       </div>
 
       {/* Información del coche */}

@@ -26,19 +26,25 @@ const VendeTuCoche = ({ marcas, modelos, carrocerias }: Props) => {
     }
 
     const { data, setData, post, processing, errors } = useForm<VendeForm>({
-    nombre: usuarioLogueado ? `${usuarioLogueado.nombre} ${usuarioLogueado.apellido || ''}`.trim() : '',
-    email: usuarioLogueado?.email || '',
-    telefono: usuarioLogueado?.telefono || '',
-    marca_id: '',
-    modelo_id: '',
-    carroceria_id: '',
-    color: '',
-    mensaje: '',
-});
+        nombre: usuarioLogueado ? `${usuarioLogueado.nombre} ${usuarioLogueado.apellido || ''}`.trim() : '',
+        email: usuarioLogueado?.email || '',
+        telefono: usuarioLogueado?.telefono || '',
+        marca_id: '',
+        modelo_id: '',
+        carroceria_id: '',
+        color: '',
+        mensaje: '',
+    });
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        post('/registro/registrase');
+        
+        console.log("Datos que se envían:", data); // <--- MIRA ESTO EN LA CONSOLA (F12)
+
+        post('/vendeTuCoche/crear', {
+            onSuccess: () => console.log("¡Éxito!"),
+            onError: (errors) => console.log("Errores de validación Laravel:", errors), // <--- ESTO ES CLAVE
+        });
     };
 
     return (

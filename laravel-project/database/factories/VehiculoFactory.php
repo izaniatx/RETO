@@ -20,7 +20,7 @@ class VehiculoFactory extends Factory
 
             'fecha_alta' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'fecha_venta' => $this->faker->optional(0.4)->dateTimeBetween('now', '+3 months'),
-            'imagen' => '../public/images/vehiculos/default.jpg',
+            'imagen' => '../vehiculos/default.jpg',
             'marca_id' => $this->faker->numberBetween(1, 4),
             'carroceria_id' => $this->faker->numberBetween(1, 4),
             'modelo_id' => $this->faker->numberBetween(1, 4),
