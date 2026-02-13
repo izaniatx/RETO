@@ -161,7 +161,7 @@ const ListadoCoches = () => {
                                             <td>{car.carroceria?.carroceria ?? '-'}</td>
                                             <td>{car.color ?? '-'}</td>
                                             <td>
-                                            {car.precio.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}
+                                                {(car.precio ?? 0).toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}
                                             </td>
                                             {/* Campo Fecha Alta */}
                                             <td className="small">

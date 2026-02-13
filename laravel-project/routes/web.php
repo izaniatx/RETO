@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\EquipamientoController;
 use App\Http\Controllers\VentasController;
 use App\Http\Controllers\ComprasController;
+use App\Http\Controllers\CursosController;
 
 
 /*
@@ -112,6 +113,8 @@ Route::get('/gestion/compras/{id}', [ComprasController::class, 'showDetalleCompr
     ->name('compras.detalle');
 
 Route::patch('/gestion/compras/{id}/estado', [ComprasController::class, 'actualizarEstado'])->name('compras.updateEstado');
+
+Route::get('/cursos', [CursosController::class, 'getCursos']);
 
 
 /*
