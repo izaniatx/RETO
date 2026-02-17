@@ -16,6 +16,7 @@ use App\Http\Controllers\EquipamientoController;
 use App\Http\Controllers\VentasController;
 use App\Http\Controllers\ComprasController;
 use App\Http\Controllers\CursosController;
+use App\Http\Controllers\LocalizacionController;
 
 
 /*
@@ -30,7 +31,7 @@ Route::get('/', fn () => Inertia::render('landingpage'));
 Route::get('/inicio', fn () => Inertia::render('inicio'))->name('inicio');
 Route::get('/catalogo',  [CatalogoController::class, 'getVehiculos']);
 Route::get('/contacto', fn () => Inertia::render('contacto'));
-Route::get('/dondeEncontrarnos', fn () => Inertia::render('dondeEncontrarnos'));
+Route::get('/dondeEncontrarnos', [LocalizacionController::class, 'dondeEncontrarnos'])->name('donde.encontrarnos');
 
 
 Route::get('/vendeTuCoche', [ComprasController::class, 'vendeTuCoche']);

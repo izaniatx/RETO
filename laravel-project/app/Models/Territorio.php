@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Territorio extends Model
 {
+    use HasFactory;
     protected $table = 'territorios';
 
     protected $fillable = [

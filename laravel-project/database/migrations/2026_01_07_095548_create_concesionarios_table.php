@@ -14,12 +14,15 @@ return new class extends Migration
         Schema::create('concesionarios', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->integer('telefono');
+            $table->string('telefono', 20);
             $table->foreignId('ciudad_id')
                 ->constrained('ciudades')
                 ->onDelete('cascade');
+            $table->decimal('latitud', 10, 8)->nullable();
+            $table->decimal('longitud', 11, 8)->nullable();
             $table->boolean('isDeleted')->default(false);
             $table->timestamps();
+            
         });
     }
 
