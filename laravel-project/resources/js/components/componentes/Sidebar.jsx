@@ -100,6 +100,18 @@ const Sidebar = ({ filters, setFilters, searchTerm, setSearchTerm, marcasBackend
             ))}
           </select>
         </div>
+
+        <div className="filter-group" style={{ marginTop: '20px', padding: '15px', background: '#f8f9fa', borderRadius: '8px' }}>
+          <label style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}>
+            <input 
+              type="checkbox" 
+              checked={filters.soloFavoritos}
+              onChange={(e) => setFilters({ ...filters, soloFavoritos: e.target.checked })}
+              style={{ width: '18px', height: '18px', accentColor: '#bd3a3f' }}
+            />
+            <span style={{ fontWeight: 'bold', color: '#333' }}>Ver mis favoritos</span>
+          </label>
+        </div>
     </aside>
   );
 };
