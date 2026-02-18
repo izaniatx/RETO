@@ -15,6 +15,7 @@ const DetalleCompra = ({ compra, estados }: { compra: any, estados: any[] }) => 
         });
     };
 
+   
     return (
         <MainLayout>
             <div className="detalle-wrapper">
@@ -61,11 +62,11 @@ const DetalleCompra = ({ compra, estados }: { compra: any, estados: any[] }) => 
                                     ))}
                                 </select>
                                 
-                                <button className="icon-btn"><Mail size={20} /></button>
+                              
                             </div>
                             
 
-                            <div className="message-area">
+                           <div className="message-area">
                                 <label><MessageSquare size={16} /> Mensaje del cliente:</label>
                                 <div className="message-bubble">
                                     {compra.mensaje?.mensaje}
@@ -92,7 +93,7 @@ const DetalleCompra = ({ compra, estados }: { compra: any, estados: any[] }) => 
 
                             <div className="action-buttons">
                                 <button className="btn-main-red">Contactar cliente</button>
-                                <button className="btn-outline-red">Vender vehículo</button>
+                                <button className="btn-outline-red">Comprar vehículo</button>
                             </div>
                         </div>
                     </div>

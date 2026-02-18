@@ -61,7 +61,7 @@ const DetalleVenta = ({ venta, estados }: { venta: any, estados: any[] }) => {
                                     ))}
                                 </select>
                                 
-                                <button className="icon-btn"><Mail size={20} /></button>
+                              
                             </div>
 
                             <div className="message-area">

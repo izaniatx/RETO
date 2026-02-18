@@ -109,4 +109,20 @@ class ComprasController extends Controller
         return redirect()->back();
     }
 
+
+    public function comprarVehiculo(Request $request, $id){
+        $vehiculo = VentaVehiculo::find($id);
+
+        echo $id;
+        
+        $compras = VentaVehiculo::with(['vehiculo.marca', 'vehiculo.modelo', 'estado'])
+                    ->where('tipo', 'compra')
+                    ->get();
+
+        return Inertia::render('gestorCompras', [
+            'compras' =>$compras
+        ]);
+
+    }
+
 }
