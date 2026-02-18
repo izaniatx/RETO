@@ -24,7 +24,7 @@ class VentasController extends Controller
         ]);
 
         
-        $contacto = "Reserva de: {$request->nombre} | Tel: {$request->telefono} | Email: {$request->email} | Mensaje: {$request->mensaje}";
+        $contacto = "{$request->mensaje}";
         
         $nuevoMensaje = Mensaje::create([
             'mensaje' => $contacto
@@ -44,7 +44,7 @@ class VentasController extends Controller
 
     public function indexGestorVentas()
     {
-        // Filtramos por tipo 'venta' y cargamos relaciones para evitar consultas extra
+        
         $ventas = VentaVehiculo::with(['vehiculo.marca', 'vehiculo.modelo', 'estado'])
                     ->where('tipo', 'venta')
                     ->get();
@@ -62,11 +62,11 @@ class VentasController extends Controller
 
         return Inertia::render('detalleVenta', [
             'venta' => $venta,
-            'estados' => $estados, // <-- Asegúrate de que termine en 's'
+            'estados' => $estados, 
         ]);
     }
 
-    // ComprasController.php
+
 
     public function actualizarEstado(Request $request, $id)
     {

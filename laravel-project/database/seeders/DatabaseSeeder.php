@@ -14,31 +14,28 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        
-        $this->call([
-            RolSeeder::class,
-            TablaUsuariosSeeder::class,
-            EstadosSeeder::class,
-            DatosVehiculosSeeder::class,
-        ]);
-
-       
-        if (Vehiculo::count() == 0) {
-            Vehiculo::factory()->count(20)->create();
-            $this->call([EquipamientoSeeder::class]);
-        }
-
-       
+ 
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        
+        Vehiculo::truncate();
         Concesionario::truncate();
         Ciudad::truncate();
         Territorio::truncate();
         Pais::truncate();
+        
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        $pais = Pais::create(['pais' => 'España']);
+        
+        $this->call([
+            RolSeeder::class,
+            EstadosSeeder::class,
+            DatosVehiculosSeeder::class, 
+            CursoSeeder::class,
+        ]);
 
      
+        $pais = Pais::create(['pais' => 'España']);
+
         $zonas = [
             'Euskadi' => [
                 'Bilbao' => ['lat' => 43.2630, 'lng' => -2.9350],
@@ -82,7 +79,6 @@ class DatabaseSeeder extends Seeder
                     'ciudad' => $nombreCiudad
                 ]);
 
-              
                 Concesionario::create([
                     'nombre' => "Automóviles " . $nombreCiudad . " " . fake()->lastName(),
                     'telefono' => '+34 ' . fake()->numerify('#########'),
@@ -92,6 +88,15 @@ class DatabaseSeeder extends Seeder
                     'isDeleted' => false,
                 ]);
             }
+        }
+
+     
+        $this->call([TablaUsuariosSeeder::class]);
+
+     
+        if (Vehiculo::count() == 0) {
+            Vehiculo::factory()->count(20)->create();
+            $this->call([EquipamientoSeeder::class]);
         }
     }
 }

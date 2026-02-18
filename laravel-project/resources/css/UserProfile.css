@@ -1,4 +1,4 @@
-/* Layout General */
+
 .profile-page {
   background-color: #f3f4f6;
   min-height: 100vh;
@@ -6,33 +6,33 @@
   color: #1f2937;
 }
 
-/* Banner Superior Ancho Completo */
+
 .profile-banner-full {
   height: 200px;
   width: 100%;
   box-shadow: inset 0 -10px 20px rgba(0,0,0,0.05);
 }
 
-/* Contenedor Principal */
+
 .profile-container {
-  max-width: 1200px; /* Ancho máximo estándar web */
-  margin: -60px auto 0; /* Margen negativo para subir sobre el banner */
+  max-width: 1200px; 
+  margin: -60px auto 0; 
   padding: 0 20px 40px;
   
   display: grid;
-  grid-template-columns: 1fr; /* Por defecto (móvil) 1 columna */
+  grid-template-columns: 1fr; 
   gap: 20px;
 }
 
-/* Responsive: Escritorio (más de 768px) */
+
 @media (min-width: 768px) {
   .profile-container {
-    grid-template-columns: 300px 1fr; /* Izquierda fija, Derecha flexible */
+    grid-template-columns: 300px 1fr; 
     align-items: start;
   }
 }
 
-/* Estilo común de las "Tarjetas" (Blanco y sombra) */
+
 .card {
   background: white;
   border-radius: 12px;
@@ -40,7 +40,7 @@
   overflow: hidden;
 }
 
-/* --- Sidebar (Izquierda) --- */
+
 .profile-sidebar {
   padding: 0 0 20px;
   text-align: center;
@@ -49,7 +49,7 @@
 .avatar-container {
   display: flex;
   justify-content: center;
-  margin-top: 50px; /* Subir foto para solapar banner */
+  margin-top: 50px; 
 }
 
 .profile-avatar {
@@ -82,7 +82,7 @@
   gap: 10px;
 }
 
-/* --- Contenido Principal (Derecha) --- */
+
 .profile-content {
   padding: 30px;
 }
@@ -98,7 +98,7 @@
   color: #111827;
 }
 
-/* Grid de Información */
+
 .info-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -107,7 +107,7 @@
 
 @media (min-width: 600px) {
   .info-grid {
-    grid-template-columns: 1fr 1fr; /* Dos columnas para los datos */
+    grid-template-columns: 1fr 1fr; 
   }
 }
 
@@ -138,7 +138,7 @@
   font-size: 0.9rem !important;
 }
 
-/* --- Botones --- */
+
 .btnU {
   padding: 10px 16px;
   border-radius: 6px;
@@ -204,7 +204,7 @@ position: relative;
 
 .btn-back {
   position: absolute;
-  top: 20px; /* Justo debajo del banner */
+  top: 20px; 
   left: 20px;
   background: white;
   border: none;
@@ -226,18 +226,18 @@ position: relative;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
-/* UsuarioModal.css */
+
 .r-modal-backdrop {
-  position: fixed; /* 🔹 Fijo sobre toda la ventana */
+  position: fixed; 
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.5); /* fondo semitransparente */
-  display: flex; /* 🔹 Flex para centrar contenido */
-  justify-content: center; /* horizontal */
-  align-items: center; /* vertical */
-  z-index: 1050; /* encima de todo */
+  background-color: rgba(0,0,0,0.5); 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  z-index: 1050; 
 }
 
 .r-modal {
@@ -248,4 +248,42 @@ position: relative;
   width: 90%;
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   position: relative;
+}
+
+.mt-4 { margin-top: 1.5rem; }
+
+.grid-courses {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.course-item {
+  background: #f8f9fa;
+  padding: 1.2rem;
+  border-radius: 8px;
+  border-left: 4px solid #d28ae0ff; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.badge-category {
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: #eee;
+}
+
+.btn-start-course {
+  margin-top: 1rem;
+  background: #212529;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
 }

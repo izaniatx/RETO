@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('empleados', function (Blueprint $table) {
             $table->id();
             $table->foreignId('concesionario_id')
-               ->constrained('concesionarios')
-               ->onDelete('cascade');
+            ->nullable() 
+            ->constrained('concesionarios')
+            ->onDelete('cascade');
 
             $table->foreignId('user_id')
                         ->constrained('users')

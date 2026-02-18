@@ -18,12 +18,23 @@ interface Rol {
   rol: string;
 }
 
-interface UserProfileProps {
-  usuario: Usuario;
-  rol?: Rol; // opcional
+
+interface Curso {
+  id: number;
+  nombre: string;
+  categoria: string;
+  pivot: {
+    fecha_finalizacion: string;
+  };
 }
 
-const UserProfile: React.FC<UserProfileProps> = ({ usuario, rol }) => {
+interface UserProfileProps {
+  usuario: Usuario;
+  rol?: Rol;
+  cursosAsignados: Curso[]; // <-- Nueva prop
+}
+
+const UserProfile: React.FC<UserProfileProps> = ({ usuario, rol, cursosAsignados = [] }) => {
   const bannerColor = useMemo(() => {
     const colors = [
       '#FFB7B2', '#FFDAC1', '#E2F0CB', '#B5EAD7',
@@ -139,6 +150,35 @@ const UserProfile: React.FC<UserProfileProps> = ({ usuario, rol }) => {
               <p className="badge">{rol?.rol || 'Sin rol'}</p>
             </div>
           </div>
+
+          <section className="profile-content card mt-4">
+  <div className="content-header">
+    <h3>Mi Formación y Capacitación</h3>
+  </div>
+
+  <div className="courses-list">
+    {cursosAsignados && cursosAsignados.length > 0 ? (
+      <div className="grid-courses">
+        {cursosAsignados.map((curso) => (
+          <div key={curso.id} className="course-item">
+            <div className="course-info">
+              <span className={`badge-category ${curso.categoria.toLowerCase()}`}>
+                {curso.categoria}
+              </span>
+              <h4>{curso.nombre}</h4>
+              <p className="finish-date">
+                Finaliza: {new Date(curso.pivot.fecha_finalizacion).toLocaleDateString()}
+              </p>
+            </div>
+        
+          </div>
+        ))}
+      </div>
+    ) : (
+      <p className="no-data">No tienes cursos asignados actualmente.</p>
+    )}
+  </div>
+</section>
         </main>
       </div>
 

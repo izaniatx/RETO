@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Cliente;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered; 
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RegistroController extends Controller
 {
-    // Método que crea el usuario
+ 
     public function registrar(Request $request)
     {
 
@@ -63,6 +64,7 @@ class RegistroController extends Controller
             
         ]);
 
+        Cliente::create(['user_id'=>$user['id']]);
                
         event(new Registered($user));
 
@@ -70,8 +72,7 @@ class RegistroController extends Controller
         auth()->login($user);
 
        
-        //return redirect()->route('verification.notice');
-        
+      
         return Inertia::render('registro', [
             'showVerifyModal' => true,
         ]);

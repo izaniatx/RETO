@@ -116,6 +116,7 @@ Route::get('/gestion/compras/{id}', [ComprasController::class, 'showDetalleCompr
 Route::patch('/gestion/compras/{id}/estado', [ComprasController::class, 'actualizarEstado'])->name('compras.updateEstado');
 
 Route::get('/cursos', [CursosController::class, 'getCursos']);
+Route::post('/cursos/anyadir', [CursosController::class, 'anyadirCurso']);
 
 
 /*

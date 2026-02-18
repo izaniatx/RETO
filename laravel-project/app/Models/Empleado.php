@@ -20,12 +20,14 @@ class Empleado extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function cursos()
     {
-        return $this->belongsToMany(Curso::class);
+        return $this->belongsToMany(Curso::class, 'cursos_empleados', 'empleado_id', 'curso_id')
+                    ->withPivot('fecha_finalizacion', 'isDeleted')
+                    ->withTimestamps();
     }
 
     public function turnos()

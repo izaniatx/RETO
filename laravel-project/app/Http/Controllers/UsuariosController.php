@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Empleado;
+use App\Models\Cliente;
 use Inertia\Inertia;
 use Carbon\Carbon;
 use App\Models\Rol;
+use App\Models\Curso;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -101,6 +104,12 @@ class UsuariosController extends Controller
             'rol_id'=>$request['rol_id'],
         ]);
 
+        if($usuario->rol_id != 2){
+            Empleado::create(['user_id'=>$usuario['id']]);
+        }else{
+            Cliente::create(['user_id'=>$usuario['id']]);
+        }
+
         $usuarios = User::with('rol')->get();
         $roles = Rol::all();
         $totalUsuarios = User::count();
@@ -128,7 +137,7 @@ class UsuariosController extends Controller
     
     }
 
-   public function usuarioLogueado()
+    public function usuarioLogueado()
     {
         $usuario = auth()->user(); 
 
@@ -136,12 +145,16 @@ class UsuariosController extends Controller
             return redirect('/');
         }
         
-        $rol = Rol::where('id', $usuario->rol_id)->first();
-
+       
+        $usuario->load(['rol', 'empleado.cursos' => function($query) {
+            $query->wherePivot('isDeleted', false);
+        }]);
 
         return Inertia::render('UserProfile', [
             'usuario' => $usuario,
-            'rol' => $rol,
+            'rol' => $usuario->rol,
+           
+            'cursosAsignados' => $usuario->empleado ? $usuario->empleado->cursos : [],
         ]);
     }
 
