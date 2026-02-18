@@ -139,3 +139,195 @@
 }
 
 .btn-outline-red:hover { background: #fff5f5; }
+
+/* Contenedor de controles */
+.edit-controls-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+    height: 38px; /* Altura fija para evitar saltos de layout */
+}
+
+/* Botón Editar (Estilo Glass) */
+.btn-edit-glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 8px 16px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-edit-glass:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Grupo de botones Guardar/Cancelar */
+.edit-actions-group {
+    display: flex;
+    gap: 8px;
+    animation: fadeIn 0.3s ease;
+}
+
+.btn-save-glass {
+    background: rgba(40, 167, 69, 0.2);
+    border: 1px solid rgba(40, 167, 69, 0.4);
+    color: #4ade80;
+    padding: 8px 16px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-save-glass:hover {
+    background: rgba(40, 167, 69, 0.4);
+    box-shadow: 0 0 15px rgba(40, 167, 69, 0.2);
+}
+
+.btn-cancel-glass {
+    background: rgba(220, 53, 69, 0.1);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    color: #f87171;
+    padding: 8px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+/* Contenedor principal de la zona de edición */
+.edit-zone {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+/* Botón Editar Principal */
+.btn-glass-edit {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    padding: 6px 18px 6px 6px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.btn-glass-edit .icon-circle {
+    background: linear-gradient(135deg, #ff4d4d, #b30000);
+   
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(255, 77, 77, 0.4);
+}
+
+.btn-glass-edit:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* Acciones de Guardar/Cancelar */
+.edit-actions-animated {
+    display: flex;
+    gap: 10px;
+    animation: slideInRight 0.4s ease forwards;
+}
+
+.btn-action-confirm {
+    background: linear-gradient(135deg, #28a745, #1e7e34);
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.btn-action-cancel {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ff4d4d;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-action-cancel:hover {
+    background: rgba(255, 77, 77, 0.1);
+    border-color: #ff4d4d;
+}
+
+/* Inputs con estilo "Glass-Light" para máxima legibilidad */
+.input-detalle-custom {
+    background: rgba(255, 255, 255, 0.9) !important; /* Fondo casi blanco para contraste */
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    border-radius: 8px !important;
+    color: #1a1a1a !important; /* Texto casi negro para que se vea perfecto */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente más limpia */
+    padding: 8px 12px !important;
+    text-align: left !important;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1) !important;
+    width: 100%;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.input-detalle-custom:focus {
+    background: #ffffff !important;
+    border-color: #ff4d4d !important; /* El rojo de tu marca al hacer foco */
+    box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.1) !important;
+    outline: none;
+}
+
+
+.price-input {
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+   
+}
+
+/* Mejora del contenedor de la fila de datos en edición */
+.data-row-edit {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    width: 100%;
+}
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}

@@ -65,18 +65,18 @@ class ComprasController extends Controller
     }
 
 
-     public function indexGestorCompras()
+    public function indexGestorCompras()
     {
-        
+        // Obtenemos las ventas de tipo 'compra' cuyo estado NO sea 3 (En venta)
         $compras = VentaVehiculo::with(['vehiculo.marca', 'vehiculo.modelo', 'estado'])
                     ->where('tipo', 'compra')
+                    ->where('estado_id', '!=', 3) // <--- Filtro para excluir los ya comprados
                     ->get();
 
         return inertia('gestorCompras', [
             'compras' => $compras
         ]);
     }
-
      public function showDetalleCompra($id)
     {
         $compra = VentaVehiculo::with([
@@ -110,19 +110,38 @@ class ComprasController extends Controller
     }
 
 
-    public function comprarVehiculo(Request $request, $id){
-        $vehiculo = VentaVehiculo::find($id);
+    public function comprarVehiculo(Request $request, $id)
+    {
+        // 1. Buscamos la relación de compra específica
+        $venta = VentaVehiculo::findOrFail($id);
+    
+        // 2. Actualizamos el estado a 3 (En venta)
+        $venta->update([
+            'estado_id' => 3
+        ]);
+    
+        // 3. Redirigimos al listado de gestión con un mensaje de éxito
+        return redirect()->route('gestor.compras')->with('success', 'Vehículo adquirido y puesto en venta.');
+    }
 
-        echo $id;
-        
-        $compras = VentaVehiculo::with(['vehiculo.marca', 'vehiculo.modelo', 'estado'])
-                    ->where('tipo', 'compra')
-                    ->get();
-
-        return Inertia::render('gestorCompras', [
-            'compras' =>$compras
+    public function actualizarVehiculo(Request $request, $id)
+    {
+        $request->validate([
+            'color' => 'required|string',
+            'precio' => 'required|numeric|min:0',
         ]);
 
+        // Buscamos la relación de compra para llegar al vehículo
+        $compra = VentaVehiculo::findOrFail($id);
+        $vehiculo = $compra->vehiculo;
+
+        $vehiculo->update([
+            'color' => $request->color,
+            'precio' => $request->precio,
+        ]);
+
+        return redirect()->back()->with('success', 'Vehículo actualizado');
     }
+
 
 }

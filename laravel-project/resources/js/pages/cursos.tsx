@@ -34,56 +34,65 @@ export default function Cursos({ cursos, misCursosIds }: Props) {
     return (
         <MainLayout>
             <Head title="Cursos de Formación" />
-            <div className="py-12 bg-gray-50 min-h-screen">
-                <div className="max-w-7xl mx-auto px-4">
+            <div className="py-5" style={{ backgroundColor: '#f8f9fa', minHeight: '100vh' }}>
+                <div className="container">
                     
-                    <div className="text-center mb-12">
-                        <h1 className="text-4xl font-black text-gray-900">Panel de Formación</h1>
-                        <p className="text-gray-600 mt-2">Mejora tus habilidades en el concesionario</p>
+                    {/* ENCABEZADO */}
+                    <div className="text-center mb-5">
+                        <h1 className="display-5 fw-bold text-dark">Panel de Formación</h1>
+                        <p className="text-muted">Mejora tus habilidades en el concesionario</p>
                     </div>
 
-
-                    <div className="flex justify-center gap-2 mb-10">
+                    {/* FILTROS (BOTONES) */}
+                    <div className="d-flex justify-content-center gap-2 mb-5">
                         {categorias.map(cat => (
-                            <button key={cat} onClick={() => setFiltro(cat)}
-                                className={`px-5 py-2 rounded-full text-sm font-bold transition ${
-                                    filtro === cat ? 'bg-blue-600 text-white shadow-lg' : 'bg-white text-gray-500 hover:bg-gray-100'
-                                }`}>
+                            <button 
+                                key={cat} 
+                                onClick={() => setFiltro(cat)}
+                                className={`btn rounded-pill px-4 fw-bold shadow-sm transition-all ${
+                                    filtro === cat ? 'btn-primary' : 'btn-white bg-white text-secondary'
+                                }`}
+                            >
                                 {cat}
                             </button>
                         ))}
                     </div>
 
-          
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {/* GRID DE CURSOS */}
+                    <div className="row g-4">
                         {cursosFiltrados.map((curso) => {
                             const yaInscrito = misCursosIds.includes(curso.id);
                             return (
-                                <div key={curso.id} className="bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col overflow-hidden hover:shadow-md transition">
-                                    <div className="p-6 flex-grow">
-                                        <div className="flex justify-between mb-4">
-                                            <span className="text-[10px] font-bold uppercase tracking-wider bg-blue-50 text-blue-600 px-2 py-1 rounded">
-                                                {curso.categoria}
-                                            </span>
-                                            <span className="text-xs text-gray-400">⏱ {curso.duracion_horas}h</span>
+                                <div key={curso.id} className="col-12 col-md-6 col-lg-4">
+                                    <div className="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                                        <div className="card-body p-4">
+                                            <div className="d-flex justify-content-between align-items-center mb-3">
+                                                <span className="badge bg-primary-subtle text-primary border border-primary-subtle text-uppercase px-2 py-1" style={{ fontSize: '0.7rem' }}>
+                                                    {curso.categoria}
+                                                </span>
+                                                <small className="text-muted">⏱ {curso.duracion_horas}h</small>
+                                            </div>
+                                            
+                                            <h5 className="card-title fw-bold text-dark mb-3">{curso.nombre}</h5>
+                                            <p className="card-text text-muted small" style={{ lineHeight: '1.6' }}>
+                                                {curso.descripcion}
+                                            </p>
                                         </div>
-                                        <h3 className="text-xl font-bold text-gray-800 mb-2">{curso.nombre}</h3>
-                                        <p className="text-gray-500 text-sm leading-relaxed">{curso.descripcion}</p>
-                                    </div>
 
-                                    <div className="p-6 pt-0 mt-auto flex items-center justify-between border-t border-gray-50">
-                                        <span className="text-blue-500 font-bold text-xs">{curso.nivel}</span>
-                                        <button 
-                                            disabled={yaInscrito}
-                                            onClick={() => handleAnyadir(curso.id)}
-                                            className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
-                                                yaInscrito 
-                                                ? 'bg-green-100 text-green-700 cursor-not-allowed' 
-                                                : 'bg-gray-900 text-white hover:bg-blue-600 shadow-md'
-                                            }`}
-                                        >
-                                            {yaInscrito ? '✓ Ya inscrito' : 'Inscribirme'}
-                                        </button>
+                                        <div className="card-footer bg-white border-top-0 p-4 pt-0 d-flex align-items-center justify-content-between">
+                                            <span className="text-primary fw-bold small">{curso.nivel}</span>
+                                            <button 
+                                                disabled={yaInscrito}
+                                                onClick={() => handleAnyadir(curso.id)}
+                                                className={`btn btn-sm rounded-3 px-3 fw-bold ${
+                                                    yaInscrito 
+                                                    ? 'btn-success disabled opacity-75' 
+                                                    : 'btn-dark hover-blue'
+                                                }`}
+                                            >
+                                                {yaInscrito ? '✓ Ya inscrito' : 'Inscribirme'}
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             );
@@ -91,6 +100,17 @@ export default function Cursos({ cursos, misCursosIds }: Props) {
                     </div>
                 </div>
             </div>
+
+            {/* Estilo extra para el efecto hover del botón que Bootstrap no trae por defecto */}
+            <style>{`
+                .hover-blue:hover {
+                    background-color: #0d6efd !important;
+                    border-color: #0d6efd !important;
+                }
+                .transition-all {
+                    transition: all 0.3s ease;
+                }
+            `}</style>
         </MainLayout>
     );
 }

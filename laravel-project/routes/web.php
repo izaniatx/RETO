@@ -103,17 +103,22 @@ Route::prefix('inventario')->group(function () {
 });
 
 
-Route::get('/gestion/ventas', [VentasController::class, 'indexGestorVentas']);
+Route::get('/gestion/ventas', [VentasController::class, 'indexGestorVentas'])->name('gestor.ventas');
 Route::get('/gestion/ventas/{id}', [VentasController::class, 'showDetalleVenta'])
     ->name('ventas.detalle');
 
 Route::patch('/gestion/ventas/{id}/estado', [VentasController::class, 'actualizarEstado'])->name('ventas.updateEstado');
+Route::patch('/gestion/ventas/{id}/vender', [VentasController::class, 'venderVehiculo']);
     
-Route::get('/gestion/compras', [ComprasController::class, 'indexGestorCompras']);
+Route::get('/gestion/compras', [ComprasController::class, 'indexGestorCompras'])->name('gestor.compras'); 
 Route::get('/gestion/compras/{id}', [ComprasController::class, 'showDetalleCompra'])
     ->name('compras.detalle');
 
 Route::patch('/gestion/compras/{id}/estado', [ComprasController::class, 'actualizarEstado'])->name('compras.updateEstado');
+Route::patch('/gestion/compras/{id}/vehiculo', [ComprasController::class, 'actualizarVehiculo']);
+
+Route::patch('/gestion/compras/{id}/comprar', [ComprasController::class, 'comprarVehiculo'])
+    ->name('compras.comprar');
 
 Route::get('/cursos', [CursosController::class, 'getCursos']);
 Route::post('/cursos/anyadir', [CursosController::class, 'anyadirCurso']);

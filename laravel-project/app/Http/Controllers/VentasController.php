@@ -44,9 +44,9 @@ class VentasController extends Controller
 
     public function indexGestorVentas()
     {
-        
         $ventas = VentaVehiculo::with(['vehiculo.marca', 'vehiculo.modelo', 'estado'])
                     ->where('tipo', 'venta')
+                    ->where('estado_id', '!=', 5) // <--- Excluimos los que ya están vendidos
                     ->get();
 
         return inertia('gestorVentas', [
@@ -80,5 +80,20 @@ class VentasController extends Controller
 
         // Redirigir de vuelta con un mensaje de éxito
         return redirect()->back();
+    }
+
+    public function venderVehiculo(Request $request, $id)
+    {
+        // Buscamos la relación de venta
+        $venta = VentaVehiculo::findOrFail($id);
+
+        // Actualizamos el estado a 5 (Vendido)
+        $venta->update([
+            'estado_id' => 5
+        ]);
+
+        // Redirigimos de vuelta. Al igual que en compras, si quieres que desaparezca 
+        // del listado, el index debe filtrar los que NO son estado 5.
+        return redirect()->route('gestor.ventas')->with('success', 'Vehículo vendido');
     }
 }

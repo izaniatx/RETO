@@ -21,7 +21,7 @@ return new class extends Migration
                         ->constrained('vehiculos')
                         ->onDelete('cascade');
 
-            $table->foreignId('mensaje_id')
+            $table->foreignId('mensaje_id')->nullable()
                         ->constrained('mensajes')
                         ->onDelete('cascade');
 

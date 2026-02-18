@@ -8,13 +8,18 @@ use App\Models\Pais;
 use App\Models\Territorio;
 use App\Models\Ciudad;
 use App\Models\Concesionario;
+use App\Models\VentaVehiculo;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
+    /**
+     * Seed the application's database.
+     */
     public function run(): void
     {
- 
+        // 1. Limpieza de tablas con claves foráneas desactivadas
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         
         Vehiculo::truncate();
@@ -22,10 +27,11 @@ class DatabaseSeeder extends Seeder
         Ciudad::truncate();
         Territorio::truncate();
         Pais::truncate();
+        VentaVehiculo::truncate(); // Limpiamos también las ventas
         
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        
+        // 2. Llamada a Seeders base (Roles, Estados, Cursos...)
         $this->call([
             RolSeeder::class,
             EstadosSeeder::class,
@@ -33,7 +39,7 @@ class DatabaseSeeder extends Seeder
             CursoSeeder::class,
         ]);
 
-     
+        // 3. Estructura de Países, Territorios y Concesionarios
         $pais = Pais::create(['pais' => 'España']);
 
         $zonas = [
@@ -90,13 +96,30 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-     
+        // 4. Crear Usuarios
         $this->call([TablaUsuariosSeeder::class]);
 
-     
+        // 5. Crear Vehículos y ponerlos "En Venta"
         if (Vehiculo::count() == 0) {
+            // Creamos 20 vehículos usando el factory
             Vehiculo::factory()->count(20)->create();
+            
+            // Les asignamos equipamiento
             $this->call([EquipamientoSeeder::class]);
+
+            // IMPORTANTE: Los vinculamos con la tabla venta_vehiculos
+            $vehiculosCreados = Vehiculo::all();
+            $adminUser = User::first(); // Tomamos el primer usuario como responsable
+
+            foreach ($vehiculosCreados as $vehiculo) {
+                VentaVehiculo::create([
+                    'user_id'     => $adminUser->id ?? 1,
+                    'vehiculo_id' => $vehiculo->id,
+                    'mensaje_id'  => null,
+                    'estado_id'   => 3, // ID 3: 'En venta' según tu EstadosSeeder
+                    'tipo'        => 'Stock Concesionario'
+                ]);
+            }
         }
     }
 }

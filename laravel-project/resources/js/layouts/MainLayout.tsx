@@ -21,6 +21,8 @@ function MainLayout({ children }: MainLayoutProps) {
         aux = "#212529";
     } else  if (url === "/catalogo") {
         aux = "#f8f9fa";
+    }else  if (url === "/vendeTuCoche") {
+        aux = "#f0f2f5";
     }
 
     return (

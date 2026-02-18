@@ -15,6 +15,15 @@ const DetalleVenta = ({ venta, estados }: { venta: any, estados: any[] }) => {
             preserveScroll: true, // Para que la página no salte arriba al actualizar
         });
     };
+
+    const handleVender = () => {
+        if (confirm('¿Confirmas la venta de este vehículo? El estado pasará a "Vendido".')) {
+            // Llamamos a la nueva ruta que crearemos en web.php
+            router.patch(`/gestion/ventas/${venta.id}/vender`, {}, {
+                preserveScroll: true,
+            });
+        }
+    };
     return (
         <MainLayout>
             <div className="detalle-wrapper">
@@ -91,7 +100,12 @@ const DetalleVenta = ({ venta, estados }: { venta: any, estados: any[] }) => {
 
                             <div className="action-buttons">
                                 <button className="btn-main-red">Contactar cliente</button>
-                                <button className="btn-outline-red">Vender vehículo</button>
+                                <button 
+                                    className="btn-outline-red" 
+                                    onClick={handleVender}
+                                >
+                                    Vender vehículo
+                                </button>
                             </div>
                         </div>
                     </div>
