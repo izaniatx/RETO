@@ -17,7 +17,7 @@ use App\Http\Controllers\VentasController;
 use App\Http\Controllers\ComprasController;
 use App\Http\Controllers\CursosController;
 use App\Http\Controllers\LocalizacionController;
-
+use App\Http\Controllers\Api\VehiculoApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -166,6 +166,11 @@ Route::get('/catalogo/{id}', [VehiculosController::class, 'getVehiculo']);
 
 Route::post('/reservar', [VentasController::class, 'createReserva']);
 
+
+Route::prefix('v1')->group(function () {
+    Route::get('/vehiculos', [VehiculoApiController::class, 'index']);
+    Route::get('/vehiculos/{id}', [VehiculoApiController::class, 'show']);
+});
 
 require __DIR__ . '/settings.php';
 
