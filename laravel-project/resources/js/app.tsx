@@ -1,5 +1,5 @@
 import '../css/app.css';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Asegúrate de incluir bootstrap aquí si lo usas
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 import { createInertiaApp } from '@inertiajs/react';
@@ -13,7 +13,7 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),
     resolve: (name) => 
-        // Eliminado el espacio en el glob y simplificada la ruta
+       
         resolvePageComponent(
             `./pages/${name}.tsx`, 
             import.meta.glob('./pages/**/*.tsx')

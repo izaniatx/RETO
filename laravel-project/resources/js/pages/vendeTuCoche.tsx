@@ -39,11 +39,11 @@ const VendeTuCoche = ({ marcas, modelos, carrocerias }: Props) => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         
-        console.log("Datos que se envían:", data); // <--- MIRA ESTO EN LA CONSOLA (F12)
+        console.log("Datos que se envían:", data); 
 
         post('/vendeTuCoche/crear', {
             onSuccess: () => console.log("¡Éxito!"),
-            onError: (errors) => console.log("Errores de validación Laravel:", errors), // <--- ESTO ES CLAVE
+            onError: (errors) => console.log("Errores de validación Laravel:", errors), 
         });
     };
 
@@ -58,7 +58,7 @@ const VendeTuCoche = ({ marcas, modelos, carrocerias }: Props) => {
                         </div>
                         
                         <form id="form-vende" className="modal-form-grid" onSubmit={handleSubmit}>
-                            {/* Fila de Nombre y Teléfono */}
+                           
                             <div className="row-inputs">
                                 <div className="input-group">
                                     <label>Nombre completo:</label>
@@ -81,7 +81,7 @@ const VendeTuCoche = ({ marcas, modelos, carrocerias }: Props) => {
                                 <input type="email" value={data.email} onChange={e => setData('email', e.target.value)} required />
                             </div>
 
-                            {/* Fila de Marca y Modelo */}
+                        
                             <div className="row-inputs">
                                 <div className="input-group">
                                     <label>Marca:</label>
@@ -99,7 +99,7 @@ const VendeTuCoche = ({ marcas, modelos, carrocerias }: Props) => {
                                 </div>
                             </div>
 
-                            {/* Fila de Carrocería y Color */}
+                         
                             <div className="row-inputs">
                                 <div className="input-group">
                                     <label>Carrocería:</label>

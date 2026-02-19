@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use App\Models\VentaVehiculo; // Importante
-use App\Models\User;          // Opcional pero recomendado
+use App\Models\VentaVehiculo;
+use App\Models\User;          
 use Inertia\Inertia;
 
 class VentaVehiculo extends Model
@@ -39,7 +39,7 @@ class VentaVehiculo extends Model
 
     public function user()
     {
-        // Una venta pertenece a un usuario (el cliente)
+        
         return $this->belongsTo(User::class, 'user_id');
     }
 }

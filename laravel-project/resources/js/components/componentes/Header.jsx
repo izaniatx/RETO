@@ -17,20 +17,20 @@ export default function Header() {
     <nav id="header-container" className="custom-header navbar navbar-expand-lg shadow-sm p-3" >
       <div className="container" >
 
-        {/* LOGO */}
+      
         <a className="navbar-brand d-flex align-items-center" href="/">
           <img src="/images/logo.png" alt="Logo" style={{ height: "60px" }} className="me-3" />
         </a>
 
-        {/* BOTÓN MÓVIL */}
+      
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* NAV ENLACES */}
+      
 
         <ul className="navbar-nav ms-auto">
-          {/* SOLO para usuarios NO logueados */}
+       
           {(!auth?.user || auth?.user?.is_client) && (
               <>
                   <li className="nav-item">
@@ -48,7 +48,7 @@ export default function Header() {
               </>
           )}
           
-          {/* OPCIONES PARA CLIENTE: Usamos un Fragment <></> para envolver los <li> */}
+         
           {auth?.user?.is_client && (
               <>
                   <li className="nav-item">
@@ -57,11 +57,11 @@ export default function Header() {
                  
               </>
           )}
-          {/*TRABAJADORES*/}
+        
 
            
 
-          {/*GESTOR VENTAS */}
+       
             {auth?.user?.gestor_ventas && (
                 <li className="nav-item">
                     <Link className="nav-link btn-pers" href="/gestion/ventas">
@@ -70,7 +70,7 @@ export default function Header() {
                 </li>
             )}
 
-          {/*GESTOR COMPRAS */}
+        
           {auth?.user?.gestor_compras && (
                 <li className="nav-item">
                     <Link className="nav-link btn-pers" href="/gestion/compras">
@@ -79,7 +79,7 @@ export default function Header() {
                 </li>
             )}
 
-          {/* OPCIÓN PARA ADMINISTRADOR */}
+        
           {auth?.user?.can_access_admin && (
               <li className="nav-item">
                   <Link className="nav-link btn-pers" href="/admin/usuarios">
@@ -88,7 +88,7 @@ export default function Header() {
               </li>
           )}
 
-          {/* TRABAJADORES CORREGIDO */}
+     
           {(auth?.user?.can_access_admin ||
             auth?.user?.gestor_ventas ||
             auth?.user?.gestor_compras) && (
@@ -108,10 +108,10 @@ export default function Header() {
       </ul>
         
         
-        {/* LÓGICA DE SESIÓN */}
+    
         {auth && auth.user ? (
           <div className="d-flex align-items-center gap-2">
-            {/* ICONO DE PERFIL CON COLOR PERSONALIZADO */}
+          
             <Link 
               href="/UserProfile" 
               className="profile-link-custom"

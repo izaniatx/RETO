@@ -9,7 +9,7 @@ const UsuarioModal = ({ show, onClose, formValues, setFormValues, errors, roles,
         <h3 className="mb-4">Nuevo Usuario</h3>
         <form onSubmit={handleSubmit}>
           <div className="row g-3">
-            {/* Usuario */}
+         
             <div className="col-md-6">
               <label className="form-label">Usuario:</label>
               <input
@@ -21,7 +21,7 @@ const UsuarioModal = ({ show, onClose, formValues, setFormValues, errors, roles,
               {errors.usuario && <p className="text-danger">{errors.usuario}</p>}
             </div>
 
-            {/* Nombre */}
+       
             <div className="col-md-6">
               <label className="form-label">Nombre:</label>
               <input
@@ -33,7 +33,7 @@ const UsuarioModal = ({ show, onClose, formValues, setFormValues, errors, roles,
               {errors.nombre && <p className="text-danger">{errors.nombre}</p>}
             </div>
 
-            {/* Apellido */}
+            
             <div className="col-md-6">
               <label className="form-label">Apellido:</label>
               <input
@@ -45,7 +45,7 @@ const UsuarioModal = ({ show, onClose, formValues, setFormValues, errors, roles,
               {errors.apellido && <p className="text-danger">{errors.apellido}</p>}
             </div>
 
-            {/* Email */}
+         
             <div className="col-md-6">
               <label className="form-label">Email:</label>
               <input
@@ -57,7 +57,7 @@ const UsuarioModal = ({ show, onClose, formValues, setFormValues, errors, roles,
               {errors.email && <p className="text-danger">{errors.email}</p>}
             </div>
 
-            {/* Contraseña */}
+         
             <div className="col-md-6">
               <label className="form-label">Contraseña:</label>
               <input
@@ -69,7 +69,7 @@ const UsuarioModal = ({ show, onClose, formValues, setFormValues, errors, roles,
               {errors.password && <p className="text-danger">{errors.password}</p>}
             </div>
 
-            {/* Teléfono */}
+   
             <div className="col-md-6">
               <label className="form-label">Teléfono:</label>
               <input
@@ -81,7 +81,7 @@ const UsuarioModal = ({ show, onClose, formValues, setFormValues, errors, roles,
               {errors.telefono && <p className="text-danger">{errors.telefono}</p>}
             </div>
 
-            {/* Rol */}
+     
             <div className="col-md-12">
               <label className="form-label">Rol:</label>
               <select

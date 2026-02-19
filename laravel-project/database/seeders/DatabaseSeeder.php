@@ -20,10 +20,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Crear instancia de Faker
+        
         $faker = Faker::create();
 
-        // 1️⃣ Limpieza de tablas con claves foráneas desactivadas
+      
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         
         Vehiculo::truncate();
@@ -31,11 +31,11 @@ class DatabaseSeeder extends Seeder
         Ciudad::truncate();
         Territorio::truncate();
         Pais::truncate();
-        VentaVehiculo::truncate(); // Limpiamos también las ventas
+        VentaVehiculo::truncate(); 
         
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        // 2️⃣ Seeders base (Roles, Estados, Cursos, Vehículos básicos)
+        
         $this->call([
             RolSeeder::class,
             EstadosSeeder::class,
@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
             CursoSeeder::class,
         ]);
 
-        // 3️⃣ Crear Países, Territorios y Concesionarios
+       
         $pais = Pais::create(['pais' => 'España']);
 
         $zonas = [
@@ -100,25 +100,25 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        // 4️⃣ Crear Usuarios
+       
         $this->call([TablaUsuariosSeeder::class]);
 
-        // 5️⃣ Crear Vehículos y asignarles "En Venta"
+       
         if (Vehiculo::count() == 0) {
             $vehiculos = Vehiculo::factory()->count(20)->create();
 
-            // Asignar equipamiento
+         
             $this->call([EquipamientoSeeder::class]);
 
-            // Vincular vehículos con ventas
-            $adminUser = User::first(); // Primer usuario como responsable
+            
+            $adminUser = User::first();
 
             foreach ($vehiculos as $vehiculo) {
                 VentaVehiculo::create([
                     'user_id'     => $adminUser->id ?? 1,
                     'vehiculo_id' => $vehiculo->id,
                     'mensaje_id'  => null,
-                    'estado_id'   => 3, // 'En venta'
+                    'estado_id'   => 3, 
                     'tipo'        => 'Stock Concesionario'
                 ]);
             }

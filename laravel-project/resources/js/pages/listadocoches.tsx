@@ -163,11 +163,11 @@ const ListadoCoches = () => {
                                             <td>
                                                 {(car.precio ?? 0).toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}
                                             </td>
-                                            {/* Campo Fecha Alta */}
+                                           
                                             <td className="small">
                                             {car.fecha_alta ? car.fecha_alta.split(' ')[0] : '-'}
                                             </td>
-                                            {/* Campo Fecha Venta */}
+                                         
                                             <td className="small">
                                             {car.fecha_venta ? car.fecha_venta.split(' ')[0] : '-'}
                                             </td>

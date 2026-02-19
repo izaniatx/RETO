@@ -67,7 +67,7 @@ const ModalCoche = ({
 
         <form onSubmit={handleSubmit}>
           <div className="row g-3">
-            {/* MARCA */}
+          
             <div className="col-md-6">
               <label className="form-label fw-bold text-dark">Marca:</label>
               <select className="form-select" value={data.marca} onChange={(e) => setData("marca", e.target.value)}>
@@ -77,7 +77,7 @@ const ModalCoche = ({
               {errors.marca && <div className="text-danger small">{errors.marca}</div>}
             </div>
 
-            {/* MODELO */}
+         
             <div className="col-md-6">
               <label className="form-label fw-bold text-dark">Modelo:</label>
               <select className="form-select" value={data.modelo} onChange={(e) => setData("modelo", e.target.value)}>
@@ -87,7 +87,6 @@ const ModalCoche = ({
               {errors.modelo && <div className="text-danger small">{errors.modelo}</div>}
             </div>
 
-            {/* CARROCERÍA */}
             <div className="col-md-6">
               <label className="form-label fw-bold text-dark">Carrocería:</label>
               <select className="form-select" value={data.carroceria} onChange={(e) => setData("carroceria", e.target.value)}>
@@ -97,21 +96,20 @@ const ModalCoche = ({
               {errors.carroceria && <div className="text-danger small">{errors.carroceria}</div>}
             </div>
 
-            {/* COLOR */}
+            
             <div className="col-md-3">
               <label className="form-label fw-bold text-dark">Color:</label>
               <input type="text" className="form-control" value={data.color} onChange={(e) => setData("color", e.target.value)} placeholder="Ej: Blanco" />
               {errors.color && <div className="text-danger small">{errors.color}</div>}
             </div>
 
-            {/* PRECIO */}
             <div className="col-md-3">
               <label className="form-label fw-bold text-dark">Precio (€):</label>
               <input type="number" className="form-control" value={data.precio} onChange={(e) => setData("precio", e.target.value)} />
               {errors.precio && <div className="text-danger small">{errors.precio}</div>}
             </div>
 
-            {/* SECCIÓN DE EQUIPAMIENTO */}
+         
             <div className="col-12 mt-4">
               <label className="form-label fw-bold text-dark border-bottom w-100 pb-2">Equipamiento Opcional</label>
               <div className="p-3 border rounded bg-light shadow-sm" style={{ maxHeight: '180px', overflowY: 'auto' }}>

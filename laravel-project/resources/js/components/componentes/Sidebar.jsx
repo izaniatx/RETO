@@ -9,12 +9,12 @@ const Sidebar = ({ filters, setFilters, searchTerm, setSearchTerm, marcasBackend
       searchQuery: "",
       marcas: [],
       precioMax: 120000,
-      carroceriaId: 'todos' // <--- Añade esto
+      carroceriaId: 'todos' 
     });
   };
 
   const handleMarcaChange = (marcaId) => {
-    // IMPORTANTE: Ahora manejamos IDs, no nombres de texto
+ 
     const nuevasMarcas = filters.marcas.includes(marcaId)
       ? filters.marcas.filter(id => id !== marcaId)
       : [...filters.marcas, marcaId];
@@ -23,7 +23,7 @@ const Sidebar = ({ filters, setFilters, searchTerm, setSearchTerm, marcasBackend
   };
   return (
     <aside className="sidebar">
-      {/* Cabecera con botón de limpiar */}
+    
       <div className="sidebar-header">
         <h2>Filtros</h2>
         {(searchTerm !== "" || filters.marcas.length > 0 || filters.precioMax < 120000 || filters.carroceriaId !== 'todos') && (
@@ -33,7 +33,7 @@ const Sidebar = ({ filters, setFilters, searchTerm, setSearchTerm, marcasBackend
       )}
       </div>
 
-      {/* Grupo 1: Buscador de texto */}
+    
       <div className="filter-group">
         <label className="filter-label">Buscar Modelo</label>
         <input 
@@ -45,7 +45,7 @@ const Sidebar = ({ filters, setFilters, searchTerm, setSearchTerm, marcasBackend
         />
       </div>
 
-      {/* Grupo 2: Selección de Marcas */}
+   
      <div className="filter-group">
         <label className="filter-label">Marcas</label>
         <div className="scrollable-marcas" style={{ maxHeight: '200px', overflowY: 'auto' }}>
@@ -53,7 +53,7 @@ const Sidebar = ({ filters, setFilters, searchTerm, setSearchTerm, marcasBackend
             <label key={marca.id} className="checkbox-item">
               <input 
                 type="checkbox" 
-                // Comparamos por ID
+            
                 checked={filters.marcas.includes(marca.id)}
                 onChange={() => handleMarcaChange(marca.id)}
               />
@@ -63,7 +63,7 @@ const Sidebar = ({ filters, setFilters, searchTerm, setSearchTerm, marcasBackend
         </div>
       </div>
 
-      {/* Grupo 3: Rango de Precio */}
+  
       <div className="filter-group">
         <label className="filter-label">Precio Máximo</label>
         <input
@@ -83,12 +83,12 @@ const Sidebar = ({ filters, setFilters, searchTerm, setSearchTerm, marcasBackend
       </div>
 
      
-      {/* Grupo 4: Tipo de Carrocería Dinámica */}
+
         <div className="filter-group">
           <label className="filter-label">Carrocería</label>
           <select 
             className="search-input" 
-            value={filters.carroceriaId || 'todos'} // Usamos el ID para el filtro
+            value={filters.carroceriaId || 'todos'} 
             onChange={(e) => setFilters({...filters, carroceriaId: e.target.value})}
             style={{ cursor: 'pointer' }}
           >

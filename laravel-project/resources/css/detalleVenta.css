@@ -8,8 +8,14 @@
 .detalle-wrapper {
     background-color: var(--bg-gray);
     min-height: 100vh;
-    padding: 80px 20px;
+    padding: 20px 20px;
     font-family: 'Inter', sans-serif;
+    
+}
+
+.detalle-icon {
+    display: ruby-base;
+    margin-top: 10px;
 }
 
 .back-nav {
@@ -93,6 +99,10 @@
     line-height: 1.6;
 }
 
+.message-area {
+    margin-bottom: 30px;
+}
+
 .img-container img {
     width: 100%;
     border-radius: 20px;
@@ -140,15 +150,15 @@
 
 .btn-outline-red:hover { background: #fff5f5; }
 
-/* Contenedor de controles */
+
 .edit-controls-container {
     display: flex;
     justify-content: flex-end;
     margin-bottom: 15px;
-    height: 38px; /* Altura fija para evitar saltos de layout */
+    height: 38px; 
 }
 
-/* Botón Editar (Estilo Glass) */
+
 .btn-edit-glass {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(5px);
@@ -171,7 +181,7 @@
     transform: translateY(-2px);
 }
 
-/* Grupo de botones Guardar/Cancelar */
+
 .edit-actions-group {
     display: flex;
     gap: 8px;
@@ -205,14 +215,14 @@
     cursor: pointer;
 }
 
-/* Contenedor principal de la zona de edición */
+
 .edit-zone {
     display: flex;
     justify-content: flex-end;
     margin-bottom: 20px;
 }
 
-/* Botón Editar Principal */
+
 .btn-glass-edit {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -249,7 +259,7 @@
     box-shadow: 0 8px 25px rgba(0,0,0,0.3);
 }
 
-/* Acciones de Guardar/Cancelar */
+
 .edit-actions-animated {
     display: flex;
     gap: 10px;
@@ -290,13 +300,13 @@
     border-color: #ff4d4d;
 }
 
-/* Inputs con estilo "Glass-Light" para máxima legibilidad */
+
 .input-detalle-custom {
-    background: rgba(255, 255, 255, 0.9) !important; /* Fondo casi blanco para contraste */
+    background: rgba(255, 255, 255, 0.9) !important; 
     border: 1px solid rgba(0, 0, 0, 0.1) !important;
     border-radius: 8px !important;
-    color: #1a1a1a !important; /* Texto casi negro para que se vea perfecto */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente más limpia */
+    color: #1a1a1a !important; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
     padding: 8px 12px !important;
     text-align: left !important;
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.1) !important;
@@ -307,7 +317,7 @@
 
 .input-detalle-custom:focus {
     background: #ffffff !important;
-    border-color: #ff4d4d !important; /* El rojo de tu marca al hacer foco */
+    border-color: #ff4d4d !important; 
     box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.1) !important;
     outline: none;
 }
@@ -319,7 +329,7 @@
    
 }
 
-/* Mejora del contenedor de la fila de datos en edición */
+
 .data-row-edit {
     display: flex;
     flex-direction: column;

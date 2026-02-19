@@ -18,7 +18,7 @@ class UsuariosController extends Controller
     public function getUsuarios()
     {
         $usuarios = User::with('rol')->get();
-        $roles = Rol::all(); // Traemos todos los roles
+        $roles = Rol::all(); 
 
         $totalUsuarios = User::count();
         $totalMes = User::whereMonth('created_at', now()->month)->count();
@@ -27,7 +27,7 @@ class UsuariosController extends Controller
             'users' => $usuarios,
             'total' => $totalUsuarios,
             'totalMes' => $totalMes,
-            'roles' => $roles, // <-- enviamos los roles
+            'roles' => $roles, 
         ]);
     }
 

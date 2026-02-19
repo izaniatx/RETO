@@ -146,37 +146,7 @@ class VehiculosController extends Controller
     }
 
 
-    public function graficoVentas() {
-        $ventasPorMes = Vehiculo::whereNotNull('fecha_venta')
-            ->select(
-                DB::raw("count(*) as uv"),
-                DB::raw("MONTH(fecha_venta) as mes_num"),
-                DB::raw("CASE 
-                    WHEN MONTH(fecha_venta) = 1 THEN 'Ene'
-                    WHEN MONTH(fecha_venta) = 2 THEN 'Feb'
-                    WHEN MONTH(fecha_venta) = 3 THEN 'Mar'
-                    WHEN MONTH(fecha_venta) = 4 THEN 'Abr'
-                    WHEN MONTH(fecha_venta) = 5 THEN 'May'
-                    WHEN MONTH(fecha_venta) = 6 THEN 'Jun'
-                    WHEN MONTH(fecha_venta) = 7 THEN 'Jul'
-                    WHEN MONTH(fecha_venta) = 8 THEN 'Ago'
-                    WHEN MONTH(fecha_venta) = 9 THEN 'Sep'
-                    WHEN MONTH(fecha_venta) = 10 THEN 'Oct'
-                    WHEN MONTH(fecha_venta) = 11 THEN 'Nov'
-                    WHEN MONTH(fecha_venta) = 12 THEN 'Dic'
-                END as name")
-            )
-            ->groupBy('mes_num', 'name')
-            ->orderBy('mes_num')
-            ->get();
-
-          
     
-        return Inertia::render('ventas', [
-            'datosVentas' => $ventasPorMes,
-            
-        ]);
-    }
 
     public function getVehiculo($id)
     {

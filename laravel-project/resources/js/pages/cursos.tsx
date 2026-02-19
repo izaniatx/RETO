@@ -37,13 +37,13 @@ export default function Cursos({ cursos, misCursosIds }: Props) {
             <div className="py-5" style={{ backgroundColor: '#f8f9fa', minHeight: '100vh' }}>
                 <div className="container">
                     
-                    {/* ENCABEZADO */}
+               
                     <div className="text-center mb-5">
                         <h1 className="display-5 fw-bold text-dark">Panel de Formación</h1>
                         <p className="text-muted">Mejora tus habilidades en el concesionario</p>
                     </div>
 
-                    {/* FILTROS (BOTONES) */}
+                  
                     <div className="d-flex justify-content-center gap-2 mb-5">
                         {categorias.map(cat => (
                             <button 
@@ -58,7 +58,7 @@ export default function Cursos({ cursos, misCursosIds }: Props) {
                         ))}
                     </div>
 
-                    {/* GRID DE CURSOS */}
+             
                     <div className="row g-4">
                         {cursosFiltrados.map((curso) => {
                             const yaInscrito = misCursosIds.includes(curso.id);
@@ -101,7 +101,7 @@ export default function Cursos({ cursos, misCursosIds }: Props) {
                 </div>
             </div>
 
-            {/* Estilo extra para el efecto hover del botón que Bootstrap no trae por defecto */}
+          
             <style>{`
                 .hover-blue:hover {
                     background-color: #0d6efd !important;

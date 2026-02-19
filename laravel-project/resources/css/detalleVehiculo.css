@@ -1,5 +1,5 @@
 .detalle-container {
-  background-color: #f0f0f0; /* Fondo gris claro de la página */
+  background-color: #f0f0f0; 
   min-height: 100vh;
   padding: 40px 20px;
   display: flex;
@@ -15,11 +15,11 @@
   align-items: start;
 }
 
-/* Tarjetas con estilo Canva */
+
 .image-card, .booking-card {
   background: white;
-  border-radius: 25px; /* Bordes muy redondeados */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Sombra suave */
+  border-radius: 25px; 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
   padding: 20px;
 }
 
@@ -29,7 +29,7 @@
   display: block;
 }
 
-/* Sección de Características (Marca, Modelo...) */
+
 .features-section, .extra-section {
   margin-top: 30px;
   padding-left: 10px;
@@ -48,7 +48,7 @@
 }
 
 .chip-label {
-  color: #d9534f; /* Color rojizo de la imagen de referencia */
+  color: #d9534f; 
   font-size: 0.85rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -59,7 +59,7 @@
   margin-left: 5px;
 }
 
-/* Equipamiento Opcional */
+
 .extra-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -76,7 +76,7 @@
 
 .dot { color: #d9534f; margin-right: 5px; }
 
-/* Tarjeta de Reserva */
+
 .booking-card {
   padding: 35px;
   text-align: left;
@@ -100,7 +100,7 @@
   background-color: black;
   color: white;
   padding: 15px;
-  border-radius: 50px; /* Botón tipo cápsula */
+  border-radius: 50px; 
   border: none;
   font-weight: bold;
   font-size: 1rem;

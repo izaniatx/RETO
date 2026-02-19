@@ -19,10 +19,10 @@
     color: #222;
 }
 
-/* Colores dinámicos para los estados */
-.badge-estado-1 { background-color: #ffc107; color: #000; } /* Pendiente */
-.badge-estado-2 { background-color: #28a745; color: #fff; } /* Vendido */
-.badge-estado-3 { background-color: #dc3545; color: #fff; } /* Cancelado */
+
+.badge-estado-1 { background-color: #ffc107; color: #000; } 
+.badge-estado-2 { background-color: #28a745; color: #fff; } 
+.badge-estado-3 { background-color: #dc3545; color: #fff; } 
 
 .badge {
     padding: 8px 12px;
@@ -40,6 +40,6 @@
 }
 
 .form-select:focus {
-    border-color: #e63946; /* El rojo de tu marca */
+    border-color: #e63946; 
     box-shadow: 0 0 0 0.25rem rgba(230, 57, 70, 0.25);
 }

@@ -105,7 +105,7 @@ const LoginModal = () => {
 
                   <div className="d-grid">
                     <button type="submit" className="btn btn-dark btn-lg bt-lm" disabled={processing} style={{backgroundColor: "#bd3a3f", borderColor: "#bd3a3f"}}>
-                      {processing ? 'Cargando...' : 'Iniciar Sesion'}
+                      {processing ? 'Cargando...' : 'Iniciar Sesión'}
                     </button>
                   </div>
 

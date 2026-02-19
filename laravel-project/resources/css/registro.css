@@ -1,4 +1,4 @@
-/* Fondo */
+
 .r-registro-bg {
     /*background-image: linear-gradient(rgb(73, 0, 0), rgb(0, 0, 0)),
         url('../../assets/conses.jpg');
@@ -15,7 +15,7 @@
     position: relative;
 }
 
-/* Botón atrás */
+
 .r-btn-atras {
     position: absolute;
     top: 20px;
@@ -41,7 +41,7 @@
     border-radius: 10px;
 }
 
-/* Contenedor formulario */
+
 .r-cnt {
     background-color: white;
     width: 90%;
@@ -53,18 +53,18 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Inputs */
+
 .r-registro-inputs {
     margin-top: 30px;
 }
 
-/* Label */
+
 .r-form-label {
     font-weight: 600;
     color: #bd3a3f;
 }
 
-/* Input */
+
 .r-form-control {
     width: 80%;
     margin: 5px auto 30px auto;
@@ -85,7 +85,7 @@
     outline: none;
 }
 
-/* Error */
+
 .r-error {
     color: red;
     font-size: 0.8rem;
@@ -98,7 +98,7 @@
     border: 2px solid red;
 }
 
-/* Botón principal */
+
 .r-btn-primary {
     background-color: #bd3a3f;
     color: white;

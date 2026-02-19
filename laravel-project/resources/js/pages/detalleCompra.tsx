@@ -4,6 +4,7 @@ import { Link } from '@inertiajs/react';
 import { ChevronLeft, User, MessageSquare, Edit3, Save, X, Palette } from 'lucide-react'; 
 import "../../css/detalleVenta.css";
 import { router } from '@inertiajs/react';
+import img from '../../../public/vehiculos/default.jpg';
 
 const DetalleCompra = ({ compra, estados }: { compra: any, estados: any[] }) => {
     // NUEVO: Estado para edición
@@ -21,7 +22,7 @@ const DetalleCompra = ({ compra, estados }: { compra: any, estados: any[] }) => 
         });
     };
 
-    // NUEVO: Función para guardar cambios del vehículo
+   
     const handleGuardarVehiculo = () => {
         router.patch(`/gestion/compras/${compra.id}/vehiculo`, formVehiculo, {
             onSuccess: () => setEditando(false),
@@ -31,12 +32,11 @@ const DetalleCompra = ({ compra, estados }: { compra: any, estados: any[] }) => 
 
     const handleComprarVehiculo = () => {
         if (confirm('¿Confirmas la compra de este vehículo? Pasará directamente al catálogo "En venta".')) {
-            // Usamos router.patch o router.post según tengas definida la ruta
+            
             router.patch(`/gestion/compras/${compra.id}/comprar`, {}, {
                 preserveScroll: true,
                 onSuccess: () => {
-                    // Opcional: podrías redirigir manualmente si no lo hace el controlador
-                    // router.visit('/gestion/compras');
+                   
                 }
             });
         }
@@ -71,6 +71,15 @@ const DetalleCompra = ({ compra, estados }: { compra: any, estados: any[] }) => 
                                 <span className="value">{compra.user?.email}</span>
                             </div>
 
+                            
+
+                           <div className="message-area">
+                                <label className='detalle-icon'><MessageSquare size={16} /> Mensaje del cliente:</label>
+                                <div className="message-bubble">
+                                    {compra.mensaje?.mensaje}
+                                </div>
+                            </div>
+
                             <div className="status-container">
                                 <select 
                                     className={`status-pill pill-${compra.estado_id} select-custom`}
@@ -84,19 +93,12 @@ const DetalleCompra = ({ compra, estados }: { compra: any, estados: any[] }) => 
                                     ))}
                                 </select>
                             </div>
-
-                           <div className="message-area">
-                                <label><MessageSquare size={16} /> Mensaje del cliente:</label>
-                                <div className="message-bubble">
-                                    {compra.mensaje?.mensaje}
-                                </div>
-                            </div>
                         </div>
 
                         <div className="vehicle-showcase">
-                            {/* NUEVO: Botón de edición en la esquina */}
-                                                    {/* CONTENEDOR DE EDICIÓN MEJORADO */}
+                           
                             <div className="edit-zone">
+                                
                                 {!editando ? (
                                     <button onClick={() => setEditando(true)} className="btn-glass-edit">
                                         <div className="icon-circle">
@@ -119,7 +121,7 @@ const DetalleCompra = ({ compra, estados }: { compra: any, estados: any[] }) => 
 
                             <div className="img-container">
                                 <img 
-                                    src={compra.vehiculo?.imagen ? `/storage/${compra.vehiculo.imagen}` : '/img/placeholder.png'} 
+                                    src={img} 
                                     alt="Vehículo" 
                                 />
                             </div>
@@ -128,7 +130,7 @@ const DetalleCompra = ({ compra, estados }: { compra: any, estados: any[] }) => 
                                     {compra.vehiculo?.marca?.marca} {compra.vehiculo?.modelo?.modelo}
                                 </h2>
                                 
-                                {/* NUEVO: Mostrar COLOR (y su input si edita) */}
+                               
                                 <div className="data-row" style={{ justifyContent: 'center', marginBottom: '10px' }}>
                                     <span className="label"><Palette size={14} /> Color:</span>
                                     {editando ? (
@@ -143,7 +145,7 @@ const DetalleCompra = ({ compra, estados }: { compra: any, estados: any[] }) => 
                                     )}
                                 </div>
 
-                                {/* PRECIO (y su input si edita) */}
+                               
                                 {editando ? (
                                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                                         <input 

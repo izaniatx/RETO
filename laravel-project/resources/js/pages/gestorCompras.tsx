@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import MainLayout from "../layouts/MainLayout";
 import "../../css/gestorVentas.css";
 import { Link } from '@inertiajs/react';
-
-// --- INTERFACES ---
+import img from '../../../public/vehiculos/default.jpg';
 interface Compra {
     id: number;
     tipo: string;
@@ -25,18 +24,18 @@ interface Props {
 }
 
 function GestorCompras({ compras = [] }: Props) {
-    // 1. ESTADOS PARA FILTROS
+  
     const [filtroEstado, setFiltroEstado] = useState('todos');
     const [busqueda, setBusqueda] = useState('');
 
-    // 2. LÓGICA DE FILTRADO (Segura contra undefined)
+   
     const comprasFiltradas = compras.filter((v) => {
         const esCompra = v.tipo === 'compra';
         
-        // Filtro por Estado
+      
         const coincideEstado = filtroEstado === 'todos' || v.estado?.estado === filtroEstado;
         
-        // Filtro por Buscador (Marca o Modelo)
+        
         const textoBusqueda = busqueda.toLowerCase();
         const nombreCoche = `${v.vehiculo?.marca?.marca} ${v.vehiculo?.modelo?.modelo}`.toLowerCase();
         const coincideTexto = nombreCoche.includes(textoBusqueda);
@@ -44,8 +43,7 @@ function GestorCompras({ compras = [] }: Props) {
         return esCompra && coincideEstado && coincideTexto;
     });
 
-    // 3. GENERAR LISTA DE ESTADOS ÚNICOS (Solución al error 'unknown')
-    // Usamos un Type Guard (e is string) para asegurar el tipo a TypeScript
+  
     const estadosUnicos = Array.from(
         new Set(compras.map(v => v.estado?.estado).filter((e): e is string => !!e))
     );
@@ -57,7 +55,7 @@ function GestorCompras({ compras = [] }: Props) {
                     <h2 className="mb-0 fw-bold">Gestión de Compras</h2>
                     
                     <div className="d-flex gap-2 flex-wrap">
-                        {/* BUSCADOR POR TEXTO */}
+                      
                         <input 
                             type="text"
                             className="form-control buscador-ventas"
@@ -66,7 +64,7 @@ function GestorCompras({ compras = [] }: Props) {
                             onChange={(e) => setBusqueda(e.target.value)}
                         />
 
-                        {/* SELECTOR DE ESTADO */}
+                      
                         <select 
                             className="form-select w-auto select-filtro" 
                             value={filtroEstado}
@@ -84,7 +82,7 @@ function GestorCompras({ compras = [] }: Props) {
 
                 <hr />
 
-                {/* LISTADO DE CARDS */}
+               
                 <div className="row mt-4">
                     {comprasFiltradas.length > 0 ? (
                         comprasFiltradas.map((compra: Compra) => (
@@ -92,7 +90,7 @@ function GestorCompras({ compras = [] }: Props) {
                                 <div className="card h-100 shadow-sm border-0 card-venta">
                                     <div className="position-relative">
                                         <img 
-                                            src={compra.vehiculo?.imagen ? `/storage/${compra.vehiculo.imagen}` : '/img/placeholder.png'} 
+                                            src={ img } 
                                             className="card-img-top image-gestion" 
                                             alt="Vehículo" 
                                         />

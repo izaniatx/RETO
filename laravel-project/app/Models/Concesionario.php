@@ -15,9 +15,9 @@ class Concesionario extends Model
         'nombre',
         'telefono',
         'ciudad_id',
-        'latitud',   // Añadido
-        'longitud',  // Añadido
-        'isDeleted'  // Añadido
+        'latitud',   
+        'longitud', 
+        'isDeleted'  
     ];
 
     public function ciudad()
@@ -33,12 +33,12 @@ class Concesionario extends Model
    public function territorio()
     {
         return $this->hasOneThrough(
-            Territorio::class, // El destino
-            Ciudad::class,     // El intermedio
-            'id',              // Clave primaria en Territorio (donde termina la búsqueda)
-            'id',              // Clave primaria en Ciudad (el puente)
-            'ciudad_id',       // Clave foránea en Concesionarios que apunta a Ciudades
-            'territorio_id'    // Clave foránea en Ciudades que apunta a Territorios
+            Territorio::class, 
+            Ciudad::class,    
+            'id',             
+            'id',              
+            'ciudad_id',       
+            'territorio_id'    
         );
     }
 

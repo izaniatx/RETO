@@ -5,9 +5,7 @@ import { router, usePage } from '@inertiajs/react';
 import VerifyEmail from '../components/VerifyEmail';
 
 
-/* =======================
-   TIPOS
-======================= */
+
 
 interface FormValues {
   firstName: string;
@@ -17,7 +15,7 @@ interface FormValues {
   contrasenya: string;
   contrasenya2: string;
   telefono: string;
-  [key: string]: string; // Esto evita errores de router.post
+  [key: string]: string; 
 }
 
 interface FormErrors {
@@ -35,9 +33,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
 }
 
-/* =======================
-   INPUT COMPONENT
-======================= */
+
 
 const Input: React.FC<InputProps> = ({ label, error, ...rest }) => (
   <div className="mb-3">
@@ -53,12 +49,9 @@ const Input: React.FC<InputProps> = ({ label, error, ...rest }) => (
 
 
 
-/* =======================
-   REGISTRO PAGE
-======================= */
 
 const Registro: React.FC = () => {
-  // ✅ State de la modal de verificación (para botón manual)
+
 const [showVerifyModalManual, setShowVerifyModalManual] = useState(false);
 
 const { props } = usePage<any>();
@@ -79,9 +72,7 @@ const [showVerifyModal, setShowVerifyModal] = useState(props.showVerifyModal ?? 
 
   const [errors, setErrors] = useState<FormErrors>({});
 
-  /* =======================
-     HANDLERS
-  ======================= */
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -109,16 +100,14 @@ const [showVerifyModal, setShowVerifyModal] = useState(props.showVerifyModal ?? 
       setErrors(backendErrors as FormErrors);
     },
     onSuccess: (page) => {
-      // Inertia devuelve las props del backend
+      
       if (page.props.showVerifyModal) {
-        setShowVerifyModal(true); // 🔥 Abrir modal automáticamente
+        setShowVerifyModal(true); 
       }
     },
   });
 };
-  /* =======================
-     RENDER
-  ======================= */
+
 
   return (
     <div className="r-registro-bg" style={{ position: 'relative' }}>
@@ -220,7 +209,7 @@ const [showVerifyModal, setShowVerifyModal] = useState(props.showVerifyModal ?? 
         <VerifyEmail onClose={() => setShowVerifyModal(false)} />
       )}
 
-      {/* ✅ Render modal */}
+     
       {showVerifyModalManual && (
         <VerifyEmail
           onClose={() => setShowVerifyModalManual(false)}

@@ -3,7 +3,7 @@ import MainLayout from "../layouts/MainLayout";
 import "../../css/gestorVentas.css";
 import { Link } from '@inertiajs/react';
 
-// --- INTERFACES ---
+
 interface Venta {
     id: number;
     tipo: string;
@@ -25,18 +25,18 @@ interface Props {
 }
 
 function GestorVentas({ ventas = [] }: Props) {
-    // 1. ESTADOS PARA FILTROS
+    
     const [filtroEstado, setFiltroEstado] = useState('todos');
     const [busqueda, setBusqueda] = useState('');
 
-    // 2. LÓGICA DE FILTRADO (Segura contra undefined)
+  
     const ventasFiltradas = ventas.filter((v) => {
         const esVenta = v.tipo === 'venta';
         
-        // Filtro por Estado
+        
         const coincideEstado = filtroEstado === 'todos' || v.estado?.estado === filtroEstado;
         
-        // Filtro por Buscador (Marca o Modelo)
+ 
         const textoBusqueda = busqueda.toLowerCase();
         const nombreCoche = `${v.vehiculo?.marca?.marca} ${v.vehiculo?.modelo?.modelo}`.toLowerCase();
         const coincideTexto = nombreCoche.includes(textoBusqueda);
@@ -44,8 +44,7 @@ function GestorVentas({ ventas = [] }: Props) {
         return esVenta && coincideEstado && coincideTexto;
     });
 
-    // 3. GENERAR LISTA DE ESTADOS ÚNICOS (Solución al error 'unknown')
-    // Usamos un Type Guard (e is string) para asegurar el tipo a TypeScript
+    
     const estadosUnicos = Array.from(
         new Set(ventas.map(v => v.estado?.estado).filter((e): e is string => !!e))
     );
@@ -57,7 +56,7 @@ function GestorVentas({ ventas = [] }: Props) {
                     <h2 className="mb-0 fw-bold">Gestión de Ventas</h2>
                     
                     <div className="d-flex gap-2 flex-wrap">
-                        {/* BUSCADOR POR TEXTO */}
+                      
                         <input 
                             type="text"
                             className="form-control buscador-ventas"
@@ -66,7 +65,7 @@ function GestorVentas({ ventas = [] }: Props) {
                             onChange={(e) => setBusqueda(e.target.value)}
                         />
 
-                        {/* SELECTOR DE ESTADO */}
+                        
                         <select 
                             className="form-select w-auto select-filtro" 
                             value={filtroEstado}
@@ -84,7 +83,7 @@ function GestorVentas({ ventas = [] }: Props) {
 
                 <hr />
 
-                {/* LISTADO DE CARDS */}
+           
                 <div className="row mt-4">
                     {ventasFiltradas.length > 0 ? (
                         ventasFiltradas.map((venta: Venta) => (

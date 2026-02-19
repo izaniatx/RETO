@@ -7,7 +7,7 @@ function Inicio() {
         <MainLayout>
             <div className="inicio-wrapper">
                 
-                {/* 1. SECCIÓN: ACCESO RÁPIDO (Bento Grid) */}
+             
                 <section className="section-padding">
                     <h2 className="section-title">Explora nuestra colección</h2>
                     <div className="bento-grid">
@@ -30,7 +30,7 @@ function Inicio() {
                     </div>
                 </section>
 
-                {/* 2. SECCIÓN: CÓMO FUNCIONAMOS */}
+            
                 <section className="how-it-works">
                     <div className="how-container">
                         <div className="how-text">
@@ -66,36 +66,34 @@ function Inicio() {
                     </div>
                 </section>
 
-                {/* SECCIÓN: MARCAS TOP */}
                 <section className="section-padding brands-area">
                     <h3 className="brand-title">Especialistas en Marcas Premium</h3>
                     <div className="brands-grid">
-                        
-                        {/* Marca 1 */}
+                    
                         <div className="brand-card">
                             <img src={"./images/logos/bmw.png"} alt="BMW" />
                             <span>BMW</span>
                         </div>
                         
-                        {/* Marca 2 */}
+                      
                         <div className="brand-card">
                             <img src={"./images/logos/audi.png"} alt="Audi" />
                             <span>AUDI</span>
                         </div>
 
-                        {/* Marca 3 */}
+                     
                         <div className="brand-card">
                             <img src={"./images/logos/mercedes.png"} alt="Mercedes" />
                             <span>MERCEDES</span>
                         </div>
 
-                        {/* Marca 4 */}
+                     
                         <div className="brand-card">
                             <img src={"./images/logos/honda.png"} alt="Honda" />
                             <span>HONDA</span>
                         </div>
 
-                        {/* Marca 5 */}
+                    
                         <div className="brand-card">
                             <img src={"./images/logos/volkswagen.png"} alt="VW" />
                             <span>VOLKSWAGEN</span>

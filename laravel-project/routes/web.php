@@ -18,12 +18,9 @@ use App\Http\Controllers\ComprasController;
 use App\Http\Controllers\CursosController;
 use App\Http\Controllers\LocalizacionController;
 use App\Http\Controllers\Api\VehiculoApiController;
+use App\Http\Controllers\EstadisticasController;
 
-/*
-|--------------------------------------------------------------------------
-| RUTAS PÚBLICAS
-|--------------------------------------------------------------------------
-*/
+
 
 Route::get('/', fn () => Inertia::render('landingpage'));
 
@@ -89,7 +86,7 @@ Route::prefix('inventario')->group(function () {
     Route::post('/coches/active', [VehiculosController::class, 'activeVehiculo']);
     Route::post('/coches/create', [VehiculosController::class, 'createVehiculo']);
     Route::put('/coches/{id}', [VehiculosController::class, 'modifyVehiculo']);
-    Route::get('/ventas', [VehiculosController::class, 'graficoVentas'])->name('ventas.grafico');
+    Route::get('/ventas', [EstadisticasController::class, 'graficoVentas'])->name('ventas.grafico');
    
 
     Route::get('/equipamientos', [EquipamientoController::class, 'getEquipamientos'])->name('inventario.equipamientos');

@@ -98,7 +98,7 @@ export default function DondeEncontrarnos({ paises, concesionarios, filters }: P
         <MainLayout>
             <div className="d-flex flex-column flex-md-row" style={{ height: 'calc(100vh - 64px)', overflow: 'hidden', backgroundColor: '#f8f9fa' }}>
                 
-                {/* PANEL LATERAL */}
+              
                 <div className="bg-white shadow-sm d-flex flex-column border-end" style={{ width: '100%', maxWidth: '400px', zIndex: 1000 }}>
                     <div className="p-4 border-bottom">
                         <h2 className="h4 fw-bold mb-3 text-dark">Encuéntranos</h2>
@@ -125,7 +125,7 @@ export default function DondeEncontrarnos({ paises, concesionarios, filters }: P
                         </div>
                     </div>
 
-                    {/* LISTA DE RESULTADOS */}
+                
                     <div className="flex-grow-1 overflow-auto">
                         {concesionarios.length === 0 ? (
                             <div className="p-5 text-center text-muted">
@@ -151,7 +151,7 @@ export default function DondeEncontrarnos({ paises, concesionarios, filters }: P
                     </div>
                 </div>
 
-                {/* MAPA */}
+             
                 <div className="flex-grow-1 position-relative">
                     <MapContainer center={mapCenter} zoom={zoom} style={{ height: '100%', width: '100%' }}>
                         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
@@ -187,8 +187,7 @@ export default function DondeEncontrarnos({ paises, concesionarios, filters }: P
                 }
                 .cursor-pointer { cursor: pointer; }
                 .border-transparent { border-left-color: transparent; }
-                
-                /* Ajuste para que el popup de Leaflet no use fuentes feas */
+               
                 .leaflet-popup-content-wrapper {
                     border-radius: 8px;
                     font-family: sans-serif;

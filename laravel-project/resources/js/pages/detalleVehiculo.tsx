@@ -38,7 +38,7 @@ const DetalleVehiculo = ({ vehiculo }: Props) => {
       <div className="detalle-container">
         <div className="detalle-card-wrapper">
           
-          {/* COLUMNA IZQUIERDA: Imagen y Características */}
+        
           <div className="col-main">
             <div className="image-card">
               {vehiculo.imagen ? (
@@ -58,8 +58,7 @@ const DetalleVehiculo = ({ vehiculo }: Props) => {
               </div>
             </div>
 
-            {/* Equipamiento Opcional */}
-            {/* Equipamiento Opcional */}
+           
             {vehiculo.equipamientos && vehiculo.equipamientos.length > 0 && (
               <div className="extra-section">
                 <h3>Equipamiento Opcional:</h3>
@@ -67,7 +66,7 @@ const DetalleVehiculo = ({ vehiculo }: Props) => {
                   {vehiculo.equipamientos.map((item) => (
                     <div key={item.id} className="extra-item">
                       <span className="dot">•</span> 
-                      {/* CAMBIO AQUÍ: Usamos item.equipamiento en lugar de item.nombre */}
+                  
                       {item.equipamiento} 
                     </div>
                   ))}
@@ -76,7 +75,7 @@ const DetalleVehiculo = ({ vehiculo }: Props) => {
             )}
           </div>
 
-          {/* COLUMNA DERECHA: Info Reserva */}
+         
           <div className="col-sidebar">
             <div className="booking-card">
               <h1 className="title-display">{vehiculo.marca?.marca} {vehiculo.modelo?.modelo}</h1>
@@ -92,7 +91,7 @@ const DetalleVehiculo = ({ vehiculo }: Props) => {
                 Reservar
               </button>
 
-            {/* Invocación del modal */}
+           
             <ModalReserva 
                 isOpen={isModalOpen} 
                 onClose={() => setIsModalOpen(false)} 

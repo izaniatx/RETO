@@ -20,10 +20,16 @@ function MainLayout({ children }: MainLayoutProps) {
     if (url === "/admin/dashboard" || url === "/admin/usuarios" || url === "/inventario/coches" || url === "/inventario/equipamientos" || url ==="/inventario/ventas"  ) {
         aux = "#212529";
     } else  if (url === "/catalogo") {
-        aux = "#f8f9fa";
+        aux = "#f4f7f6";
     }else  if (url === "/vendeTuCoche") {
         aux = "#f0f2f5";
+    }else  if (url === "/cursos" || url === "/contacto") {
+        aux = "rgb(248, 249, 250)";
+    } else if (url.startsWith("/gestion/compras") || url.startsWith("/gestion/ventas")) {
+        aux = "#f4f7f6";
     }
+
+    
 
     return (
         <div className="d-flex flex-column min-vh-100" style={{ backgroundColor: aux }}>

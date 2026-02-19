@@ -10,13 +10,13 @@ class VehiculoApiController extends Controller
 {
     public function index()
     {
-        // Solo devolvemos los datos técnicos y relaciones
+       
         $vehiculos = Vehiculo::with(['marca', 'modelo', 'carroceria', 'equipamientos'])
                          ->where('isDeleted', false)
                          ->orderBy('id', 'desc')
-                         ->get(); // O paginate()
+                         ->get(); 
 
-        // DEVOLVEMOS JSON PURO
+       
         return response()->json([
             'status' => 'success',
             'count'  => $vehiculos->count(),

@@ -52,14 +52,13 @@ const handleSuspender = (id: number) => {
     if (!confirm('¿Seguro que quieres suspender este usuario?')) return;
 
     router.post(
-        '/admin/usuarios/delete', // tu ruta
-        { id },                   // datos enviados
+        '/admin/usuarios/delete', 
+        { id },                   
         {
-            preserveScroll: true, // opcional
+            preserveScroll: true, 
             onSuccess: (page) => {
                 alert('Usuario suspendido correctamente');
-                // Actualizar la tabla localmente con los datos que devuelve el backend
-                // Por ejemplo:
+               
                 setUsers(users.map(u => u.id === id ? { ...u, isDeleted: true } : u));
             },
             onError: (errors) => {
@@ -74,7 +73,7 @@ const handleActivar = (id: number) => {
     if (!confirm('¿Seguro que quieres activar este usuario?')) return;
 
     router.post(
-        '/admin/usuarios/active', // tu ruta para activar
+        '/admin/usuarios/active', 
         { id },
         {
             preserveScroll: true,
@@ -95,15 +94,14 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
    if (editingUser) {
-    // Actualización
+   
     router.put(`/admin/usuarios/${editingUser.id}`, formValues, {
         preserveScroll: true,
         onSuccess: (page) => {
-            // page.props.updatedUser no existe porque devolvimos JSON
-            // Pero Inertia te da `page.props` o mejor usar response.data
+           
             const updatedUser = (page as any).props?.updatedUser || formValues;
 
-            // Asegurarse de que updatedUser está definido
+           
             if (updatedUser) {
                 setUsers(prev =>
                     prev.map(u => u.id === editingUser.id ? updatedUser : u)
@@ -117,7 +115,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 }
 
  else {
-        // Creación
+       
         router.post('/admin/usuarios/create', formValues, {
             preserveScroll: true,
             onSuccess: (page) => {
@@ -139,11 +137,11 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         <MainLayout>
             <div className="d-flex" style={{ minHeight: "100vh", backgroundColor: "#f8f9fa" }}>
                 
-                {/* BARRA LATERAL (SIDEBAR) - Mantenemos la misma que en Dashboard */}
+              
                 <aside className="bg-dark text-white p-4 shadow" style={{ width: "250px" }}>
                     <h4 className="fw-bold mb-4 text-center border-bottom pb-3">Panel Admin</h4>
                     <nav className="nav flex-column gap-2">                 
-                        {/* Enlace activo ahora es Usuarios */}
+                       
                         <Link href="/admin/usuarios" className="nav-link nav-usuarios-2 text-white bg-primary rounded px-3 py-2">
                             <i className="bi bi-people me-2"></i> Usuarios
                         </Link>
@@ -151,7 +149,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                     </nav>
                 </aside>
 
-                {/* AREA DE TRABAJO */}
+               
                 <main className="flex-grow-1 p-4">
                     <div className="container-fluid">
                         <header className="d-flex justify-content-between align-items-center mb-4">
@@ -162,7 +160,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 
                         </header>
 
-                        {/* STATS QUICK VIEW */}
+                   
                         <div className="row g-3 mb-4">
                             <div className="col-md-6">
                                 <div className="card border-0 shadow-sm text-center p-3">
@@ -178,7 +176,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                             </div>
                         </div>
 
-                        {/* TABLA DE USUARIOS */}
+                      
                         <section className="card border-0 shadow-sm overflow-hidden">
                             <div className="table-responsive">
                                 <table className="table table-hover align-middle mb-0">
@@ -225,8 +223,8 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                                                                 apellido: user.apellido || '',
                                                                 email: user.email,
                                                                 telefono: user.telefono || '',
-                                                                rol_id: user.rol?.id?.toString() || '', // ✅ convertimos a string
-                                                                password: '', // vacío para no obligar a cambiar
+                                                                rol_id: user.rol?.id?.toString() || '', 
+                                                                password: '', 
                                                             });
                                                             setShowModal(true);
                                                         }}

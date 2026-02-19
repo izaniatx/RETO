@@ -21,7 +21,7 @@ const CarCard = ({ coche, isFavorito, onToggleFavorito }) => {
       flexDirection: 'column'
     }}>
       
-      {/* BOTÓN DE FAVORITO */}
+     
       <button 
         onClick={(e) => {
           e.preventDefault();

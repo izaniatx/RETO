@@ -18,7 +18,7 @@ class ConcesionarioFactory extends Factory
             'Malaga'    => ['lat' => 36.7212, 'lng' => -4.4214],
         ];
 
-        // Elegimos una ciudad al azar de la lista
+       
         $ciudadNombre = $this->faker->randomElement(array_keys($coordenadasCiudades));
         $centro = $coordenadasCiudades[$ciudadNombre];
 
@@ -26,12 +26,12 @@ class ConcesionarioFactory extends Factory
             'nombre' => 'Automóviles ' . $this->faker->lastName . ' ' . $ciudadNombre,
             'telefono' => '+34 ' . $this->faker->numerify('#########'),
             
-            // Generamos un punto muy cerca del centro de la ciudad (variación de 0.05 grados)
-            // Esto garantiza que se queden en la ciudad y no en el agua
+           
+           
             'latitud' => $centro['lat'] + $this->faker->latitude(-0.05, 0.05),
             'longitud' => $centro['lng'] + $this->faker->longitude(-0.05, 0.05),
             
-            'ciudad_id' => \App\Models\Ciudad::first()->id ?? 1, // O la lógica que prefieras
+            'ciudad_id' => \App\Models\Ciudad::first()->id ?? 1, 
             'isDeleted' => false,
         ];
     }

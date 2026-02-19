@@ -13,19 +13,22 @@ class CatalogoController extends Controller
 {
     public function getVehiculos()
     {
-    
+        
         $vehiculos = Vehiculo::with(['marca', 'modelo', 'carroceria', 'ventaVehiculo'])
+            ->whereNull('fecha_venta') 
             ->whereHas('ventaVehiculo', function ($query) {
                 $query->where('estado_id', 3);
             })
             ->orderBy('id', 'desc')
             ->get();
     
-        $totalVehiculos = Vehiculo::whereHas('ventaVehiculo', function ($query) {
-            $query->where('estado_id', 3);
-        })->count();
+       
+        $totalVehiculos = Vehiculo::whereNull('fecha_venta')
+            ->whereHas('ventaVehiculo', function ($query) {
+                $query->where('estado_id', 3);
+            })->count();
 
-    
+       
         $ventasMes = Vehiculo::whereNotNull('fecha_venta')
             ->whereMonth('fecha_venta', now()->month)
             ->whereYear('fecha_venta', now()->year)

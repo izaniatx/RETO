@@ -54,9 +54,9 @@
 }
 
 .btn-pers:hover {
-    transform: translateY(-3px); /* Se eleva un poquito */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra más profunda para dar profundidad */
-    filter: brightness(1.1); /* Brilla ligeramente */
+    transform: translateY(-3px); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
+    filter: brightness(1.1); 
 }
 
 
@@ -75,7 +75,7 @@
 }
 
 .profile-circle-red {
-    /* Usamos la variable que mencionaste */
+  
     background-color: rgb(189, 58, 63);
     width: 38px;
     height: 38px;

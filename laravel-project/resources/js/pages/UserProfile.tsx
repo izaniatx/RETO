@@ -92,13 +92,13 @@ const UserProfile: React.FC<UserProfileProps> = ({ usuario, rol, cursosAsignados
 
   return (
     <div className="profile-page">
-      {/* Banner */}
+   
       <div className="profile-banner-full" style={{ backgroundColor:  'rgb(33, 37, 41)' }}>
         <button className="btn-back" onClick={() => window.history.back()}>⬅</button>
       </div>
 
       <div className="profile-container">
-        {/* Sidebar */}
+      
         <aside className="profile-sidebar card">
           <div className="avatar-container">
             <div className="profile-avatar">👤</div>
@@ -122,7 +122,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ usuario, rol, cursosAsignados
           </div>
         </aside>
 
-        {/* Información */}
+        
         <main className="profile-content card">
           <div className="content-header">
             <h3>Información Personal</h3>
@@ -151,45 +151,47 @@ const UserProfile: React.FC<UserProfileProps> = ({ usuario, rol, cursosAsignados
             </div>
           </div>
 
+     {rol?.rol !== 'Cliente' && (
           <section className="profile-content card mt-4">
-  <div className="content-header">
-    <h3>Mi Formación y Capacitación</h3>
-  </div>
-
-  <div className="courses-list">
-    {cursosAsignados && cursosAsignados.length > 0 ? (
-      <div className="grid-courses">
-        {cursosAsignados.map((curso) => (
-          <div key={curso.id} className="course-item">
-            <div className="course-info">
-              <span className={`badge-category ${curso.categoria.toLowerCase()}`}>
-                {curso.categoria}
-              </span>
-              <h4>{curso.nombre}</h4>
-              <p className="finish-date">
-                Finaliza: {new Date(curso.pivot.fecha_finalizacion).toLocaleDateString()}
-              </p>
+            <div className="content-header">
+              <h3>Mi Formación y Capacitación</h3>
             </div>
-        
-          </div>
-        ))}
-      </div>
-    ) : (
-      <p className="no-data">No tienes cursos asignados actualmente.</p>
-    )}
-  </div>
-</section>
+
+            <div className="courses-list">
+              {cursosAsignados && cursosAsignados.length > 0 ? (
+                <div className="grid-courses">
+                  {cursosAsignados.map((curso) => (
+                    <div key={curso.id} className="course-item">
+                      <div className="course-info">
+                        <span className={`badge-category ${curso.categoria.toLowerCase()}`}>
+                          {curso.categoria}
+                        </span>
+                        <h4>{curso.nombre}</h4>
+                        <p className="finish-date">
+                          Finaliza: {new Date(curso.pivot.fecha_finalizacion).toLocaleDateString()}
+                        </p>
+                      </div>
+                  
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="no-data">No tienes cursos asignados actualmente.</p>
+              )}
+            </div>
+          </section>
+      )}
         </main>
       </div>
 
-      {/* Modal de edición */}
+   
       <UsuarioModal
         show={showModal}
         onClose={() => setShowModal(false)}
         formValues={formValues}
         setFormValues={setFormValues}
         errors={errors}
-        roles={rol ? [rol] : []} // si quieres usar varios roles, pásalos todos
+        roles={rol ? [rol] : []} 
         handleSubmit={handleSubmit}
       />
     </div>

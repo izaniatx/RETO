@@ -8,17 +8,17 @@ import { router } from '@inertiajs/react';
 const DetalleVenta = ({ venta, estados }: { venta: any, estados: any[] }) => {
 
     const handleEstadoChange = (nuevoEstadoId: string) => {
-        // Hacemos la petición a Laravel
+ 
         router.patch(`/gestion/ventas/${venta.id}/estado`, {
             estado_id: nuevoEstadoId
         }, {
-            preserveScroll: true, // Para que la página no salte arriba al actualizar
+            preserveScroll: true, 
         });
     };
 
     const handleVender = () => {
         if (confirm('¿Confirmas la venta de este vehículo? El estado pasará a "Vendido".')) {
-            // Llamamos a la nueva ruta que crearemos en web.php
+          
             router.patch(`/gestion/ventas/${venta.id}/vender`, {}, {
                 preserveScroll: true,
             });
@@ -27,22 +27,22 @@ const DetalleVenta = ({ venta, estados }: { venta: any, estados: any[] }) => {
     return (
         <MainLayout>
             <div className="detalle-wrapper">
-                {/* Botón de retroceso minimalista */}
+               
                 <Link href="/gestion/ventas" className="back-nav">
                     <ChevronLeft size={24} />
                     <span>Volver al listado</span>
                 </Link>
 
                 <div className="glass-card">
-                    {/* Badge superior flotante */}
+                   
                     <div className="floating-header">
                         DETALLES DE LA CONSULTA #{venta.id}
                     </div>
 
                     <div className="content-grid">
-                        {/* Sección Cliente */}
+                     
                         <div className="client-info">
-                            <h4 className="section-title"><User size={18} /> Información del Cliente</h4>
+                            <h4 className="section-title"> Información del Cliente</h4>
                             <div className="data-row">
                                 <span className="label">Nombre:</span>
                                 <span className="value">{venta.user?.nombre} {venta.user?.apellido}</span>
@@ -54,6 +54,15 @@ const DetalleVenta = ({ venta, estados }: { venta: any, estados: any[] }) => {
                             <div className="data-row">
                                 <span className="label">Email:</span>
                                 <span className="value">{venta.user?.email}</span>
+                            </div>
+
+                            
+
+                            <div className="message-area">
+                                <label className='detalle-icon'><MessageSquare size={16} /> Mensaje del cliente:</label>
+                                <div className="message-bubble">
+                                    {venta.mensaje?.mensaje}
+                                </div>
                             </div>
 
                             <div className="status-container">
@@ -72,16 +81,8 @@ const DetalleVenta = ({ venta, estados }: { venta: any, estados: any[] }) => {
                                 
                               
                             </div>
-
-                            <div className="message-area">
-                                <label><MessageSquare size={16} /> Mensaje del cliente:</label>
-                                <div className="message-bubble">
-                                    {venta.mensaje?.mensaje}
-                                </div>
-                            </div>
                         </div>
 
-                        {/* Sección Vehículo */}
                         <div className="vehicle-showcase">
                             <div className="img-container">
                                 <img 

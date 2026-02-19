@@ -17,7 +17,7 @@
     box-shadow: 0 20px 50px rgba(0,0,0,0.2);
 }
 
-/* Columna Izquierda */
+
 .modal-left {
     flex: 1.4;
     padding: 40px;
@@ -62,7 +62,7 @@
     background: #fafafa;
 }
 
-/* Columna Derecha (Gris) */
+
 .modal-right {
     flex: 1;
     background: #d1d1d1;
@@ -102,7 +102,7 @@
 
 .btn-confirmar-reserva {
     width: 100%;
-    background: #e63946; /* Color rojo de tu diseño */
+    background: #e63946; 
     color: white;
     padding: 16px;
     border-radius: 50px;

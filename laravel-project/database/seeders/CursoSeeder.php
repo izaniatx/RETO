@@ -11,7 +11,7 @@ class CursoSeeder extends Seeder
     public function run(): void
     {
         $cursos = [
-            // ÁREA DE VENTAS
+           
             [
                 'nombre' => 'Técnicas de Cierre de Ventas Automotriz',
                 'descripcion' => 'Estrategias avanzadas para convertir leads en compradores reales en el showroom.',
@@ -26,7 +26,7 @@ class CursoSeeder extends Seeder
                 'nivel' => 'Básico',
                 'duracion' => 15,
             ],
-            // ÁREA DE COMPRAS / TASACIÓN
+           
             [
                 'nombre' => 'Peritaje y Tasación de Vehículos de Ocasión',
                 'descripcion' => 'Protocolo técnico para evaluar el estado mecánico y estético de coches usados.',
@@ -41,7 +41,7 @@ class CursoSeeder extends Seeder
                 'nivel' => 'Avanzado',
                 'duracion' => 30,
             ],
-            // ÁREA ADMINISTRATIVA
+           
             [
                 'nombre' => 'Normativa Legal en Transferencias de Vehículos',
                 'descripcion' => 'Todo sobre el cambio de titularidad, impuestos y trámites con la DGT.',
@@ -62,7 +62,7 @@ class CursoSeeder extends Seeder
             Curso::create([
                 'nombre' => $curso['nombre'],
                 'descripcion' => $curso['descripcion'],
-                'categoria' => $curso['categoria'], // Asegúrate de tener este campo en tu migración
+                'categoria' => $curso['categoria'], 
                 'nivel' => $curso['nivel'],
                 'duracion_horas' => $curso['duracion'],
                

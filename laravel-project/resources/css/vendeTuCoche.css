@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-/* Hacemos que el contenedor de la modal no sea relativo a la pantalla sino estático */
+
 .vende-static-container {
     position: relative !important;
     top: 0 !important;
@@ -17,7 +17,7 @@
 }
 
 .btn-vende-rojo {
-    background-color: #b91c1c !important; /* Rojo intenso */
+    background-color: #b91c1c !important; 
     transition: transform 0.2s;
 }
 
@@ -35,7 +35,7 @@
 
 
 
-/* Ajuste para que el título se vea como el badge de la otra imagen */
+
 .vende-header-container {
     background: #b91c1c;
     color: white;
@@ -70,7 +70,7 @@
 .row-inputs {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px; /* Espacio entre los dos inputs de la misma fila */
+    gap: 20px; 
     margin-bottom: 5px;
 }
 

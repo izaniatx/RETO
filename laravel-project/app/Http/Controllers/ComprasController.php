@@ -12,7 +12,7 @@ use App\Models\Mensaje;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Estado;
-
+use Illuminate\Support\Carbon;
 
 class ComprasController extends Controller
 {
@@ -67,10 +67,10 @@ class ComprasController extends Controller
 
     public function indexGestorCompras()
     {
-        // Obtenemos las ventas de tipo 'compra' cuyo estado NO sea 3 (En venta)
+        
         $compras = VentaVehiculo::with(['vehiculo.marca', 'vehiculo.modelo', 'estado'])
                     ->where('tipo', 'compra')
-                    ->where('estado_id', '!=', 3) // <--- Filtro para excluir los ya comprados
+                    ->where('estado_id', '!=', 3) 
                     ->get();
 
         return inertia('gestorCompras', [
@@ -112,16 +112,21 @@ class ComprasController extends Controller
 
     public function comprarVehiculo(Request $request, $id)
     {
-        // 1. Buscamos la relación de compra específica
         $venta = VentaVehiculo::findOrFail($id);
+        $vehiculo = Vehiculo::findOrFail($venta->vehiculo_id);
     
-        // 2. Actualizamos el estado a 3 (En venta)
+       
+        $vehiculo->update([
+            'fecha_alta' => now() 
+        ]);
+    
+      
         $venta->update([
             'estado_id' => 3
         ]);
     
-        // 3. Redirigimos al listado de gestión con un mensaje de éxito
-        return redirect()->route('gestor.compras')->with('success', 'Vehículo adquirido y puesto en venta.');
+        return redirect()->route('gestor.compras')
+            ->with('success', 'Vehículo adquirido y puesto en venta.');
     }
 
     public function actualizarVehiculo(Request $request, $id)
@@ -131,7 +136,7 @@ class ComprasController extends Controller
             'precio' => 'required|numeric|min:0',
         ]);
 
-        // Buscamos la relación de compra para llegar al vehículo
+      
         $compra = VentaVehiculo::findOrFail($id);
         $vehiculo = $compra->vehiculo;
 
