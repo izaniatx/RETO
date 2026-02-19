@@ -110,10 +110,10 @@ function GestorCompras({ compras = [] }: Props) {
                                             }).format(compra.vehiculo?.precio || 0)}
                                         </p>
                                         <div className="d-flex justify-content-between align-items-center mt-3">
-                                            <span className="text-muted small">ID Reserva: #{compra.id}</span>
+                                            <span className="text-muted id-reserva small">ID Reserva: #{compra.id}</span>
                                             <Link 
                                                 href={`/gestion/compras/${compra.id}`} 
-                                                className="btn btn-sm btn-outline-dark"
+                                                className="btn b-detalles btn-sm btn-outline-dark"
                                             >
                                                 Detalles
                                             </Link>

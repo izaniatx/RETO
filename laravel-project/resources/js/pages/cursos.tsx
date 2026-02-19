@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import MainLayout from "../layouts/MainLayout";
 import { Head, router } from '@inertiajs/react';
+import '../../css/cursos.css';
 
 interface Curso {
     id: number;
@@ -50,7 +51,7 @@ export default function Cursos({ cursos, misCursosIds }: Props) {
                                 key={cat} 
                                 onClick={() => setFiltro(cat)}
                                 className={`btn rounded-pill px-4 fw-bold shadow-sm transition-all ${
-                                    filtro === cat ? 'btn-primary' : 'btn-white bg-white text-secondary'
+                                    filtro === cat ? 'btn-primary c-elegido' : 'btn-white c-no-elegido bg-white text-secondary'
                                 }`}
                             >
                                 {cat}
@@ -65,9 +66,9 @@ export default function Cursos({ cursos, misCursosIds }: Props) {
                             return (
                                 <div key={curso.id} className="col-12 col-md-6 col-lg-4">
                                     <div className="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                                        <div className="card-body p-4">
+                                        <div className="card-body c-card-body p-4">
                                             <div className="d-flex justify-content-between align-items-center mb-3">
-                                                <span className="badge bg-primary-subtle text-primary border border-primary-subtle text-uppercase px-2 py-1" style={{ fontSize: '0.7rem' }}>
+                                                <span className="badge bg-primary-subtle c-category text-primary border border-primary-subtle text-uppercase px-2 py-1" style={{ fontSize: '0.7rem' }}>
                                                     {curso.categoria}
                                                 </span>
                                                 <small className="text-muted">⏱ {curso.duracion_horas}h</small>
@@ -80,7 +81,7 @@ export default function Cursos({ cursos, misCursosIds }: Props) {
                                         </div>
 
                                         <div className="card-footer bg-white border-top-0 p-4 pt-0 d-flex align-items-center justify-content-between">
-                                            <span className="text-primary fw-bold small">{curso.nivel}</span>
+                                            <span className="text-primary c-nivel fw-bold small">{curso.nivel}</span>
                                             <button 
                                                 disabled={yaInscrito}
                                                 onClick={() => handleAnyadir(curso.id)}

@@ -19,6 +19,23 @@
     color: #222;
 }
 
+.id-reserva {
+    font-size: 0.75rem;
+    color: #bd3a3f !important;
+}
+
+.b-detalles {
+    background-color: #bd3a3f !important;
+    color: white !important;
+    border-color: #bd3a3f !important;
+}
+
+.b-detalles:hover {
+    background-color: white !important;
+    color: #bd3a3f !important;
+    border-color: #bd3a3f !important;
+}
+
 
 .badge-estado-1 { background-color: #ffc107; color: #000; } 
 .badge-estado-2 { background-color: #28a745; color: #fff; } 

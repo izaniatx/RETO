@@ -139,7 +139,7 @@ const ModalCoche = ({
             <button type="button" className="btn btn-outline-secondary px-4" onClick={() => setShowModal(false)}>
               Cancelar
             </button>
-            <button type="submit" className="btn btn-primary px-4 shadow-sm" disabled={processing}>
+            <button type="submit" className="btn btn-primary anadir-coche px-4 shadow-sm" disabled={processing}>
               {cocheEditar ? "Guardar Cambios" : "Crear Vehículo"}
             </button>
           </div>
