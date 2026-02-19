@@ -11,6 +11,7 @@ use App\Models\Concesionario;
 use App\Models\VentaVehiculo;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,7 +20,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // 1. Limpieza de tablas con claves foráneas desactivadas
+        // Crear instancia de Faker
+        $faker = Faker::create();
+
+        // 1️⃣ Limpieza de tablas con claves foráneas desactivadas
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         
         Vehiculo::truncate();
@@ -31,7 +35,7 @@ class DatabaseSeeder extends Seeder
         
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        // 2. Llamada a Seeders base (Roles, Estados, Cursos...)
+        // 2️⃣ Seeders base (Roles, Estados, Cursos, Vehículos básicos)
         $this->call([
             RolSeeder::class,
             EstadosSeeder::class,
@@ -39,7 +43,7 @@ class DatabaseSeeder extends Seeder
             CursoSeeder::class,
         ]);
 
-        // 3. Estructura de Países, Territorios y Concesionarios
+        // 3️⃣ Crear Países, Territorios y Concesionarios
         $pais = Pais::create(['pais' => 'España']);
 
         $zonas = [
@@ -86,8 +90,8 @@ class DatabaseSeeder extends Seeder
                 ]);
 
                 Concesionario::create([
-                    'nombre' => "Automóviles " . $nombreCiudad . " " . fake()->lastName(),
-                    'telefono' => '+34 ' . fake()->numerify('#########'),
+                    'nombre' => "Automóviles " . $nombreCiudad . " " . $faker->lastName(),
+                    'telefono' => '+34 ' . $faker->numerify('#########'),
                     'latitud' => $coords['lat'],  
                     'longitud' => $coords['lng'], 
                     'ciudad_id' => $ciudad->id,
@@ -96,27 +100,25 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        // 4. Crear Usuarios
+        // 4️⃣ Crear Usuarios
         $this->call([TablaUsuariosSeeder::class]);
 
-        // 5. Crear Vehículos y ponerlos "En Venta"
+        // 5️⃣ Crear Vehículos y asignarles "En Venta"
         if (Vehiculo::count() == 0) {
-            // Creamos 20 vehículos usando el factory
-            Vehiculo::factory()->count(20)->create();
-            
-            // Les asignamos equipamiento
+            $vehiculos = Vehiculo::factory()->count(20)->create();
+
+            // Asignar equipamiento
             $this->call([EquipamientoSeeder::class]);
 
-            // IMPORTANTE: Los vinculamos con la tabla venta_vehiculos
-            $vehiculosCreados = Vehiculo::all();
-            $adminUser = User::first(); // Tomamos el primer usuario como responsable
+            // Vincular vehículos con ventas
+            $adminUser = User::first(); // Primer usuario como responsable
 
-            foreach ($vehiculosCreados as $vehiculo) {
+            foreach ($vehiculos as $vehiculo) {
                 VentaVehiculo::create([
                     'user_id'     => $adminUser->id ?? 1,
                     'vehiculo_id' => $vehiculo->id,
                     'mensaje_id'  => null,
-                    'estado_id'   => 3, // ID 3: 'En venta' según tu EstadosSeeder
+                    'estado_id'   => 3, // 'En venta'
                     'tipo'        => 'Stock Concesionario'
                 ]);
             }
