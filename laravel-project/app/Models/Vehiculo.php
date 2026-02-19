@@ -10,6 +10,7 @@ class Vehiculo extends Model
 
     use HasFactory;
     
+    protected $with = ['marca', 'modelo', 'carroceria', 'equipamientos'];
     protected $table = 'vehiculos';
 
     protected $fillable = [
