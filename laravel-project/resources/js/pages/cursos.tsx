@@ -85,10 +85,10 @@ export default function Cursos({ cursos, misCursosIds }: Props) {
                                             <button 
                                                 disabled={yaInscrito}
                                                 onClick={() => handleAnyadir(curso.id)}
-                                                className={`btn btn-sm rounded-3 px-3 fw-bold ${
+                                                className={`b-insc btn btn-sm rounded-3 px-3 fw-bold ${
                                                     yaInscrito 
                                                     ? 'btn-success disabled opacity-75' 
-                                                    : 'btn-dark hover-blue'
+                                                    : 'btn-dark '
                                                 }`}
                                             >
                                                 {yaInscrito ? '✓ Ya inscrito' : 'Inscribirme'}

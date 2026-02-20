@@ -32,3 +32,9 @@
     color: white !important;
     border-color: #bd3a3f !important;
 }
+
+.b-insc:hover {
+    background-color: #bd3a3f !important;
+    color: white !important;
+    border-color: #bd3a3f !important;
+}
